@@ -1,4 +1,4 @@
-#Software Prerequisites
+# Software Prerequisites
 
 Please have the following software installed on your computer :
 * Microsoft Azure Storage Explorer, see [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
