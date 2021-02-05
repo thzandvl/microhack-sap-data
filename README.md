@@ -15,6 +15,6 @@ To start with the Microhack we first need to take some preparation steps:
 2. [Prepare the Gateway server](PrepareGateway.md)
 
 ToDo
-[] Create Datalake for staging
-[] Create Datafactory
-[] Create Synapse (Workspace?)
+- [ ] Create Datalake for staging
+- [ ] Create Datafactory
+- [ ] Create Synapse (Workspace?)
