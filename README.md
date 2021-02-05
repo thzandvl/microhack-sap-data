@@ -7,5 +7,6 @@ For this Microhack we will:
 
 To start with the Microhack we first need to take some preparation steps:
 
+0. [Software Prerequisites](SoftwarePrerequisites.md)
 1. [Deploy a gateway server for the SAP RFC connection](DeployGatewayVM.md)
 2. [Prepare the Gateway server](PrepareGateway.md)
