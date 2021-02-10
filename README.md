@@ -5,16 +5,21 @@ For this Microhack we will:
 * Visualize the extracted Sales Orders and invoice data with Power BI
 * Predict incoming cash flow for new Sales Orders
 
-##ToDo - Scenario Description
+## Scenario Description
 
 
+## Get Started
 To start with the Microhack we first need to take some preparation steps:
 
 0. [Software Prerequisites](SoftwarePrerequisites.md)
 1. [Deploy a gateway server for the SAP RFC connection](DeployGatewayVM.md)
 2. [Prepare the Gateway server](PrepareGateway.md)
+3. [Create Synapse Workspace](SynapseWorkspace.md)
 
 ToDo
+- [ ] Scenario Description
 - [ ] Create Datalake for staging
 - [ ] Create Datafactory
 - [ ] Create Synapse (Workspace?)
+- [ ] CosmosDB Connection This probably only works when participants have access to the subscription
+- [ ] Gateway installation vs ADF Runtime integration
