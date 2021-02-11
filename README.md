@@ -18,8 +18,6 @@ To start with the Microhack we first need to take some preparation steps:
 
 ToDo
 - [ ] Scenario Description
-- [ ] Create Datalake for staging
-- [ ] Create Datafactory
-- [ ] Create Synapse (Workspace?)
+- [*] Create Synapse (Workspace?)
 - [ ] CosmosDB Connection This probably only works when participants have access to the subscription
 - [ ] Gateway installation vs ADF Runtime integration
