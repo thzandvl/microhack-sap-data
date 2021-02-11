@@ -18,6 +18,6 @@ To start with the Microhack we first need to take some preparation steps:
 
 ToDo
 - [ ] Scenario Description
-- [*] Create Synapse (Workspace?)
+- [x] Create Synapse (Workspace?)
 - [ ] CosmosDB Connection This probably only works when participants have access to the subscription
 - [ ] Gateway installation vs ADF Runtime integration
