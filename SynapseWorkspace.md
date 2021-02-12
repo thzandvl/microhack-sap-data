@@ -177,7 +177,7 @@ This dataset will act as the source.
 
 * Create a Linked Service to the SQL Pool
 
-<img src="images\synapsews\LS_SQLPool.jpg>
+<img src="images\synapsews\LS_SQLPool.jpg">
 
 * Create a Integration DataSet for the Synapse Sales Orders.
 This dataset will act as the 'sink'.
