@@ -250,7 +250,7 @@ select * from SalesOrderItems
 Payments are extracted from CosmosDB
 * Create a Linked Service to CosmosDB (SQL API)
 <h3 style="color:red">(thzandvl) Don't forget that participants don't have access to the subscription. Change to manual.</h3>
-<img src="images\synapsews\LS_cosmosDB.jpg">
+<img src="images\synapsews\LS_CosmosDB.jpg">
 
 Test the connection and create the linked service.
 
