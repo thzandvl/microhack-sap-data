@@ -4,7 +4,7 @@
 
 ## Creation
 * Create a Synapse Analytics Workspace
-<img src="images\synapsews\synapsewsservice.jpg">
+![Synapse workspace service](/images/synapsews/synapsewsservice.jpg)
 
 Enter the following settings :
 Basics :
@@ -13,24 +13,24 @@ Basics :
 * Data Lake Storage : Select an existing DL or create a new one
 * File System Name : Select an exising File System or create a new one
 
-<img src="images\synapsews\synapsewsservice_basics.jpg">
+![Synapse workspace basics](/images/synapsews/synapsewsservice_basics.jpg)
 
 Security :
 * Admin Username & Password : this will be there user id and password for the related SQL DB's.
 
-<img src="images\synapsews\synapsewsservice_security.jpg">
+![Synapse workspace security](/images/synapsews/synapsewsservice_security.jpg)
 
 Other settings can remain as default.
 
 After deployment :
 * Create a `staging' directory within the Synapse Azure Data Lake container. This directory is used for temporary files during data upload to Synapse.
 
-<img src="images\synapsews\stagingDirectory.jpg">
+![Create staging directory](/images/synapsews/stagingDirectory.jpg)
 
 * Create a new SQL Pool
 Choose `DW100c` as performance level (to save on costs).
 
-<img src="images\synapsews\createSQLPool.jpg">
+![Create SQL pool](/images/synapsews/createSQLPool.jpg)
 
 * Create the Synapse tables in the SQL Pool
 These tables are the receivers of the SAP Sales Order data and the Cosmos Payment Data.
@@ -125,11 +125,13 @@ CREATE TABLE Payments(
 
 # Synapse Configuration
 The configuration is done via `Synapse Studio`:\
-<img src="images\synapsews\openSynapseStudio.jpg">
+
+![Open Synapse studio](/images/synapsews/openSynapseStudio.jpg)
 
 ## Register Integration Runtime
 To register the integration runtime click on manage:
-<img src="images\irt\syn-irt1.png" height="300px" />
+
+![Open Synapse studio](/images/irt/syn-irt1.png)
 
 Click on `Integration runtimes`:
 ![Integration runtimes](/images/irt/syn-irt2.png)
@@ -168,40 +170,43 @@ The view to extract from is : `ZBD_ISALESDOC_E`. You can have a look in the SAP 
 
 * Create a Linked Service to the SAP System.
 
-<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
+### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
 
-<img src="images\synapsews\LS_SAPRFC.jpg">
+![Linked Service: SAP RFC](/images/synapsews/LS_SAPRFC.jpg)
 
 * Select the data to extract. Create an Integration DataSet based on the previously create `Linked Service`.
 This dataset will act as the source.
-<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
-<img src="images\synapsews\S4DSalesOrderHeadersDS.jpg">
+### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
+
+![S4D SalesOrderHeaders Data Source](/images/synapsews/S4DSalesOrderHeadersDS.jpg)
 
 * Create a Linked Service to the SQL Pool
-<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
+### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
 
-<img src="images\synapsews\LS_SQLPool.jpg">
+![Linked Service SQL Pool](/images/synapsews/LS_SQLPool.jpg)
 
 * Create a Integration DataSet for the Synapse Sales Orders.
 This dataset will act as the 'sink'.
-<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
-<img src="images\synapsews\SynSalesOrderHeadersDS.jpg">
+### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
+
+![Synapse SalesOrderHeaders Data Source](/images/synapsews/SynSalesOrderHeadersDS.jpg)
 
 * Create a Integration pipeline
 Use the copy action. Map the source to the SAP Sales Order dataset and the sink to the synapse Sales Order dataset.
-<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
-<img src="images\synapsews\copyAction.jpg">
+### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
 
-<img src="images\synapsews\RFCCopyActionSource.jpg">
+![Copy action](/images/synapsews/copyAction.jpg)
 
-<img src="images\synapsews\RFCCopyActionSink.jpg">
+![RFC copy action source](/images/synapsews/RFCCopyActionSource.jpg)
+
+![RFC copy action sink](/images/synapsews/RFCCopyActionSink.jpg)
 
 In the mapping tab, select `import Mapping`. Since source and target fields have the same name, the system can auto-generate the mapping.
 
-<img src="images\synapsews\rfcMapping.jpg">
+![RFC mapping](/images/synapsews/rfcMapping.jpg)
 
 For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSOn Code and add :
-<h3 style="color:red">(thzandvl) where to change this? which button to click?</h3>
+### (thzandvl) where to change this? which button to click?
 
 ```json
   "typeProperties": {
@@ -216,14 +221,16 @@ For date and time fields we need to make sure the system maps these to the SQL D
 ```
 
 In the `Settings` blade, enable staging and enter the path to the staging directory of Azure Data Lake.
-<img src="images\synapsews\staging.jpg">
+
+![Staging](/images/synapsews/staging.jpg)
 
 * publish and trigger the pipeline
 
-<img src="images\synapsews\triggerNow.jpg">
+![Trigger now](/images/synapsews/triggerNow.jpg)
 
 * Monitor the pipeline.
 * Check the result using SQL
+
 ```sql
 select count(*) from SalesOrderHeaders
 select * from SalesOrderHeaders
@@ -233,14 +240,17 @@ select * from SalesOrderHeaders
 # Implement the SalosOrderItems flow
 The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData
 * Create a Linked Service to SAP oData: `http://52.183.47.112:54000/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
-<img src="images\synapsews\LS_SAPOdata.jpg">
+
+![Linked Source SAP OData](/images/synapsews/LS_SAPOdata.jpg)
 
 * Create a 'source' DataSet for the Sales Order Items, based on `SAP ECC adapter`.
 Use `C_Salesorderitemfs`as path.
-<img src="images\synapsews\S4DSalesOrderItemsDS.jpg">
+
+![S4D SalesOrderItems Data Source](/images/synapsews/S4DSalesOrderItemsDS.jpg)
 
 * Create, publish and trigger the integration Pipeline
 * Check the result using SQL
+
 ```sql 
 select count(*) from SalesOrderItems
 select * from SalesOrderItems
@@ -249,21 +259,25 @@ select * from SalesOrderItems
 # Implement the Payment flow
 Payments are extracted from CosmosDB
 * Create a Linked Service to CosmosDB (SQL API)
-<h3 style="color:red">(thzandvl) Don't forget that participants don't have access to the subscription. Change to manual.</h3>
-<img src="images\synapsews\LS_CosmosDB.jpg">
+### (thzandvl) Don't forget that participants don't have access to the subscription. Change to manual.
+
+![Linked Source CosmosDB](/images/synapsews/LS_CosmosDB.jpg)
 
 Test the connection and create the linked service.
 
 * Create a 'source' DataSet for the Payment Data based on the CosmosDB 'SQL API' Adapter
 Use collection : `paymentData`
-<img src="images\synapsews\cosmosPaymentDS.jpg">
+
+![CosmosPayments Data Source](/images/synapsews/cosmosPaymentDS.jpg)
 
 * Create a 'sink' DataSet for the payment Data in Synapse
 * Complete the mapping between 'source' and 'sink' datasets.
-<img src="images\synapsews\paymentMapping.jpg">
+
+![Payment mapping](/images/synapsews/paymentMapping.jpg)
 
 * Create, publish and trigger the integration pipeline
 * Check the result using SQL
+
 ```sql
 select count(*) from Payments
 select * from Payments

@@ -6,24 +6,24 @@ Make sure port 3389 is open on your Network Security Gateway and logon to the sy
 
 Logon to the Gateway VM deployed in the earlier steps. Easiest is to download the table connector and the data gateway on your local environment and copy them to the Gateway VM.
 
-<img src="images/gw/vm-gw-downloads.png" height="150px" />
+![VM GW downloads](\images\gw\vm-gw-downloads.png)
 
 ### Install the SAP Table Connector
 Extract the SAP connector and open the folder.
 
-<img src="images/gw/vm-gw-connector.png" height="200px" />
+![VM GW connector](\images\gw\vm-gw-connector.png)
 
 Start the executable
 
-<img src="images/gw/vm-gw-connsetup1.png" height="300px" />
+![VM GW connector setup 1](\images\gw\vm-gw-connsetup1.png)
 
 Press next until the following screen 
 
-<img src="images/gw/vm-gw-connsetup3.png" height="300px" />
+![VM GW connector setup 2](\images\gw\vm-gw-connsetup2.png)
 
-Choose "Install assemblies to GAC", Next
+Choose `Install assemblies to GAC`, Next
 
-<img src="images/gw/vm-gw-connsetup5.png" height="300px" />
+![VM GW connector setup 3](\images\gw\vm-gw-connsetup3.png)
 
 Again Next and choose Close
 
@@ -37,13 +37,13 @@ Next step is to configure the on-premises gateway from the Azure Portal. The ins
 
 1. Create new on-premises gateway
 
-<img src="images/gw/portal-on-prem-gw1.png" height="200px" />
+![Portal On-prem gateway 1](\images\gw\portal-on-prem-gw1.png)
 
 Choose add
 
 2. Choose the right parameters
 
-<img src="images/gw/portal-on-prem-gw2.png" height="400px" />
+![Portal On-prem gateway 2](\images\gw\portal-on-prem-gw2.png)
 
 Choose the same location as the one defined during your gateway installation on the VM otherwise you cannot select your installation name.
 
