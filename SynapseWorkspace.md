@@ -124,12 +124,43 @@ CREATE TABLE Payments(
 
 
 # Synapse Configuration
-The configuration is done `Synapse Studio`.
+The configuration is done via `Synapse Studio`:\
 <img src="images\synapsews\openSynapseStudio.jpg">
 
-* Register Integration Runtime
-Register the integration runtime
-<img src="images\synapsews\integrationRuntimes.jpg">
+## Register Integration Runtime
+To register the integration runtime click on manage:
+<img src="images\irt\syn-irt1.png" height="300px" />
+
+Click on `Integration runtimes`:
+![Integration runtimes](images\irt\syn-irt2.png)
+
+Click on `+ New`:
+![New integration runtimes](images\irt\syn-irt3.png)
+
+Choose `Self-Hosted`:
+![Integration runtime setup](images\irt\syn-irt4.png)
+
+Choose a name for the runtime installation:
+![Integration runtime name](images\irt\syn-irt5.png)
+
+You will receive two key values. Make sure to note these down, in the next step you need one of these keys.
+![Integration runtime keys](images\irt\syn-irt6.png)
+
+In `Option 2: Manual setup` you can download the integration runtime via `Step 1`, do so. 
+
+Login on the Gateway VM and copy the integration runtime MSI package to the download folder, or any other folder you prefer.
+Execute the MSI package and press next until you get the question for the `authentication key`:
+
+![Integration runtime configuration: key](images\irt\gw-irt1.png)
+
+Enter one of the keys you noted down earlier from integration runtime setup and choose `Register`.
+
+Enter the name of the integration runtime node configured earlier.
+![Integration runtime configuration: node](images\irt\gw-irt2.png)
+Choose `Finish`.
+
+![Integration runtime configuration: status](images\irt\gw-irt3.png)
+The installation is done and the node is connected and can be used.
 
 # Implement SalesOderHeaders flow
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses a RFC.
