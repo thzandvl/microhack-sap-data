@@ -201,6 +201,7 @@ In the mapping tab, select `import Mapping`. Since source and target fields have
 <img src="images\synapsews\rfcMapping.jpg">
 
 For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSOn Code and add :
+<h3 style="color:red">(thzandvl) where to change this? which button to click?</h3>
 
 ```json
   "typeProperties": {
@@ -214,8 +215,8 @@ For date and time fields we need to make sure the system maps these to the SQL D
                         ...
 ```
 
-In the `Settings` blade, enable staging and enter the path to the staging directory of Azure Data Lake .
-<img src="images\synapsews\staging">
+In the `Settings` blade, enable staging and enter the path to the staging directory of Azure Data Lake.
+<img src="images\synapsews\staging.jpg">
 
 * publish and trigger the pipeline
 
@@ -231,7 +232,7 @@ select * from SalesOrderHeaders
 
 # Implement the SalosOrderItems flow
 The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData
-* Create a Linked Service to SAP oData
+* Create a Linked Service to SAP oData: `http://52.183.47.112:54000/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
 <img src="images\synapsews\LS_SAPOdata.jpg">
 
 * Create a 'source' DataSet for the Sales Order Items, based on `SAP ECC adapter`.
@@ -248,7 +249,8 @@ select * from SalesOrderItems
 # Implement the Payment flow
 Payments are extracted from CosmosDB
 * Create a Linked Service to CosmosDB (SQL API)
-<img src="images\synapsews\LS_cosmosDB">
+<h3 style="color:red">(thzandvl) Don't forget that participants don't have access to the subscription. Change to manual.</h3>
+<img src="images\synapsews\LS_cosmosDB.jpg">
 
 Test the connection and create the linked service.
 
