@@ -168,28 +168,33 @@ The view to extract from is : `ZBD_ISALESDOC_E`. You can have a look in the SAP 
 
 * Create a Linked Service to the SAP System.
 
+<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
+
 <img src="images\synapsews\LS_SAPRFC.jpg">
 
-* Select the data to extract
-Create an Integration DataSet based on the previously create `Linked Service`.
+* Select the data to extract. Create an Integration DataSet based on the previously create `Linked Service`.
 This dataset will act as the source.
+<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
 <img src="images\synapsews\S4DSalesOrderHeadersDS.jpg">
 
 * Create a Linked Service to the SQL Pool
+<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
 
 <img src="images\synapsews\LS_SQLPool.jpg">
 
 * Create a Integration DataSet for the Synapse Sales Orders.
 This dataset will act as the 'sink'.
+<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
 <img src="images\synapsews\SynSalesOrderHeadersDS.jpg">
 
 * Create a Integration pipeline
 Use the copy action. Map the source to the SAP Sales Order dataset and the sink to the synapse Sales Order dataset.
-<img src="Images\synapsews\copyAction.jpg">
+<h3 style="color:red">(thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.</h3>
+<img src="images\synapsews\copyAction.jpg">
 
-<img src="Images\synapsews\RFCCopyActionSource.jpg">
+<img src="images\synapsews\RFCCopyActionSource.jpg">
 
-<img src="Images\synapsews\RFCCopyActionSink.jpg">
+<img src="images\synapsews\RFCCopyActionSink.jpg">
 
 In the mapping tab, select `import Mapping`. Since source and target fields have the same name, the system can auto-generate the mapping.
 
