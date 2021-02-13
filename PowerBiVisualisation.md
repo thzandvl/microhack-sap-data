@@ -45,7 +45,7 @@ The Relationships are as follows :
 The relationship defaults to `1:*`\
 <img src="images/powerBi/SalesOrderHeadersItemsRel.jpg">\
 \
-You can look at the raltionship details by double clicking.\
+You can look at the relationship details by double clicking.\
 \
 <img src="images/powerBi/SalesOrderHeadersItemsRelDetails.jpg">
 
