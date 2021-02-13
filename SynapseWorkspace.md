@@ -198,12 +198,14 @@ This dataset will act as the source.
 <img src="images/synapsews/AzureSynapseAnalytics.jpg" height=150>\
 <img src="images/synapsews/LS_SQLPool.jpg" height=800>
 * Switch to the `Data`View
+
+### Create a Integration DateSet for the Synapse Sales Orders
+This dataset will act as the 'sink' in our pipeline.
 * Create an new `Integration DataSet` for the Synapse Sales Orders\
-This dataset will act as the 'sink' in our pipeline
 * Select the `SalesOrderHeaders` table\
 <img src="/images/synapsews/SynSalesOrderHeadersDS.jpg">
 
-## Create a Integration pipeline
+## Create an Integration pipeline
 * Swith to the `Integrate` view
 * Create a new `Pipeline`\
 <img src="images/synapsews/pipelineView.jpg">
@@ -234,10 +236,10 @@ Add the parameters as follows:
 <img src="images/synapsews/staging.jpg">
 
 * publish and trigger the pipeline
-<img src="/images/synapsews/triggerNow.jpg">
+<img src="images/synapsews/triggerNow.jpg">
 
 * Swith to the `Monitor`view to monitor the pipeline run
-<img src="/images/synapsews/pipelineMonitor.jpg">
+<img src="images/synapsews/pipelineMonitor.jpg">
 * Check the result in Synapse using SQL
 
 ```sql
@@ -245,47 +247,71 @@ select count(*) from SalesOrderHeaders
 select * from SalesOrderHeaders
 ```
 
+## Implement the SalesOrderItems flow
+The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData. We'll use the oData service at `http://52.183.47.112:54000/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
+### Create a Linked Service to the SAP oData Service
+* Create a `Linked Service`of type `SAP ECC`\
+<img src="images/synapsews/SAPECCService.jpg">
+* Enter the connection details\
+<img src="images/synapsews/LS_SAPOdata.jpg">
 
-# Implement the SalosOrderItems flow
-The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData
-* Create a Linked Service to SAP oData: `http://52.183.47.112:54000/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
+### Create a Integration DataSet for the SAP Sales Order Items
+This dataset will act as the source for our pipeline.
+* Create a `Integration DataSet` based on `SAP ECC adapter`
+* Use the previously created linked service
+* Use `C_Salesorderitemfs`as path\
+<img src="images/synapsews/S4DSalesOrderItemsDS.jpg">
 
-![Linked Source SAP OData](/images/synapsews/LS_SAPOdata.jpg)
+### Create a Integration DataSet for the Synapse Sales Order Items
+This dataset will act as the sink for our pipeline.
+* Create a `Integration DataSet` based on `Azure Synapse Analytics`
+* Select the `SalesOrderItems` table
 
-* Create a 'source' DataSet for the Sales Order Items, based on `SAP ECC adapter`.
-Use `C_Salesorderitemfs`as path.
-
-![S4D SalesOrderItems Data Source](/images/synapsews/S4DSalesOrderItemsDS.jpg)
-
-* Create, publish and trigger the integration Pipeline
-* Check the result using SQL
+### Create the integration pipeline
+* Use the `Copy` action
+* As source select the SAP SalesOrderItem oData Dataset
+* As sink, select the Synapse SalesOrderItem DataSet
+* Enter the `Staging Area`
+* Publish, Trigger and Monitor the integration pipeline
+* Check the result in Synapse using SQL
 
 ```sql 
 select count(*) from SalesOrderItems
 select * from SalesOrderItems
 ```
 
-# Implement the Payment flow
-Payments are extracted from CosmosDB
-* Create a Linked Service to CosmosDB (SQL API)
-### (thzandvl) Don't forget that participants don't have access to the subscription. Change to manual.
+## Implement the Payment flow
+The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
+### Create Linked Service for CosmosDB
+* Create a Linked Service of type CosmosDB (SQL API)\
+<img src="images/synapsews/cosmosDBSSQLapi.jpg">
+* Enter the connection parameters\
+Azure Cosmos DB account ARI : `https://sbx-s4d-cosmos.documents.azure.com:443`\
+Azure Cosmos DB access key : `<handed out at micro hack>`\
+Database name : `SAPS4D`\ 
+<img src="images/synapsews/LS_CosmosDB.jpg">
+* Test the connection and create the linked service.
 
-![Linked Source CosmosDB](/images/synapsews/LS_CosmosDB.jpg)
-
-Test the connection and create the linked service.
-
+### Create a Integration DataSet for the CosmosDB Payments
+This dataset will act as the source for our pipeline.
 * Create a 'source' DataSet for the Payment Data based on the CosmosDB 'SQL API' Adapter
-Use collection : `paymentData`
+* Use collection : `paymentData`\
+<img src="/images/synapsews/cosmosPaymentDS.jpg">
 
-![CosmosPayments Data Source](/images/synapsews/cosmosPaymentDS.jpg)
+### Create a Integration DataSet for the Synapse Payments
+This dataset will act as the sink for our pipeline
+* Create a `Integration DataSet` based on `Azure Synapse Analytics`
+* Select the `Payments` table
 
-* Create a 'sink' DataSet for the payment Data in Synapse
-* Complete the mapping between 'source' and 'sink' datasets.
-
-![Payment mapping](/images/synapsews/paymentMapping.jpg)
-
+### Create the Integration pipeline for the Payment flow
+* Use the `Copy` action
+* As source select the Cosmos DB payment Dataset
+* As sink, select the Synapse Payment DataSet
+* Enter the `Staging Area`
+* Complete the mapping between 'source' and 'sink' datasets\
+<img src="images/synapsews/paymentMapping.jpg">
 * Create, publish and trigger the integration pipeline
-* Check the result using SQL
+* Check the result in Synapse using SQL
 
 ```sql
 select count(*) from Payments
