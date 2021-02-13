@@ -164,50 +164,60 @@ Choose `Finish`.
 ![Integration runtime configuration: status](/images/irt/gw-irt3.png)
 The installation is done and the node is connected and can be used.
 
-# Implement SalesOderHeaders flow
+# Implement the SalesOrderHeaders flow
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses a RFC.
 The view to extract from is : `ZBD_ISALESDOC_E`. You can have a look in the SAP system to check the contents. Use the Data Dictionary, transaction `SE11`.
 
-* Create a Linked Service to the SAP System.
+## Create a Linked Service to the SAP System.
+* In Synapse Studio, go to the `Manage` View\
+<img src="images/irt/syn-irt1.png" height=200>
+* Select `Linked Services`\
+<img src="images/synapsews/LinkedServices.jpg">
+* Create a new `Linked Service` of type `SAP Table`\
+<img src="images/synapsews/SAPTable.jpg">
+* Enter the connection details for the SAP System 
+<img src="images/synapsews/LS_SAPRFC.jpg">
+>Note : use `Test Connection` to verify your settings
 
-### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
-
-![Linked Service: SAP RFC](/images/synapsews/LS_SAPRFC.jpg)
-
-* Select the data to extract. Create an Integration DataSet based on the previously create `Linked Service`.
+## Select the data to extract
+Create an Integration DataSet based on the previously created `Linked Service`.
 This dataset will act as the source.
-### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
+* Switch to the `Data` View
+* Create a new `Integration Dataset`\
+<img src="images/synapsews/IntegrationDataSet.jpg">
+* Use type `SAP Table`
+* Use your previously created Linked Service
+* Use `ZBD_ISALESDOC_E` as table
+* Use `Preview Data` to check if the data can be retrieved
 
-![S4D SalesOrderHeaders Data Source](/images/synapsews/S4DSalesOrderHeadersDS.jpg)
+<img src="images/synapsews/S4DSalesOrderHeadersDS.jpg">
 
-* Create a Linked Service to the SQL Pool
-### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
+## Create a Linked Service to the Synapse SQL Pool
+* Switch to the `Manage` view
+* Create a new Linked Service of type `Azure Synapse Analytics`\
+<img src="images/synapsews/AzureSynapseAnalytics.jpg" height=150>\
+<img src="images/synapsews/LS_SQLPool.jpg" height=800>
+* Switch to the `Data`View
+* Create an new `Integration DataSet` for the Synapse Sales Orders\
+This dataset will act as the 'sink' in our pipeline
+* Select the `SalesOrderHeaders` table\
+<img src="/images/synapsews/SynSalesOrderHeadersDS.jpg">
 
-![Linked Service SQL Pool](/images/synapsews/LS_SQLPool.jpg)
-
-* Create a Integration DataSet for the Synapse Sales Orders.
-This dataset will act as the 'sink'.
-### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
-
-![Synapse SalesOrderHeaders Data Source](/images/synapsews/SynSalesOrderHeadersDS.jpg)
-
-* Create a Integration pipeline
-Use the copy action. Map the source to the SAP Sales Order dataset and the sink to the synapse Sales Order dataset.
-### (thzandvl) How and where? Needs more explanation. Should also be clear to people using this the first time.
-
-![Copy action](/images/synapsews/copyAction.jpg)
-
-![RFC copy action source](/images/synapsews/RFCCopyActionSource.jpg)
-
-![RFC copy action sink](/images/synapsews/RFCCopyActionSink.jpg)
-
-In the mapping tab, select `import Mapping`. Since source and target fields have the same name, the system can auto-generate the mapping.
-
-![RFC mapping](/images/synapsews/rfcMapping.jpg)
-
-For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSOn Code and add :
-### (thzandvl) where to change this? which button to click?
-
+## Create a Integration pipeline
+* Swith to the `Integrate` view
+* Create a new `Pipeline`\
+<img src="images/synapsews/pipelineView.jpg">
+* Use the `copy action` by dragging it onto the pipeline canvas\
+<img src="images/synapsews/copyAction.jpg">
+* In the `source` tab, select your SAP Sales Order Dataset as the source\
+<img src="images/synapsews/RFCCopyActionSource.jpg">
+* In the `sink` tab, select the Synapse Sales Order Dataset as the sink\
+<img src="images/synapsews/RFCCopyActionSink.jpg">
+* In the mapping tab, select `import Mapping`. Since source and target fields have the same name, the system can auto-generate the mapping\
+<img src="images/synapsews/rfcMapping.jpg">
+* For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSON Code and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.\
+<img src="images/synapsews/jsonCodeButton.jpg">\
+Add the parameters as follows:
 ```json
   "typeProperties": {
                     "source": {
@@ -220,16 +230,15 @@ For date and time fields we need to make sure the system maps these to the SQL D
                         ...
 ```
 
-In the `Settings` blade, enable staging and enter the path to the staging directory of Azure Data Lake.
-
-![Staging](/images/synapsews/staging.jpg)
+* In the `Settings` blade, enable staging and enter the path to the staging directory of your Azure Data Lake\
+<img src="images/synapsews/staging.jpg">
 
 * publish and trigger the pipeline
+<img src="/images/synapsews/triggerNow.jpg">
 
-![Trigger now](/images/synapsews/triggerNow.jpg)
-
-* Monitor the pipeline.
-* Check the result using SQL
+* Swith to the `Monitor`view to monitor the pipeline run
+<img src="/images/synapsews/pipelineMonitor.jpg">
+* Check the result in Synapse using SQL
 
 ```sql
 select count(*) from SalesOrderHeaders
