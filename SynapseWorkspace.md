@@ -296,7 +296,7 @@ Database name : `SAPS4D`\
 This dataset will act as the source for our pipeline.
 * Create a 'source' DataSet for the Payment Data based on the CosmosDB 'SQL API' Adapter
 * Use collection : `paymentData`\
-<img src="/images/synapsews/cosmosPaymentDS.jpg">
+<img src="images/synapsews/cosmosPaymentDS.jpg">
 
 ### Create a Integration DataSet for the Synapse Payments
 This dataset will act as the sink for our pipeline
