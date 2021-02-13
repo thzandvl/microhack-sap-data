@@ -9,7 +9,7 @@
 Enter the following settings :
 Basics :
 * Resource Group
-* Worksapce Name
+* Workspace Name
 * Data Lake Storage : Select an existing DL or create a new one
 * File System Name : Select an exising File System or create a new one
 
