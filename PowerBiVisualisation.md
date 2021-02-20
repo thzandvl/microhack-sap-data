@@ -147,6 +147,28 @@ Offset = DATEDIFF(SalesOrderPayments[BILLINGDOCUMENTDATE],SalesOrderPayments[Pay
 
 <img src="images/powerBi/averageOffset.jpg">
 
+### Boxplot
+If you'd like a more detailed view on the payment offset then you can use a 'Box Plot'. This gives you an idea of the variance on the offset.
+For this you have to import a 'Box and Whisker chart' visualization. 
+In the `Visualizations` view, press the 3 dots and select `Get more visuals`.\
+<img src="images/powerBi/getMoreVisuals.jpg" height=250>
+
+Search for `Box and Whisker chart` and press `Add`.\
+<img src="images/powerBi/AddBoxAndWhisker.jpg" height=150>
+
+You can now use the chart in your visuals
+
+* Use `SalesOrderPayments.CUSTOMERGROUP` as `Category`
+* Use `Offset` as `Sampling`
+* Use `Average of Offset` as `Value`
+
+<img src="images/powerBi/BoxAndWhiskerChart.jpg">
+
+From this diagram you can see that:
+* CustomerGroup1 pays within 70 days +/- 10 days
+* CustomerGroup2 pays within 30days +/- 5 days
+* Other customergroups pay after 10 days
+
 
 
 

@@ -3,10 +3,10 @@
 ## Introduction
 
 ## Creation
-* Create a Synapse Analytics Workspace
+* Create a Synapse Analytics Workspace\
 ![Synapse workspace service](/images/synapsews/synapsewsservice.jpg)
 
-Enter the following settings :
+Enter the following settings :\
 Basics :
 * Resource Group
 * Workspace Name
@@ -199,11 +199,11 @@ This dataset will act as the source.
 <img src="images/synapsews/LS_SQLPool.jpg" height=800>
 * Switch to the `Data`View
 
-### Create a Integration DateSet for the Synapse Sales Orders
+### Create an Integration DateSet for the Synapse Sales Orders
 This dataset will act as the 'sink' in our pipeline.
 * Create an new `Integration DataSet` for the Synapse Sales Orders\
 * Select the `SalesOrderHeaders` table\
-<img src="/images/synapsews/SynSalesOrderHeadersDS.jpg">
+<img src="images/synapsews/SynSalesOrderHeadersDS.jpg">
 
 ## Create an Integration pipeline
 * Swith to the `Integrate` view
