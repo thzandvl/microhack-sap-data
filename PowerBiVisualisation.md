@@ -6,7 +6,7 @@ We'll be using [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/) f
 ## Setup & Importing Data
 In PowerBI, we first need to connect to our Synapse.
 * Choose `Get Data`and select `Synapse Analytics (SQL DW)`.\
- <img src="images/powerBi/getdata.jpg" height=100>
+<img src="images/powerBi/getdata.jpg" height=100>
 
 * In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` in the overview blade of your Synapse Workspace.\
 The Database is the SQL server pool you created.\
@@ -52,7 +52,7 @@ You can look at the relationship details by double clicking.\
 * In the same way create the relationship between the `Payments`and the `SalesOrderHeaders` table using the `SalesOrderNr`and `SALESDOCUMENT`field.
 
 * The end results looks as follows :\
-<img src="images/powerBi/relmodel.jpg">\
+<img src="images/powerBi/relModel.jpg">\
 You can now start building the reports.
 
 # Data Visualisation
@@ -102,7 +102,7 @@ The `CustomerGroup`is retrieved via the 1:1 relationship between the `SalesOrder
 * Use `SalesOrderItems.MaterialGroup`as Legend
 * Use `SalesOrderItems.NetAmount`as Value
 
-<img src="images/powerBi/SalesCustMatGroup.jpg'>
+<img src="images/powerBi/SalesCustMatGroup.jpg">
 
 ## Spoiler : Payment Offset per CustomerGroup
 With this report we'll show the average date by which each customergroup pays his SalesOrders.
