@@ -19,4 +19,4 @@ The steps management, advanced and tags can be skipped and you can directly jump
 
 ![VM GW Create](/images/gw/vm-gw-create.png)
 
-Go to the next step to prepare the server: [Prepare the Gateway server](PrepareGateway.md)
+Go to the next step to prepare the server: [Prepare the Integration Runtime server](PrepareIntegrationRuntime.md)
