@@ -17,5 +17,7 @@ To start with the Microhack we first need to take some preparation steps:
 2. [Prepare the Integration Runtime server](PrepareIntegrationRuntime.md)
 3. [Synapse Workspace Setup](SynapseWorkspace.md)
 4. [PowerBI Visualisation](PowerBiVisualisation.md)
+5. [Predict Cash Flow](Predict CashFlow.md)
+
 
 
