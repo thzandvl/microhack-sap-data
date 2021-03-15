@@ -140,7 +140,7 @@ This dataset will act as the source.
 
 * Switch to the `Data`View
 
-### Create an Integration DateSet for the Synapse Sales Orders
+### Create an Integration DataSet for the Synapse Sales Orders
 This dataset will act as the 'sink' in our pipeline.
 * Create an new `Integration DataSet` for the Synapse Sales Orders
 * Select the `SalesOrderHeaders` table
@@ -175,8 +175,6 @@ Add the parameters as follows:
                         "convertDateToDatetime": true,
                         "convertTimeToTimespan": true
                     },
-                    "sink": {
-                        ...
 ```
 
 * In the `Settings` blade, enable staging and enter the path to the staging directory of your Azure Data Lake
@@ -232,13 +230,13 @@ select * from SalesOrderItems
 The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 ### Create Linked Service for CosmosDB
 * Create a Linked Service of type CosmosDB (SQL API)
-<img src="images/synapsews/cosmosDBSSQLapi.jpg">
+<img src="images/synapsews/cosmosDBSSQLapi.jpg" height=100>
 
 * Enter the connection parameters
 Azure Cosmos DB account ARI : `https://sbx-s4d-cosmos.documents.azure.com:443`
 Azure Cosmos DB access key : `<handed out at micro hack>`
 Database name : `SAPS4D` 
-<img src="images/synapsews/LS_CosmosDB.jpg">
+<img src="images/synapsews/LS_CosmosDB.jpg" height=700>
 
 * Test the connection and create the linked service.
 
