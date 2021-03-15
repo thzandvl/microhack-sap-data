@@ -105,12 +105,16 @@ The view to extract from is : `ZBD_ISALESDOC_E`. You can have a look in the SAP 
 ## Create a Linked Service to the SAP System.
 * In Synapse Studio, go to the `Manage` View
 <img src="images/irt/syn-irt1.png" height=200>
+
 * Select `Linked Services`
 <img src="images/synapsews/LinkedServices.jpg">
+
 * Create a new `Linked Service` of type `SAP Table`
 <img src="images/synapsews/SAPTable.jpg">
+
 * Enter the connection details for the SAP System 
 <img src="images/synapsews/LS_SAPRFC.jpg">
+
 >Note : use `Test Connection` to verify your settings
 >Note : SAP Connection Details will be handed over during the MicroHack
 
