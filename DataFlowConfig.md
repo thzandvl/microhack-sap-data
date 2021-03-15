@@ -116,7 +116,7 @@ The view to extract from is : `ZBD_ISALESDOC_E`. You can have a look in the SAP 
 <img src="images/synapsews/LS_SAPRFC.jpg">
 
 >Note : use `Test Connection` to verify your settings
->Note : SAP Connection Details will be handed over during the MicroHack
+>Note : SAP Connection Details will be handed out at MicroHack
 
 ## Select the data to extract
 Create an Integration DataSet based on the previously created `Linked Service`.
@@ -150,16 +150,22 @@ This dataset will act as the 'sink' in our pipeline.
 * Swith to the `Integrate` view
 * Create a new `Pipeline`
 <img src="images/synapsews/pipelineView.jpg">
+
 * Use the `copy action` by dragging it onto the pipeline canvas
 <img src="images/synapsews/copyAction.jpg">
+
 * In the `source` tab, select your SAP Sales Order Dataset as the source
 <img src="images/synapsews/RFCCopyActionSource.jpg">
+
 * In the `sink` tab, select the Synapse Sales Order Dataset as the sink
 <img src="images/synapsews/RFCCopyActionSink.jpg">
+
 * In the mapping tab, select `import Mapping`. Since source and target fields have the same name, the system can auto-generate the mapping
 <img src="images/synapsews/rfcMapping.jpg">
+
 * For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSON Code and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.
 <img src="images/synapsews/jsonCodeButton.jpg">
+
 Add the parameters as follows:
 ```json
   "typeProperties": {
@@ -193,6 +199,7 @@ The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is 
 ### Create a Linked Service to the SAP oData Service
 * Create a `Linked Service`of type `SAP ECC`
 <img src="images/synapsews/SAPECCService.jpg">
+
 * Enter the connection details\
 <img src="images/synapsews/LS_SAPOdata.jpg">
 
@@ -226,11 +233,13 @@ The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 ### Create Linked Service for CosmosDB
 * Create a Linked Service of type CosmosDB (SQL API)
 <img src="images/synapsews/cosmosDBSSQLapi.jpg">
+
 * Enter the connection parameters
 Azure Cosmos DB account ARI : `https://sbx-s4d-cosmos.documents.azure.com:443`
 Azure Cosmos DB access key : `<handed out at micro hack>`
 Database name : `SAPS4D` 
 <img src="images/synapsews/LS_CosmosDB.jpg">
+
 * Test the connection and create the linked service.
 
 ### Create a Integration DataSet for the CosmosDB Payments
@@ -251,6 +260,7 @@ This dataset will act as the sink for our pipeline
 * Enter the `Staging Area`
 * Complete the mapping between 'source' and 'sink' datasets
 <img src="images/synapsews/paymentMapping.jpg">
+
 * Create, publish and trigger the integration pipeline
 * Check the result in Synapse using SQL
 
