@@ -1,7 +1,7 @@
 # Predict Incoming Cashflow
-In this section we'll setup some example powerBi reports.
+In this section we'll create a model to predict incoming cashflow based on historical payment delays for previous sales.
 
-We'll be using [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/) for this.
+We'll be using [Azure Machine Learning](https://ml.azure.com) for this.
 
 ## Setup & Importing Data
 In Synapse Studio, we will create a view to store data coming from `SalesOrderHeaders` and `Payments` tables that will be used for the prediction.
