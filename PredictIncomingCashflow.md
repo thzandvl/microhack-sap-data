@@ -97,3 +97,5 @@ In this step we will deploy the best model that has been trained by AutoML and t
 
 * Validate and wait for the completion of the deployment.
 <img src="images/aml/22. AML Studio.png" height= 200>
+
+
