@@ -167,7 +167,7 @@ This dataset will act as the 'sink' in our pipeline.
 <img src="images/synapsews/jsonCodeButton.jpg">
 
 Add the parameters as follows:
-```json
+```javascript
   "typeProperties": {
                     "source": {
                         "type": "SapTableSource",
@@ -175,6 +175,8 @@ Add the parameters as follows:
                         "convertDateToDatetime": true,
                         "convertTimeToTimespan": true
                     },
+                    "sink": { 
+                        ...
 ```
 
 * In the `Settings` blade, enable staging and enter the path to the staging directory of your Azure Data Lake

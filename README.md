@@ -16,8 +16,8 @@ To execute the Microhack follow the steps beneath :
 1. [Deploy and Prepare a Virtual Machine to host the Integration Runtime](DeployIntegrationRuntimeVM.md)
 2. [Synapse Workspace Setup](SynapseWorkspace.md)
 3. [DataFlow Config](DataFlowConfig.md)
-3. [PowerBI Visualisation](PowerBiVisualisation.md)
-4. [Predict Cash Flow](PredictIncomingCashflow.md)
+4. [PowerBI Visualisation](PowerBiVisualisation.md)
+5. [Predict Cash Flow](PredictIncomingCashflow.md)
 
 
 
