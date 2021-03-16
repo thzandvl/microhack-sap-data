@@ -3,7 +3,7 @@ In this section we'll create a model to predict incoming cashflow based on histo
 
 We'll be using [Azure Machine Learning](https://ml.azure.com) for this.
 
-## Setup & Importing Data
+## Setup in Synapse
 In Synapse Studio, we will create a view to store data coming from `SalesOrderHeaders` and `Payments` tables that will be used for the prediction.
 * Choose the `Develop`tab, select `SQL Scripts` and click on `Actions` then `New SQL Script`.\
 <img src="images/aml/01-synapse-query.PNG" height=200>
