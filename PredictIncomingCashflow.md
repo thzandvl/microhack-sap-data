@@ -35,8 +35,8 @@ JOIN [dbo].[Payments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')
 ## Aure Machnie Learning
 
 * Sign in to Azure Machine Learning at https://ml.azure.com \
-<img src="images/aml/02-aml-studio.PNG" height= 200>
-* Use your Azure credentials to logon or the userid and password used during the Synapse Workspace creation.
+<img src="images/aml/02-aml-studio.PNG" height= 200>\
+** Use your Azure credentials to logon or the userid and password used during the Synapse Workspace creation.
 
 * On the left menu, click on `Automated ML`, then you will have to create a new datastore.\
 <img src="images/aml/03-aml-studio.PNG" height= 200>
@@ -78,8 +78,8 @@ JOIN [dbo].[Payments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')
 * Then we need to configure it
 1. Select `Normalized root mean squared error` as Primary metric\
 <img src="images/aml/16-aml-studio.PNG" height= 200>
-2. Select all the listed algorithms as blocked (useless for the regression task type)
-3. Valide and click on `Finish`\
+2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, TensorFlowLinearRegressor, TensorFlowDNN`
+3. Validate and click on `Finish`\
 <img src="images/aml/17-aml-studio.PNG" height= 200>
 <img src="images/aml/18-aml-studio.PNG" height= 200>
 
@@ -95,8 +95,13 @@ In this step we will deploy the best model that has been trained by AutoML and t
 * Specify a name for your deployment and select `Azure Container Instance` as compute type.\
 <img src="images/aml/21-aml-studio.PNG" height= 200>
 
-* Validate and wait for the completion of the deployment.
+* Validate and wait for the completion of the deployment.\
 <img src="images/aml/22-aml-studio.PNG" height= 200>
 
-* When completed, click on the link to the `Deploy status` of the deployed model
+* When completed, click on the link to the `Deploy status` of the deployed model.\
 <img src="images/aml/23-aml-studio.PNG" height= 200>
+
+* In this page, you will have access to the different information of your endpoint, code samples to consume it from Python or C# but also a page to directly test your model.\
+<img src="images/aml/24-aml-studio.PNG" height= 400>\
+Take values coming from the `SalesPaymentsFull` view created at the beginning to replace the `example_value` value for the different fields and run the model.\
+<img src="images/aml/25-aml-studio.PNG" height= 300>
