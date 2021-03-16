@@ -166,7 +166,7 @@ This dataset will act as the 'sink' in our pipeline.
 * For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSON Code and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.
 <img src="images/synapsews/jsonCodeButton.jpg">
 
-Add the parameters as follows:
+Add these parameters at the existing `typeproperties \ source` element :
 ```javascript
   "typeProperties": {
                     "source": {

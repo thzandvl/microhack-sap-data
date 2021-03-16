@@ -7,7 +7,7 @@ For this Microhack we will:
 * Predict incoming cash flow for new Sales Orders
 
 ## Scenario Description
-When customers buy goods, the corresponding payments are not done immediatly. Some customers will pay directly and other customers will pay at end of the payment terms. This makes it diffucult for companies to predict the incoming cashflow. In this simplified exercise we'll use Azure tooling to predict the incoming cashflow. For this we need data on past Sales Orders and past payments. The Sales Order information we'll retrieve from a S4Hana ssytem. For the payments we assume they are kept in a non SAP system. This non SAP System is represented by a cosmos DB.
+When customers buy goods, the corresponding payments are not done immediatly. Some customers will pay directly and other customers will pay at end of the payment terms. This makes it diffucult for companies to predict the incoming cashflow. In this simplified exercise we'll use Azure tooling to predict the incoming cashflow. For this we need data on past Sales Orders and past payments. The Sales Order information we'll retrieve from a S4Hana system. For the payments we assume these are kept in a non SAP system. This non SAP System is represented by a cosmos DB.
 
 ## Get Started
 To execute the Microhack follow the steps beneath :
