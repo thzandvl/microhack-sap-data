@@ -86,4 +86,14 @@ JOIN [dbo].[Payments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')
 ## Deploy the best model
 In this step we will deploy the best model that has been trained by AutoML and test it
 
+* When the training will be over, you will be able to see the `Best model summary`section filled with the best algorithm, click on it.\
+<img src="images/aml/19. AML Studio.png" height= 200>
 
+* You can navigate into the different sections and visualize the information about this algorithm, then click on deploy.\
+<img src="images/aml/20. AML Studio.png" height= 200>
+
+* Specify a name for your deployment and select `Azure Container Instance` as compute type.\
+<img src="images/aml/21. AML Studio.png" height= 200>
+
+* Validate and wait for the completion of the deployment.
+<img src="images/aml/22. AML Studio.png" height= 200>
