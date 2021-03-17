@@ -15,11 +15,11 @@ If the subscription shown is not the right one change this with: \
 `git clone https://github.com/thzandvl/microhack-sap-data`
 4. Change Directory into the terraform folder: \
 `cd microhack-sap-data/terraform`
-5. Download the AzureRM resource provider: \
+5. Check the default values defined in `variables.tf` and change them if required. Also make note of the username and password which you will need to login to the Gateway VM once deployed.
+6. Download the AzureRM resource provider: \
 `terraform init`
-6. Run apply to start the deployment: \
+7. Run apply to start the deployment: \
 `terraform apply`
-7. Choose your prefered username and password for the VM.
 8. When prompted choose `yes` to deploy the script.
 9. Once the script is finished you will get a public IP address, use this address to login to your new VM.
 10. Use `Remote Desktop Connection` to login to the new VM and continue with the next section.
