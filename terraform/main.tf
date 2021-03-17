@@ -29,7 +29,7 @@ resource "azurerm_virtual_network" "vnet" {
   name                = "${var.prefix}-vnet"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
-  address_space       = ["10.20.0.0/16"]
+  address_space       = var.address_space
   tags                = var.tags
 }
 
@@ -66,6 +66,10 @@ resource "azurerm_network_security_group" "nsg" {
     destination_address_prefix  = "*"
   }
 }
+
+#######################################################################
+## Associate the subnet with the NSG
+#######################################################################
 
 resource "azurerm_subnet_network_security_group_association" "nsg-ass" {
   subnet_id                 = azurerm_subnet.subnet.id
