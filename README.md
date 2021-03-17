@@ -18,6 +18,3 @@ To execute the Microhack follow the steps beneath :
 3. [DataFlow Config](DataFlowConfig.md)
 4. [PowerBI Visualisation](PowerBiVisualisation.md)
 5. [Predict Cash Flow](PredictIncomingCashflow.md)
-
-
-
