@@ -1,18 +1,14 @@
 # Configure the DataFlow
 ## Introduction
-In this step we'll setup the dataflow from the SAP System towards the Synapse System. Sales OrderHeaders will be extracted via the a first Synapse pipelinse using the SAP Table connector, Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
+In this step we'll setup the dataflow from the SAP System towards the Synapse DB. Sales OrderHeaders will be extracted via the first Synapse pipeline using the SAP Table connector, Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
 Payment data will be extracted from CosmosDB using a third pipeline.
-We'll first strat by setting up the target DB structures in Synapse.
+We'll first start by setting up the target DB structures in Synapse.
 
 ## Synapse Table Setup
-* Create a new SQL Pool
-Choose `DW100c` as performance level (to save on costs)
-<img src="images/synapsews/createSQLPool.jpg">
-
 * Create the Synapse tables in the SQL Pool
 These tables are the receivers of the SAP Sales Order data and the Cosmos Payment Data.
-Use the following SQl Scripts to create the tables.
-You can this via the Synapse workspace or use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
+Use the following SQL Scripts to create the tables.
+You can do this via the Synapse workspace or use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
 
 - SalesOrderHeaders
 ```sql

@@ -4,6 +4,7 @@
 In this part we'll create the Synapse Workspace and install the Ingration Runtion on our Azure Virtual Machine.
 
 ## Creation
+If you have chosen to use the Terraform script to deploy the Synapse workspace you can skip to the [Synapse Configuration](#syn_config) step. Otherwise continue with the instructions.
 * Create a Synapse Analytics Workspace
 <img src="images/synapsews/synapsewsservice.jpg">
 
@@ -33,7 +34,7 @@ Choose `DW100c` as performance level (to save on costs).
 
 <img src="images/synapsews/createSQLPool.jpg">
 
-# Synapse Configuration
+# <a name="syn_config"></a>Synapse Configuration
 The configuration is done via `Synapse Studio`:\
 <img src="images/synapsews/openSynapseStudio.jpg">
 
@@ -72,4 +73,4 @@ Execute the MSI package and press `next` until you get the question for the `aut
 <img src="images/irt/gw-irt3.png" height=400>
 
 The installation is done and the node is connected and can be used.
-You can now proceed with the next step.
+You can now proceed with the [next](DataFlowConfig.md) step.
