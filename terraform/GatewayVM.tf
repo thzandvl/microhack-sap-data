@@ -4,8 +4,8 @@
 
 resource "azurerm_public_ip" "gw-pip" {
   name                = "${var.prefix}-gw-pip"
-  location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   allocation_method   = "Static"
   tags                = var.tags
 }
@@ -16,8 +16,8 @@ resource "azurerm_public_ip" "gw-pip" {
 
 resource "azurerm_network_interface" "gw-nic" {
   name                = "${var.prefix}-gw-nic"
-  location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   tags                = var.tags
 
   ip_configuration {
@@ -34,10 +34,11 @@ resource "azurerm_network_interface" "gw-nic" {
 
 resource "azurerm_virtual_machine" "gw-vm" {
   name                  = "${var.prefix}-gw-vm"
-  location              = var.location
   resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
   network_interface_ids = [ azurerm_network_interface.gw-nic.id ]
   vm_size               = var.vmsize
+  tags                  = var.tags
 
   storage_os_disk {
     name              = "${var.prefix}-gw-vm-osdisk"

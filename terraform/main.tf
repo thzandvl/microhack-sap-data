@@ -22,13 +22,31 @@ resource "azurerm_resource_group" "rg" {
 }
 
 #######################################################################
+## Assign Storage Role to User
+#######################################################################
+
+data "azurerm_client_config" "user" {
+}
+
+resource "azurerm_role_assignment" "storagerole" {
+  scope                 = azurerm_resource_group.rg.id
+  role_definition_name  = "Storage Blob Data Owner"
+  principal_id          = data.azurerm_client_config.user.object_id
+}
+
+resource "time_sleep" "wait_10_seconds" {
+    depends_on = [azurerm_role_assignment.storagerole]
+    create_duration = "10s"
+}
+
+#######################################################################
 ## Create Virtual Networks
 #######################################################################
 
 resource "azurerm_virtual_network" "vnet" {
   name                = "${var.prefix}-vnet"
-  location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   address_space       = var.address_space
   tags                = var.tags
 }
@@ -50,8 +68,8 @@ resource "azurerm_subnet" "subnet" {
 
 resource "azurerm_network_security_group" "nsg" {
   name                = "${var.prefix}-nsg"
-  location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   tags                = var.tags
 
   security_rule {
