@@ -28,10 +28,14 @@ resource "azurerm_resource_group" "rg" {
 data "azurerm_client_config" "user" {
 }
 
+locals {
+  object_id = data.azurerm_client_config.user.object_id == "" ? var.object_id : data.azurerm_client_config.user.object_id
+}
+
 resource "azurerm_role_assignment" "storagerole" {
   scope                 = azurerm_resource_group.rg.id
   role_definition_name  = "Storage Blob Data Owner"
-  principal_id          = data.azurerm_client_config.user.object_id
+  principal_id          = local.object_id
 }
 
 resource "time_sleep" "wait_10_seconds" {
