@@ -66,15 +66,11 @@ resource "azurerm_virtual_machine" "gw-vm" {
 }
 
 #######################################################################
-## Show Gateway IP
+## Get Gateway IP
 #######################################################################
 
 data "azurerm_public_ip" "gw-ip" {
   name                  = azurerm_public_ip.gw-pip.name
   resource_group_name   = azurerm_virtual_machine.gw-vm.resource_group_name
   depends_on            = [azurerm_virtual_machine.gw-vm]
-}
-
-output "public_ip_address" {
-  value = data.azurerm_public_ip.gw-ip.ip_address
 }
