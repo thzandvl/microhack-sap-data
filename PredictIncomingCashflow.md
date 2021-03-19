@@ -15,7 +15,7 @@ You can create this view either via Synapse Studio or via Azure Data Studio.
 * In the newly created script tab, copy paste the following SQL Query that will execute a join between `SalesOrderHeaders` and `Payments` to create a new view.
 
 ```sql
-`CREATE VIEW [dbo].[SalesPaymentsFull]
+CREATE VIEW [dbo].[SalesPaymentsFull]
 	AS SELECT s.[SALESDOCUMENT]
     , s.[CUSTOMERNAME]
     , s.[CUSTOMERGROUP]
@@ -93,7 +93,7 @@ SELECT * FROM SalesPaymentsFull
 <img src="images/aml/05-aml-studio.PNG" height= 200>
 
 * <b>Settings and Preview :</b> To Ensure that your query is working fine you are able to visualize the data in the next window.
-<img src="images/aml/06-aml-studio.PNG" height= 200>
+<img src="images/aml/06-aml-studio.PNG" height= 400>
 
 * <b>Schema :</b> In order to get a model as accurate as possible we have to do some cleaning of the data.
 <img src="images/aml/07-aml-studio.PNG" height= 400>
@@ -103,7 +103,7 @@ SELECT * FROM SalesPaymentsFull
 2. Uncheck the date fields that we will not use in the model. (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`)
 <img src="images/aml/08-aml-studio.PNG" height= 400>
 
-3. Uncheck the fields that do not contain any data. (`SALESGROUP`, `SALESOFFICE`)
+3. Uncheck the fields that do not contain any data. (`SALESGROUP`, `SALESOFFICE`) <!-- Can we also uncheck Sales Document??? -->
 <img src="images/aml/09-aml-studio.PNG" height= 400>
 
 * <b>Confirm details</b> Create the dataset
@@ -161,6 +161,7 @@ In this step we will deploy the best model that has been trained by AutoML and t
 
 ## Test the Prediction
 Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view created at the beginning to replace the `example_value` value for the different fields and run the model.
-<img src="images/aml/25-aml-studio.PNG" height= 300>
+
+<img src="images/aml/25-aml-studio.PNG" height= 400>
 
 From the PowerBI section, we know that the main factor in determining the payment dely is the CustomerGroup. Experiment with CustomerGroup `Z1` and `Z2` to see if the outcome is similar.
