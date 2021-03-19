@@ -156,7 +156,7 @@ This dataset will act as the 'sink' in our pipeline.
 * In the `sink` tab, select the Synapse Sales Order Dataset as the sink
 <img src="images/synapsews/RFCCopyActionSink.jpg">
 
-* In the mapping tab, select `import Mapping`. Since source and target fields have the same name, the system can auto-generate the mapping
+* In the mapping tab, select `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
 <img src="images/synapsews/rfcMapping.jpg">
 
 * For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSON Code and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.
@@ -254,7 +254,7 @@ This dataset will act as the sink for our pipeline
 * As source select the Cosmos DB payment Dataset
 * As sink, select the Synapse Payment DataSet
 * Enter the `Staging Area`
-* Complete the mapping between 'source' and 'sink' datasets
+* Complete the mapping between 'source' and 'sink' datasets and make sure to remove the ones which are not shown in the screenshot starting with `_`.
 <img src="images/synapsews/paymentMapping.jpg">
 
 * Create, publish and trigger the integration pipeline
@@ -264,3 +264,5 @@ This dataset will act as the sink for our pipeline
 select count(*) from Payments
 select * from Payments
 ```
+
+Continue with the [next](PowerBiVisualisation.md) step.

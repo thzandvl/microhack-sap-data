@@ -35,10 +35,13 @@ Choose `DW100c` as performance level (to save on costs).
 <img src="images/synapsews/createSQLPool.jpg">
 
 # <a name="syn_config"></a>Synapse Configuration
-The configuration is done via `Synapse Studio`:\
-<img src="images/synapsews/openSynapseStudio.jpg">
+## Setup Firewall
+In the Synapse workspace go to `Firewalls` and choose `+ Add client IP`. Further set the `Allow Azure services and resources to access this workspace` to `ON`. Choose `Save` to save the configuration. This is required to setup the linked services in the later steps.
 
 ## Register Integration Runtime
+The rest of the configuration is done via `Synapse Studio`:\
+<img src="images/synapsews/openSynapseStudio.jpg">
+
 To register the integration runtime click on manage:
 
 <img src="images/irt/syn-irt1.png" height = 300>
