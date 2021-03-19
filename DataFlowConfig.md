@@ -12,7 +12,7 @@ Choose `DW100c` as performance level (to save on costs)
 * Create the Synapse tables in the SQL Pool
 These tables are the receivers of the SAP Sales Order data and the Cosmos Payment Data.
 Use the following SQl Scripts to create the tables.
-You can this via the Synapse workspace or use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
+You can do this via the Synapse workspace or use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
 
 - SalesOrderHeaders
 ```sql
