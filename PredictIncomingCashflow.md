@@ -103,7 +103,7 @@ SELECT * FROM SalesPaymentsFull
 2. Uncheck the date fields that we will not use in the model. (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`)
 <img src="images/aml/08-aml-studio.PNG" height= 400>
 
-3. Uncheck the fields that do not contain any data. (`SALESGROUP`, `SALESOFFICE`) <!-- Can we also uncheck Sales Document??? -->
+3. Uncheck the fields that do not contain any data or which are not relevant for the forecast. Eg. `SALESDOCUMENT`, `SALESGROUP`, `SALESOFFICE` <!-- Can we also uncheck Sales Document??? -->
 <img src="images/aml/09-aml-studio.PNG" height= 400>
 
 * <b>Confirm details</b> Create the dataset
@@ -127,6 +127,7 @@ SELECT * FROM SalesPaymentsFull
 * Then we need to configure the `Regression` using `Additional Configuration settings`.
 1. Select `Normalized root mean squared error` as Primary metric.
 <img src="images/aml/16-aml-studio.PNG" height= 400>
+
 2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, TensorFlowLinearRegressor, TensorFlowDNN`.
 
 <!-- BDL : Mismatch with my algorithms -->
