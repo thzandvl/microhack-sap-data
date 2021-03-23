@@ -35,7 +35,7 @@ CREATE VIEW [dbo].[SalesPaymentsFull]
     , s.[POSTALCODE]
     , DATEDIFF(dayofyear, s.BILLINGDOCUMENTDATE, p.PaymentDate) as PAYMENTDELAYINDAYS
  FROM [dbo].[SalesOrderHeaders] as s
-JOIN [dbo].[Payments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')), ' ', '0') = p.[SalesOrderNr]`
+JOIN [dbo].[Payments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')), ' ', '0') = p.[SalesOrderNr]
 ```
 
 After `Refresh`the view will appear under `Views`.
