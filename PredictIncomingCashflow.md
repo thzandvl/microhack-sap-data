@@ -166,3 +166,41 @@ Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view
 <img src="images/aml/25-aml-studio.PNG" height= 400>
 
 From the PowerBI section, we know that the main factor in determining the payment dely is the CustomerGroup. Experiment with CustomerGroup `Z1` and `Z2` to see if the outcome is similar.
+
+### Integrate ML with PowerBI
+We can now integrate the ML Model within PowerBI. 
+> Note : for this example we'll predict the payment date of the 'Historical Sales Orders'. In real-life you would do this for new unpaid Sales Orders.
+
+* In PowerBI, select Transform Data
+* Select the View containin the combined SalesOrderHeader & Payments data
+* Select `Azure Machine Learning` button
+
+<img src="images/aml/pbiAzMLIcon.jpg">
+
+* Select your Azure Machine Learning Model
+* Map the input fields of the Machine Learning Model to your column names
+
+<img src="images/aml/pbiMLMapping.jpg">
+
+> Note : if you can't map the fields then you might need to change the data type of your columns
+
+* This will add an additional column to the table with the predicted offset
+
+* You can rename to the column to `predOffset`
+
+* You can now calculate the predicted payment date
+* Add a new column `predPaymentDate` and use the following formula
+
+```
+Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
+```
+
+<img src="images/aml/pbiMLPredPaymentDateColumn.jpg">
+
+* Change the data type of this column to `Date`
+
+* You can now use this column in reporting
+
+
+
+
