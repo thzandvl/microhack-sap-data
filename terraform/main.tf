@@ -38,7 +38,7 @@ locals {
 
 resource "azurerm_role_assignment" "storagerole" {
   scope                 = azurerm_resource_group.rg.id
-  role_definition_name  = "Storage Blob Data Owner"
+  role_definition_name  = "Storage Blob Data Contributor"
   principal_id          = local.object_id
 }
 
