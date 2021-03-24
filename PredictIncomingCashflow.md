@@ -226,10 +226,10 @@ AND ( YEAR ( [Date] ) >= MinYear, YEAR ( [Date] ) <= MaxYear )
 ```
 #### Create Relationships
 Create relationships between the `Date` table and `SalesOrderPaymentsFull` table
-** Date[Date] - SalesOrderPayments[CREATIONDATE] : this is the default (active) relationship
-** Date[Date] - SalesOrderPayments[BILLINGDOCUMENTDATE]
-** Date[Date] - SalesOrderPayments[Payments.PaymentDate]
-** Date[Date] - SalesOrderPayments[predPaymentDate]
+* Date[Date] - SalesOrderPayments[CREATIONDATE] : this is the default (active) relationship
+* Date[Date] - SalesOrderPayments[BILLINGDOCUMENTDATE]
+* Date[Date] - SalesOrderPayments[Payments.PaymentDate]
+* Date[Date] - SalesOrderPayments[predPaymentDate]
 
 <img src="images/aml/dateRelationships.jpg" height=300>
 
@@ -239,12 +239,9 @@ In the `Date` table, create new measures.
 ```
 Sales at CreationDate = sum('SalesOrderPayments'[TOTALNETAMOUNT])
 ```
->Note: this measure uses the 'active' relationship between the `Date` and `SalesOrderPaymentsFull` table
 ```
 Sales at BillingDate = CALCULATE(sum(SalesOrderPayments[TOTALNETAMOUNT]),USERELATIONSHIP('Date '[Date],SalesOrderPayments[BILLINGDOCUMENTDATE]))
 ```
->Note: by explicitly specifying the relationship we ensure the Sales Order value (`TOTALNETAMOUNT` is aggregated at `BILLINGDOCUMENTDATE`)
-
 ```
 Payment at Actual Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]), USERELATIONSHIP('Date '[Date],SalesOrderPayments[Payments.PaymentDate]))
 ```
