@@ -201,6 +201,65 @@ Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
 
 * You can now use this column in reporting
 
+### PowerBI Report
+We will now display the Sales & predicted payment forecast in PowerBI. Since we want to display the Sales and Payment figures aggregated by different days (`BILLINGDOCUMENTDATE`, `predPaymentDate`), we need to create a 'calendar' table with the timeslots by which to aggregate.
 
+#### Create Date Table
+First we will create a new `Date` table. Use the formula beneath
+
+```
+Date  = 
+VAR MinYear = YEAR ( MIN ( 'SalesOrderPayments'[CREATIONDATE]) )
+VAR MaxYear = YEAR ( MAX ( 'SalesOrderPayments'[predPaymentDate] ) )
+RETURN
+ADDCOLUMNS (
+FILTER (
+CALENDARAUTO( ),
+AND ( YEAR ( [Date] ) >= MinYear, YEAR ( [Date] ) <= MaxYear )
+),
+"Calendar Year", "CY " & YEAR ( [Date] ),
+"Year", YEAR ( [Date] ),
+"Month Name", FORMAT ( [Date], "mmmm" ),
+"Month Number", MONTH ( [Date] ),
+"Year & Month", YEAR([Date]) & " - " & FORMAT ( [Date], "mmmm" )
+)
+```
+#### Create Relationships
+Create relationships between the `Date` table and `SalesOrderPaymentsFull` table
+** Date[Date] - SalesOrderPayments[CREATIONDATE] : this is the default (active) relationship
+** Date[Date] - SalesOrderPayments[BILLINGDOCUMENTDATE]
+** Date[Date] - SalesOrderPayments[Payments.PaymentDate]
+** Date[Date] - SalesOrderPayments[predPaymentDate]
+
+<img src="images/aml/dateRelationships.jpg" height=300>
+
+#### Create new Measures
+In the `Date` table, create new measures. 
+
+```
+Sales at CreationDate = sum('SalesOrderPayments'[TOTALNETAMOUNT])
+```
+>Note: this measure uses the 'active' relationship between the `Date` and `SalesOrderPaymentsFull` table
+```
+Sales at BillingDate = CALCULATE(sum(SalesOrderPayments[TOTALNETAMOUNT]),USERELATIONSHIP('Date '[Date],SalesOrderPayments[BILLINGDOCUMENTDATE]))
+```
+>Note: by explicitly specifying the relationship we ensure the Sales Order value (`TOTALNETAMOUNT` is aggregated at `BILLINGDOCUMENTDATE`)
+
+```
+Payment at Actual Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]), USERELATIONSHIP('Date '[Date],SalesOrderPayments[Payments.PaymentDate]))
+```
+```
+Payment at pred Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]), USERELATIONSHIP('Date '[Date], SalesOrderPayments[predPaymentDate]))
+```
+
+#### Create Sales and Payment Forecast report
+
+* Select a `Clustered' Column Chart`
+* Use the `Date.Date` hierarchy as Axis
+* Use `Date.Sales at Billing Date`as Values
+* Use `Date.Payment at pred Date` as Values
+* Use `Date.Payment at actual Date`as values if you want to compare prediction and actual
+
+<img src="images/aml/SalesPaymentForecast.jpg" height=600>
 
 
