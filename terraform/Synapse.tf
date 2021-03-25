@@ -46,6 +46,21 @@ resource "azurerm_synapse_workspace" "synapse" {
     sql_administrator_login                 = var.username
     sql_administrator_login_password        = var.password
     tags                                    = var.tags
+
+    identity {
+      type = "SystemAssigned"
+    }
+}
+
+#######################################################################
+## Open the Firewall for the Synapse Workspace
+#######################################################################
+
+resource "azurerm_synapse_firewall_rule" "allowall" {
+  name                 = "AllowAll"
+  synapse_workspace_id = azurerm_synapse_workspace.synapse.id
+  start_ip_address     = "0.0.0.0"
+  end_ip_address       = "255.255.255.255"
 }
 
 #######################################################################
