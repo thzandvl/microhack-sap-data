@@ -139,6 +139,8 @@ SELECT * FROM SalesPaymentsFull
 4. During the run you can follow-up on the tested models via the `Models` tab
 <img src="images/aml/mlModelsTab.jpg" height = 300>
 
+>Note : The ML run will take some time. You can start with the [PowerBI section](PowerBiVisualisation.md) and return here at a later moment.
+
 ## Deploy the best model
 In this step we will deploy the best model that has been trained by AutoML and test it.
 
