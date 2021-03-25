@@ -1,2 +1,5 @@
-scripts\.ipynb_checkpoints
+scripts/.ipynb_checkpoints
 *Copy.pbix
+terraform/.terraform/
+terraform/.terraform*
+terraform/terraform.tfstate*
