@@ -9,12 +9,13 @@ For this Microhack we will:
 ## Scenario Description
 When customers buy goods, the corresponding payments are not done immediatly. Some customers will pay directly and other customers will pay at end of the payment terms. This makes it diffucult for companies to predict the incoming cashflow. In this simplified exercise we'll use Azure tooling to predict the incoming cashflow. For this we need data on past Sales Orders and past payments. The Sales Order information we'll retrieve from a S4Hana system. For the payments we assume these are kept in a non SAP system. This non SAP System is represented by a cosmos DB.
 
-## Get Started
+## Implementation
 To execute the Microhack follow the steps beneath :
 
 0. [Software Prerequisites](SoftwarePrerequisites.md)
 1. [Deploy and Prepare a Virtual Machine to host the Integration Runtime](DeployIntegrationRuntimeVM.md)
 2. [Synapse Workspace Setup](SynapseWorkspace.md)
 3. [DataFlow Config](DataFlowConfig.md)
-4. [PowerBI Visualisation](PowerBiVisualisation.md)
-5. [Predict Cash Flow](PredictIncomingCashflow.md)
+4. [Predict Cash Flow](PredictIncomingCashflow.md)
+5. [PowerBI Visualisation](PowerBiVisualisation.md)
+6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)

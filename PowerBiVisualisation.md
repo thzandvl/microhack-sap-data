@@ -104,9 +104,9 @@ The `CustomerGroup`is retrieved via the 1:1 relationship between the `SalesOrder
 
 <img src="images/powerBi/SalesCustMatGroup.jpg">
 
-## Spoiler : Payment Offset per CustomerGroup
-With this report we'll show the average date by which each customergroup pays his SalesOrders.
-For this we need to join the SalesOrderHeaders and the Payment to calculate the number of days between the billing date and the payment date.
+## Payment Offset per CustomerGroup
+With this report we'll show the average date by which each customergroup pays his SalesOrders. We can compare this with the outcome of our Machine Learning Model.
+For this we need to join the SalesOrderHeaders and the Payment data to calculate the number of days between the billing date and the payment date.
 
 ### Merge SalesOrderHeaders and Payments
 * Under `Home` select `Transform data`
@@ -168,6 +168,8 @@ From this diagram you can see that:
 * CustomerGroup1 pays within 70 days +/- 10 days
 * CustomerGroup2 pays within 30days +/- 5 days
 * Other customergroups pay after 10 days
+
+This should correspond to the outcome of ML Model
 
 
 

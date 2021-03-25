@@ -57,7 +57,7 @@ You can now test the view.
 
 * Enter the 'Resource Group' you've been using before or create a new one. 
 * Enter a `Workspace Name`
-* Select the `Region`you've been using
+* Select the `Region` you've been using
 
 You can now open the ML Studio from here or alternatively sign in via https://ml.azure.com.
 
@@ -85,7 +85,7 @@ A Guided Procedure will appear :
 <img src="images/aml/dsSelection.jpg" height= 200>
 
 
-* Use the following SQL query to get all the data.
+* Use the following SQL query to get all the data from the view defined above.
 ```sql
 SELECT * FROM SalesPaymentsFull
 ```
@@ -98,12 +98,12 @@ SELECT * FROM SalesPaymentsFull
 * <b>Schema :</b> In order to get a model as accurate as possible we have to do some cleaning of the data.
 <img src="images/aml/07-aml-studio.PNG" height= 400>
 
-1. Select an Integer type for any numeric field. <!--???Is this needed???-->
+1. Check if an Integer type is used for any numeric field
 
 2. Uncheck the date fields that we will not use in the model. (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`)
 <img src="images/aml/08-aml-studio.PNG" height= 400>
 
-3. Uncheck the fields that do not contain any data or which are not relevant for the forecast. Eg. `SALESDOCUMENT`, `SALESGROUP`, `SALESOFFICE` <!-- Can we also uncheck Sales Document??? -->
+3. Uncheck the fields that do not contain any data or which are not relevant for the forecast. Eg. `SALESDOCUMENT`, `SALESGROUP`, `SALESOFFICE` 
 <img src="images/aml/09-aml-studio.PNG" height= 400>
 
 * <b>Confirm details</b> Create the dataset
@@ -117,6 +117,7 @@ SELECT * FROM SalesPaymentsFull
 2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
 
 3. Create a new compute that will be used to train your model.
+
 <img src="images/aml/12-aml-studio.PNG" height= 400>
 <img src="images/aml/13-aml-studio.PNG" height= 400>
 <img src="images/aml/14-aml-studio.PNG" height= 400>
@@ -129,8 +130,7 @@ SELECT * FROM SalesPaymentsFull
 <img src="images/aml/16-aml-studio.PNG" height= 400>
 
 2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, TensorFlowLinearRegressor, TensorFlowDNN`.
-
-<!-- BDL : Mismatch with my algorithms -->
+>Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually.
 
 3. Validate and click on `Finish`.
 <img src="images/aml/17-aml-studio.PNG" height= 400>
@@ -165,98 +165,7 @@ Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view
 
 <img src="images/aml/25-aml-studio.PNG" height= 400>
 
-From the PowerBI section, we know that the main factor in determining the payment dely is the CustomerGroup. Experiment with CustomerGroup `Z1` and `Z2` to see if the outcome is similar.
+> Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset.
 
-### Integrate ML with PowerBI
-We can now integrate the ML Model within PowerBI. 
-> Note : for this example we'll predict the payment date of the 'Historical Sales Orders'. In real-life you would do this for new unpaid Sales Orders.
-
-* In PowerBI, select Transform Data
-* Select the View containin the combined SalesOrderHeader & Payments data
-* Select `Azure Machine Learning` button
-
-<img src="images/aml/pbiAzMLIcon.jpg">
-
-* Select your Azure Machine Learning Model
-* Map the input fields of the Machine Learning Model to your column names
-
-<img src="images/aml/pbiMLMapping.jpg">
-
-> Note : if you can't map the fields then you might need to change the data type of your columns
-
-* This will add an additional column to the table with the predicted offset
-
-* You can rename to the column to `predOffset`
-
-* You can now calculate the predicted payment date
-* Add a new column `predPaymentDate` and use the following formula
-
-```
-Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
-```
-
-<img src="images/aml/pbiMLPredPaymentDateColumn.jpg">
-
-* Change the data type of this column to `Date`
-
-* You can now use this column in reporting
-
-### PowerBI Report
-We will now display the Sales & predicted payment forecast in PowerBI. Since we want to display the Sales and Payment figures aggregated by different days (`BILLINGDOCUMENTDATE`, `predPaymentDate`), we need to create a 'calendar' table with the timeslots by which to aggregate.
-
-#### Create Date Table
-First we will create a new `Date` table. Use the formula beneath
-
-```
-Date  = 
-VAR MinYear = YEAR ( MIN ( 'SalesOrderPayments'[CREATIONDATE]) )
-VAR MaxYear = YEAR ( MAX ( 'SalesOrderPayments'[predPaymentDate] ) )
-RETURN
-ADDCOLUMNS (
-FILTER (
-CALENDARAUTO( ),
-AND ( YEAR ( [Date] ) >= MinYear, YEAR ( [Date] ) <= MaxYear )
-),
-"Calendar Year", "CY " & YEAR ( [Date] ),
-"Year", YEAR ( [Date] ),
-"Month Name", FORMAT ( [Date], "mmmm" ),
-"Month Number", MONTH ( [Date] ),
-"Year & Month", YEAR([Date]) & " - " & FORMAT ( [Date], "mmmm" )
-)
-```
-#### Create Relationships
-Create relationships between the `Date` table and `SalesOrderPaymentsFull` table
-* Date[Date] - SalesOrderPayments[CREATIONDATE] : this is the default (active) relationship
-* Date[Date] - SalesOrderPayments[BILLINGDOCUMENTDATE]
-* Date[Date] - SalesOrderPayments[Payments.PaymentDate]
-* Date[Date] - SalesOrderPayments[predPaymentDate]
-
-<img src="images/aml/dateRelationships.jpg" height=300>
-
-#### Create new Measures
-In the `Date` table, create new measures. 
-
-```
-Sales at CreationDate = sum('SalesOrderPayments'[TOTALNETAMOUNT])
-```
-```
-Sales at BillingDate = CALCULATE(sum(SalesOrderPayments[TOTALNETAMOUNT]),USERELATIONSHIP('Date '[Date],SalesOrderPayments[BILLINGDOCUMENTDATE]))
-```
-```
-Payment at Actual Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]), USERELATIONSHIP('Date '[Date],SalesOrderPayments[Payments.PaymentDate]))
-```
-```
-Payment at pred Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]), USERELATIONSHIP('Date '[Date], SalesOrderPayments[predPaymentDate]))
-```
-
-#### Create Sales and Payment Forecast report
-
-* Select a `Clustered' Column Chart`
-* Use the `Date.Date` hierarchy as Axis
-* Use `Date.Sales at Billing Date`as Values
-* Use `Date.Payment at pred Date` as Values
-* Use `Date.Payment at actual Date`as values if you want to compare prediction and actual
-
-<img src="images/aml/SalesPaymentForecast.jpg" height=600>
 
 
