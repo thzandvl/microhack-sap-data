@@ -6,4 +6,4 @@ Please have the following software installed on your computer :
 * [Optional] Azure Data Studio, see [Download and install Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio)
 > SQL Statements can also be executed via Synapse Studio.
 
-[Go to Deploy and Prepare a Virtual Machine to host the Integration Runtime](DeployIntegrationRuntimeVM.md)
+[Go to Deploy and Prepare the Microhack Environment](DeployEnvironment.md)
