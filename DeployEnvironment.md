@@ -1,8 +1,4 @@
-# Deploy and Prepare a Virtual Machine to host the Integration Runtime
-In this step, we'll deploy a Azure Virtual Machine to host the Integration Runtime needed by the SAP Table Connector of the Azure Synapse Pipeline.
-We'll also install the SAP .net connector to enable RFC Connectivity to the SAP System.
-
-## Deploy the Microhack environment with Terraform
+# Deploy the Microhack environment with Terraform
 To avoid problems we will use Terraform to deploy a new Resource Group, Virtual Network, Subnet and Virtual Machine which will be used as the Gateway server. You can also deploy the Synapse workspace if preferred. If you don't want to deploy the Synapse workspace with Terraform you have to rename or remove the file `Synapse.tf`.
 
 To trigger the Terraform deployment, follow the steps below:
@@ -26,6 +22,8 @@ If the subscription shown is not the right one change this with: \
 
 
 ## Prepare
+In this step, we'll prepare an Azure Virtual Machine to host the Integration Runtime needed by the SAP Table Connector of the Azure Synapse Pipeline.
+We'll also install the SAP .net connector to enable RFC Connectivity to the SAP System.
 
 ### Install the SAP .Net Connector
 The SAP .Net Connector can be downloaded from the [SAP Service Marketplace](https://support.sap.com/en/product/connectors/msnet.html). Make sure to download the version compiled with .Net Framework 4.0 for Windows 64-bit.

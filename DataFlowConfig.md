@@ -265,4 +265,4 @@ select count(*) from Payments
 select * from Payments
 ```
 
-Continue with the [next](PowerBiVisualisation.md) step.
+Continue with the [next](PredictIncomingCashflow.md) step.
