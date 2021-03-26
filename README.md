@@ -15,7 +15,7 @@ When customers buy goods, the corresponding payments are not done immediatly. So
 To execute the Microhack follow the steps beneath :
 
 0. [Software Prerequisites](SoftwarePrerequisites.md)
-1. [Deploy and Prepare a Virtual Machine to host the Integration Runtime](DeployIntegrationRuntimeVM.md)
+1. [Deploy and Prepare the Microhack Environment](DeployEnvironment.md)
 2. [Synapse Workspace Setup](SynapseWorkspace.md)
 3. [DataFlow Config](DataFlowConfig.md)
 4. [Predict Cash Flow](PredictIncomingCashflow.md)
