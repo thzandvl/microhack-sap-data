@@ -1,2 +1,9 @@
-scripts\.ipynb_checkpoints
+scripts/.ipynb_checkpoints
 *Copy.pbix
+
+# ignore terraform meta files
+**/.terraform/*
+*.terraform.*
+*.tfstate
+*.tfstate.*
+*.tfvars

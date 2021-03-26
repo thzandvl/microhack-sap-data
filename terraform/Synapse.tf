@@ -46,10 +46,6 @@ resource "azurerm_synapse_workspace" "synapse" {
     sql_administrator_login                 = var.username
     sql_administrator_login_password        = var.password
     tags                                    = var.tags
-
-    identity {
-      type = "SystemAssigned"
-    }
 }
 
 #######################################################################
@@ -72,4 +68,14 @@ resource "azurerm_synapse_sql_pool" "sqlpool" {
   synapse_workspace_id  = azurerm_synapse_workspace.synapse.id
   sku_name              = "DW100c"
   create_mode           = "Default"
+}
+
+#######################################################################
+## Authorize Synapse to ADLS Account
+#######################################################################
+
+resource "azurerm_role_assignment" "synapsetoadls" {
+  scope = azurerm_resource_group.rg.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id = azurerm_synapse_workspace.synapse.identity[0]["principal_id"]
 }
