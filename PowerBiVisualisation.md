@@ -5,7 +5,7 @@ We'll be using [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/) f
 
 ## Setup & Importing Data
 In PowerBI, we first need to connect to our Synapse.
-* Choose `Get Data`and select `Synapse Analytics (SQL DW)`.
+* Choose `Get Data`and select `Synapse Analytics (SQL DW)`
 <img src="images/powerBi/getdata.jpg" height=100>
 
 * In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` in the overview blade of your Synapse Workspace.
@@ -23,15 +23,15 @@ The Database is the SQL server pool you created.
 * Select `Transform Data`
 In order for all 3 tables to have the same sales order number, we'll convert the sales order number from string to integer.
 In the 3 tables select the sales order number column and change the type to `Whole Number`.
+The formula for the column will then change to `Table.TransformColumnTypes(dbo_SalesOrderItems,{{"SalesOrder", Int64.Type}})`.
 
-The `formula`for the column will then change to `Table.TransformColumnTypes(dbo_SalesOrderItems,{{"SalesOrder", Int64.Type}})`.
-For `SalesOrderHeaders`, change the `SALESDOCUMENT` column. The transformation will remove the leading zeros.
-For `SalesOrderItems`, change the `SalesOrder` column.
-For `Payments`, change the `SalesOrderNr`column.
+    * For `SalesOrderHeaders`, change the `SALESDOCUMENT` column. The transformation will remove the leading zeros
+    * For `SalesOrderItems`, change the `SalesOrder` column
+    * For `Payments`, change the `SalesOrderNr` column
 
 <img src="images/powerBi/whole_number.jpg">
 
-* Select `Close and Apply`. 
+* Select `Close and Apply`
 
 ## Create the Relational Model
 In this step we'll model the relationships between the tabels.
@@ -86,7 +86,8 @@ Some example Reports are given beneath. Feel free to experiment.
 <img src="images/powerBi/SalesPerRegion.jpg">
 
 >Note: when you select a CustomerGroup and Quarter in the Sales Report, the Map report will automatically update and only show this data.
->SalesRegionLink.jpg">
+
+<img src="images/powerBi/SalesRegionLink.jpg">
 
 ## Payments per Date and CustomerGroup
 * Select a `Stacked Column Chart`
