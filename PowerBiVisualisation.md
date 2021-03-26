@@ -131,7 +131,7 @@ Select `Inner Join`\
 We now need to calculate the difference between the Billing date and the actual payment date.
 * Switch to the Data View
 * Select the `SalesOrderPayments` table
-* Select `New Column`\
+* Select `New Column`
 Enter the following as formula:
 ```
 Offset = DATEDIFF(SalesOrderPayments[BILLINGDOCUMENTDATE],SalesOrderPayments[Payments.PaymentDate],DAY)
@@ -142,18 +142,18 @@ Offset = DATEDIFF(SalesOrderPayments[BILLINGDOCUMENTDATE],SalesOrderPayments[Pay
 * Select a Stacked Column chart
 * Use `SalesOrderPayments.CUSTOMERGROUP` as Axis
 * Use `Offset` as Values
-* Select `Average` instead of the default sum\
+* Select `Average` instead of the default sum
 <img src="images/powerBi/average.jpg">
 
 <img src="images/powerBi/averageOffset.jpg">
 
-### Boxplot
+### (Optional) Boxplot
 If you'd like a more detailed view on the payment offset then you can use a 'Box Plot'. This gives you an idea of the variance on the offset.
 For this you have to import a 'Box and Whisker chart' visualization. 
-In the `Visualizations` view, press the 3 dots and select `Get more visuals`.\
+In the `Visualizations` view, press the 3 dots and select `Get more visuals`.
 <img src="images/powerBi/getMoreVisuals.jpg" height=250>
 
-Search for `Box and Whisker chart` and press `Add`.\
+Search for `Box and Whisker chart` and press `Add`.
 <img src="images/powerBi/AddBoxAndWhisker.jpg" height=150>
 
 You can now use the chart in your visuals
