@@ -169,5 +169,4 @@ Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view
 
 > Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset.
 
-
-
+You can now proceed with the [next](PowerBiVisualisation.md) step.

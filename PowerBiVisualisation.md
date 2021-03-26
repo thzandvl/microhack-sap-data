@@ -171,11 +171,4 @@ From this diagram you can see that:
 
 This should correspond to the outcome of ML Model
 
-
-
-
-
-
-
-
-
+You can now proceed with the [next](IntegrateMLPowerBI.md) step.
