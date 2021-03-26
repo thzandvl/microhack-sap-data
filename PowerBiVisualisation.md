@@ -38,6 +38,7 @@ In this step we'll model the relationships between the tabels.
 The Relationships are as follows :
 
 `SalesOrderHeader 1:n SalesOrderItems`
+
 `Payment 1:1 SalesOrderHeader`
 
 * Switch to the `Model`view
