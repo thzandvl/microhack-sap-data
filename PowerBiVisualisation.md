@@ -91,10 +91,11 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ## Payments per Date and CustomerGroup
 * Select a `Stacked Column Chart`
-* Use `Payments.PaymentDate` hierarchy as Axis.
-* Use `Payments.PaymentValue` as Values.
-* Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend.
-The `CustomerGroup`is retrieved via the 1:1 relationship between the `SalesOrderHeaders`and `Payments` table.
+* Use `Payments.PaymentDate` hierarchy as Axis
+* Use `Payments.PaymentValue` as Values
+* Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
+
+The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrderHeaders`and `Payments` table.
 
 <img src="images/powerBi/PaymentDateCustGroup.jpg">
 
@@ -118,27 +119,30 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 * Under `Home` select `Transform data`
 * Select the `SalesOrderHeaders`table
 * Select `Merge Queries > Merge Queries as New`
+
 <img src="images/powerBi/MergeQueries.jpg">
 
-* Define the merge with the Payments table\
-In `SalesOrderHeaders`select the `SALESDOCUMENT`column\
-In `Payments` select the `SalesOrderNr`column\
-Select `Inner Join`
+* Define the merge with the Payments table
+    * In `SalesOrderHeaders`select the `SALESDOCUMENT`column
+    * In `Payments` select the `SalesOrderNr`column
+    * Select `Inner Join`
+
 <img src="images/powerBi/Merge.jpg">
 
 * Rename the merged table to `SalesOrderPayments`
 
-* In the `SalesOrderPayments`table select column `Payments`. Expand this column and select the fields `PaymentNr`, `PaymentDate`, `PaymentValue`, `Currency`\
+* In the `SalesOrderPayments`table select column `Payments`. Expand this column and select the fields `PaymentNr`, `PaymentDate`, `PaymentValue`, `Currency`
+
 <img src="images/powerBi/selectPaymentFields.jpg">
 
-* Select 'Close and Apply'.
+* Select 'Close and Apply'
 
 ### Calculate Payment Offset
 We now need to calculate the difference between the Billing date and the actual payment date.
 * Switch to the Data View
 * Select the `SalesOrderPayments` table
-* Select `New Column`
-Enter the following as formula:
+* Select `New Column` and enter the following as formula:
+
 ```
 Offset = DATEDIFF(SalesOrderPayments[BILLINGDOCUMENTDATE],SalesOrderPayments[Payments.PaymentDate],DAY)
 ```
@@ -149,6 +153,7 @@ Offset = DATEDIFF(SalesOrderPayments[BILLINGDOCUMENTDATE],SalesOrderPayments[Pay
 * Use `SalesOrderPayments.CUSTOMERGROUP` as Axis
 * Use `Offset` as Values
 * Select `Average` instead of the default sum
+
 <img src="images/powerBi/average.jpg">
 
 <img src="images/powerBi/averageOffset.jpg">
