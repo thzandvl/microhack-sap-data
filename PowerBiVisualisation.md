@@ -112,6 +112,8 @@ The `CustomerGroup`is retrieved via the 1:1 relationship between the `SalesOrder
 With this report we'll show the average date by which each customergroup pays his SalesOrders. We can compare this with the outcome of our Machine Learning Model.
 For this we need to join the SalesOrderHeaders and the Payment data to calculate the number of days between the billing date and the payment date.
 
+>Note : In the ML part you created a similar view in Synapse. This section explains how you can create a 'view' locally in PowerBI.
+
 ### Merge SalesOrderHeaders and Payments
 * Under `Home` select `Transform data`
 * Select the `SalesOrderHeaders`table
