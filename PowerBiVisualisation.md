@@ -40,7 +40,7 @@ The Relationships are as follows :
 `SalesOrderHeader 1:n SalesOrderItems`
 `Payment 1:1 SalesOrderHeader`
 
-* Switch to the `Model`view\
+* Switch to the `Model`view
 <img src="images/powerBi/relationalModel.jpg">
 
 * From the `SalesOrderHeaders`table, select the `SALESDOCUMENT`field and drag and drop it on the `SalesOrder`field of the `SalesOrderItems`table.
@@ -55,6 +55,7 @@ You can look at the relationship details by double clicking.
 
 * The end results looks as follows :
 <img src="images/powerBi/relModel.jpg">
+
 You can now start building the reports.
 
 # Data Visualisation
@@ -153,9 +154,11 @@ Offset = DATEDIFF(SalesOrderPayments[BILLINGDOCUMENTDATE],SalesOrderPayments[Pay
 If you'd like a more detailed view on the payment offset then you can use a 'Box Plot'. This gives you an idea of the variance on the offset.
 For this you have to import a 'Box and Whisker chart' visualization. 
 In the `Visualizations` view, press the 3 dots and select `Get more visuals`.
+
 <img src="images/powerBi/getMoreVisuals.jpg" height=250>
 
 Search for `Box and Whisker chart` and press `Add`.
+
 <img src="images/powerBi/AddBoxAndWhisker.jpg" height=150>
 
 You can now use the chart in your visuals
@@ -171,6 +174,6 @@ From this diagram you can see that:
 * CustomerGroup2 pays within 30days +/- 5 days
 * Other customergroups pay after 10 days
 
-This should correspond to the outcome of ML Model
+This should correspond to the outcome of ML Model.
 
 You can now proceed with the [next](IntegrateMLPowerBI.md) step.
