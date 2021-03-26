@@ -21,4 +21,3 @@ To execute the Microhack follow the steps beneath :
 4. [Predict Cash Flow](PredictIncomingCashflow.md)
 5. [PowerBI Visualisation](PowerBiVisualisation.md)
 6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
-
