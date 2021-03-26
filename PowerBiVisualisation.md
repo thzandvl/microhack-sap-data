@@ -41,10 +41,12 @@ The Relationships are as follows :
 `Payment 1:1 SalesOrderHeader`
 
 * Switch to the `Model`view
+
 <img src="images/powerBi/relationalModel.jpg">
 
 * From the `SalesOrderHeaders`table, select the `SALESDOCUMENT`field and drag and drop it on the `SalesOrder`field of the `SalesOrderItems`table.
 The relationship defaults to `1:*`
+
 <img src="images/powerBi/SalesOrderHeadersItemsRel.jpg">
 
 You can look at the relationship details by double clicking.
@@ -54,6 +56,7 @@ You can look at the relationship details by double clicking.
 * In the same way create the relationship between the `Payments`and the `SalesOrderHeaders` table using the `SalesOrderNr`and `SALESDOCUMENT`field.
 
 * The end results looks as follows :
+
 <img src="images/powerBi/relModel.jpg">
 
 You can now start building the reports.
