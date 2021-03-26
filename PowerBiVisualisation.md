@@ -23,11 +23,13 @@ The Database is the SQL server pool you created.\
 * Select `Transform Data`\
 In order for all 3 tables to have the same sales order number, we'll convert the sales order number from string to integer.
 In the 3 tables select the sales order number column and change the type to `Whole Number`.\
-<img src="images/powerBi/whole_number.jpg">\
+
 The `formula`for the column will then change to `Table.TransformColumnTypes(dbo_SalesOrderItems,{{"SalesOrder", Int64.Type}})`.\
 For `SalesOrderHeaders`, change the `SALESDOCUMENT` column. The transformation will remove the leading zeros.\
 For `SalesOrderItems`, change the `SalesOrder` column.\
 For `Payments`, change the `SalesOrderNr`column.
+
+<img src="images/powerBi/whole_number.jpg">
 
 * Select `Close and Apply`. 
 
