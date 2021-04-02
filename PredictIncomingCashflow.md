@@ -177,6 +177,7 @@ You can also test the ML model via http. You can find the URL to use via the ML 
 <img src="images/aml/mlEndPoints.png" height=400>
 
 Select your ML Model
+
 <img src="images/aml/endPointDetails.png" height=500>
 
 >Note : you can have a look at the API definition using the Swagger UI
@@ -226,4 +227,4 @@ The result will looks as follows :
 "{ "result": [30.966167923963926, 70.18799357457902]}"
 ```
 
->Note : if you're using `Postman`, you can find a sample test at [Postman Sample Test](scripts\MicroHack.postman_collection.json)
+>Note : if you're using `Postman`, you can find a sample test at [Postman Sample Test](scripts/MicroHack.postman_collection.json)
