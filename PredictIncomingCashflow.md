@@ -162,12 +162,12 @@ In this step we will deploy the best model that has been trained by AutoML and t
 * In this page, you will have access to the different information of your endpoint, code samples to consume it from Python or C# but also a page to directly test your model.
 <img src="images/aml/24-aml-studio.PNG" height= 400>
 
-## Test the Prediction
+## Test the Payment Delay/Offset Prediction
 Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view created at the beginning to replace the `example_value` value for the different fields and run the model.
 
 <img src="images/aml/25-aml-studio.PNG" height= 400>
 
-> Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset.
+> Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset. You can also compare with the actual value in powerBi or in Synapse.
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
 
@@ -182,7 +182,7 @@ Select your ML Model
 
 >Note : you can have a look at the API definition using the Swagger UI
 
-You can test the ML model via a HTTP post request on the Endpoint URI
+You can test the ML model via a HTTP post request on the Endpoint URI. Below you can find a sample request.
 
 <b>HTTP Header</b>
 ```
@@ -222,7 +222,7 @@ Content-Type : application/json
 ]}
 ```
 
-The result will looks as follows :
+The HTTP response will looks as follows :
 ```
 "{ "result": [30.966167923963926, 70.18799357457902]}"
 ```
