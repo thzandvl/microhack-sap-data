@@ -170,3 +170,60 @@ Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view
 > Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset.
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
+
+## [Optional] Test the ML Endpoint via HTTP
+You can also test the ML model via http. You can find the URL to use via the ML `endpoint` menu.
+
+<img src="images/aml/mlEndPoints.png" height=400>
+
+Select your ML Model
+<img src="images/aml/endPointDetails.png" height=500>
+
+>Note : you can have a look at the API definition using the Swagger UI
+
+You can test the ML model via a HTTP post request on the Endpoint URI
+
+<b>HTTP Header</b>
+```
+Content-Type : application/json
+```
+<b>HTTP Body</b>
+```
+{"data": [ 
+    { 
+    "CUSTOMERNAME": "Westend Cycles",
+    "CUSTOMERGROUP": "Z1",
+    "BILLINGCOMPANYCODE": 1710,
+    "CUSTOMERACCOUNTGROUP": "KUNA",
+    "CREDITCONTROLAREA": "A000",
+    "DISTRIBUTIONCHANNEL": 10,
+    "ORGANIZATIONDIVISION": 0,
+    "SALESDISTRICT": "US0003",
+    "SALESORGANIZATION": 1710,
+    "SDDOCUMENTCATEGORY": "C",
+    "CITYNAME": "RALEIGH",
+    "POSTALCODE": "27603"
+    },
+    { 
+    "CUSTOMERNAME": "Skymart Corp",
+    "CUSTOMERGROUP": "Z2",
+    "BILLINGCOMPANYCODE": 1710,
+    "CUSTOMERACCOUNTGROUP": "KUNA",
+    "CREDITCONTROLAREA": "A000",
+    "DISTRIBUTIONCHANNEL": 10,
+    "ORGANIZATIONDIVISION": 0,
+    "SALESDISTRICT": "US0004",
+    "SALESORGANIZATION": 1710,
+    "SDDOCUMENTCATEGORY": "C",
+    "CITYNAME": "New York",
+    "POSTALCODE": "10007"
+    }
+]}
+```
+
+The result will looks as follows :
+```
+"{ "result": [30.966167923963926, 70.18799357457902]}"
+```
+
+>Note : if you're using `Postman`, you can find a sample test at [Postman Sample Test](scripts\MicroHack.postman_collection.json)
