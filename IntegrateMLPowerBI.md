@@ -10,27 +10,27 @@ In this section we'll add a new column to `SalesOrderPayments` which will contai
 * Select the View `SalesOrderPayments` containing the combined SalesOrderHeader & Payments data
 * Select `Azure Machine Learning` button
 
-<img src="images/aml/pbiAzMLIcon.jpg">
+    <img src="images/aml/pbiAzMLIcon.jpg">
 
 * Select your Azure Machine Learning Model
 * Map the input fields of the Machine Learning Model to your column names
 
-<img src="images/aml/pbiMLMapping.jpg">
+    <img src="images/aml/pbiMLMapping.jpg">
 
 > Note : if you can't map the fields then you might need to change the data type of your columns
 
 * This will add an additional column to the table with the predicted offset
 
-* You can rename to the column to `predOffset`
+* Rename the column to `predOffset` and change the date type to `Whole Number`
 
 * You can now calculate the predicted payment date
-* Add a new column `predPaymentDate` and use the following formula
+    * Add a new column `predPaymentDate` and use the following formula
 
-```
-Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
-```
+        ```
+        Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
+        ```
 
-<img src="images/aml/pbiMLPredPaymentDateColumn.jpg">
+        <img src="images/aml/pbiMLPredPaymentDateColumn.jpg">
 
 * Change the data type of this column to `Date`
 
@@ -40,7 +40,7 @@ Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
 We will now display the Sales & predicted payment forecast in PowerBI. Since we want to display the Sales and Payment figures aggregated by different days (`BILLINGDOCUMENTDATE`, `predPaymentDate`), we need to create a 'calendar' table with the timeslots by which to aggregate.
 
 ### Create Date Table
-First we will create a new `Date` table. 
+First we will create a new `Date` table. This table contains the timeline against which to plot the different Sales and Payment values.
 In PowerBI switch to the `Data` View and select `New table`.
 
 <img src="images/aml/newDateTable.jpg">
@@ -72,7 +72,7 @@ Create relationships between the `Date` table and `SalesOrderPaymentsFull` table
 * Date[Date] - SalesOrderPayments[Payments.PaymentDate]
 * Date[Date] - SalesOrderPayments[predPaymentDate]
 
-<img src="images/aml/dateRelationships.jpg" height=300>
+    <img src="images/aml/dateRelationships.jpg" height=300>
 
 ### Create new Measures
 In the `Date` table, create new measures. 
@@ -98,4 +98,6 @@ Payment at pred Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]
 * Use `Date.Payment at pred Date` as Values
 * Use `Date.Payment at actual Date`as values if you want to compare prediction and actual
 
-<img src="images/aml/SalesPaymentForecast.jpg" height=600>
+    <img src="images/aml/SalesPaymentForecast.jpg" height=600>
+
+In this picture you can judge how well our 'forecasted' payment values are compared to the past actual payment values.
