@@ -7,8 +7,8 @@ We'll be using [Azure Machine Learning](https://ml.azure.com) for this.
 In Synapse Studio, we will create a view joining data coming from `SalesOrderHeaders` and `Payments` tables that will be used for the prediction. 
 You can create this view either via Synapse Studio or via Azure Data Studio.
 
-* Choose the `Develop` tab, select `SQL Scripts` and click on `Actions` then `New SQL Script`.
-<img src="images/aml/01-synapse-query.PNG" height=200>
+* Choose the `Develop` tab, select `SQL Scripts` and click on `Actions` then `New SQL Script`
+    <img src="images/aml/01-synapse-query.PNG" height=200>
 
 > Note : Ensure to connect to your SQL Pool
 
@@ -98,9 +98,9 @@ SELECT * FROM SalesPaymentsFull
 * <b>Schema :</b> In order to get a model as accurate as possible we have to do some cleaning of the data.
 <img src="images/aml/07-aml-studio.PNG" height= 400>
 
-1. Check if an Integer type is used for any numeric field
+1. Check if an Integer type is used for any numeric field ()
 
-2. Uncheck the date fields that we will not use in the model. (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`)
+2. Uncheck the date fields (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`) (We will not use these in our the model.)
 <img src="images/aml/08-aml-studio.PNG" height= 400>
 
 3. Uncheck the fields that do not contain any data or which are not relevant for the forecast. Eg. `SALESDOCUMENT`, `SALESGROUP`, `SALESOFFICE` 
@@ -113,31 +113,30 @@ SELECT * FROM SalesPaymentsFull
 * Select the newly created `Dataset` and create a new experiment.
 <img src="images/aml/11-aml-studio.PNG" height= 200>
 
-1. Specify a name.
-2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
+    1. Specify a name.
+    2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
+    3. Create a new compute that will be used to train your model.
 
-3. Create a new compute that will be used to train your model.
-
-<img src="images/aml/12-aml-studio.PNG" height= 400>
-<img src="images/aml/13-aml-studio.PNG" height= 400>
-<img src="images/aml/14-aml-studio.PNG" height= 400>
+    <img src="images/aml/12-aml-studio.PNG" height= 400>
+    <img src="images/aml/13-aml-studio.PNG" height= 400>
+    <img src="images/aml/14-aml-studio.PNG" height= 400>
 
 * We can now select the ML task type we want to use for this experiment, as we want to build prediction on a numeric value we will select the `Regression` task type. 
 <img src="images/aml/15-aml-studio.PNG" height= 400>
 
 * Then we need to configure the `Regression` using `Additional Configuration settings`.
-1. Select `Normalized root mean squared error` as Primary metric.
-<img src="images/aml/16-aml-studio.PNG" height= 400>
+    1. Select `Normalized root mean squared error` as Primary metric.
+    <img src="images/aml/16-aml-studio.PNG" height= 400>
 
-2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, TensorFlowLinearRegressor, TensorFlowDNN`.
->Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually.
+    2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, TensorFlowLinearRegressor, TensorFlowDNN`
+    >Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually
 
-3. Validate and click on `Finish`.
-<img src="images/aml/17-aml-studio.PNG" height= 400>
-<img src="images/aml/18-aml-studio.PNG" height= 400>
+    3. Validate and click on `Finish`
+    <img src="images/aml/17-aml-studio.PNG" height= 400>
+    <img src="images/aml/18-aml-studio.PNG" height= 400>
 
-4. During the run you can follow-up on the tested models via the `Models` tab
-<img src="images/aml/mlModelsTab.jpg" height = 300>
+    4. During the run you can follow-up on the tested models via the `Models` tab
+    <img src="images/aml/mlModelsTab.jpg" height = 300>
 
 >Note : The ML run will take some time. You can start with the [PowerBI section](PowerBiVisualisation.md) and return here at a later moment.
 
@@ -161,6 +160,8 @@ In this step we will deploy the best model that has been trained by AutoML and t
 
 * In this page, you will have access to the different information of your endpoint, code samples to consume it from Python or C# but also a page to directly test your model.
 <img src="images/aml/24-aml-studio.PNG" height= 400>
+
+>Note: for a sample Python program, have a look at [testForecast.py](scripts/testForecast.py)
 
 ## Test the Payment Delay/Offset Prediction
 Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view created at the beginning to replace the `example_value` value for the different fields and run the model.
