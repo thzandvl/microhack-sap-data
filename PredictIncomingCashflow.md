@@ -95,15 +95,15 @@ SELECT * FROM SalesPaymentsFull
 * <b>Settings and Preview :</b> To Ensure that your query is working fine you are able to visualize the data in the next window.
 <img src="images/aml/06-aml-studio.PNG" height= 400>
 
-* <b>Schema :</b> In order to get a model as accurate as possible we have to do some cleaning of the data.
+* <b>Schema :</b> In order to get a model we have to do some cleaning of the data.
 <img src="images/aml/07-aml-studio.PNG" height= 400>
 
-1. Check if an Integer type is used for any numeric field ()
+<!-- 1. Check if an Integer type is used for any numeric field () -->
 
-2. Uncheck the date fields (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`) (We will not use these in our the model.)
+1. Uncheck the date fields (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`) (We will not use these in our the model.)
 <!-- <img src="images/aml/08-aml-studio.PNG" height= 400> -->
 
-3. Uncheck the fields that do not contain any data or which are not relevant for the forecast. Eg. `SALESDOCUMENT`, `SALESGROUP`, `SALESOFFICE` 
+2. Uncheck the fields that do not contain any data or which are not relevant for the forecast. Eg. `SALESDOCUMENT`, `SALESGROUP`, `SALESOFFICE` 
 <!-- <img src="images/aml/09-aml-studio.PNG" height= 400> -->
 
 * <b>Confirm details</b>
