@@ -8,7 +8,7 @@ In Synapse Studio, we will create a view joining data coming from `SalesOrderHea
 You can create this view either via Synapse Studio or via Azure Data Studio.
 
 * Choose the `Develop` tab, select `SQL Scripts` and click on `Actions` then `New SQL Script`
-    <img src="images/aml/01-synapse-query.PNG" height=200>
+<img src="images/aml/01-synapse-query.PNG" height=200>
 
 > Note : Ensure to connect to your SQL Pool
 
@@ -101,25 +101,26 @@ SELECT * FROM SalesPaymentsFull
 1. Check if an Integer type is used for any numeric field ()
 
 2. Uncheck the date fields (`BILLINGDOCUMENTDATE`, `PAYMENTDATE`) (We will not use these in our the model.)
-<img src="images/aml/08-aml-studio.PNG" height= 400>
+<!-- <img src="images/aml/08-aml-studio.PNG" height= 400> -->
 
 3. Uncheck the fields that do not contain any data or which are not relevant for the forecast. Eg. `SALESDOCUMENT`, `SALESGROUP`, `SALESOFFICE` 
-<img src="images/aml/09-aml-studio.PNG" height= 400>
+<!-- <img src="images/aml/09-aml-studio.PNG" height= 400> -->
 
-* <b>Confirm details</b> Create the dataset
+* <b>Confirm details</b>
+Create the dataset
 <img src="images/aml/10-aml-studio.PNG" height= 400>
 
 ## Configure the Automated ML Run
 * Select the newly created `Dataset` and create a new experiment.
 <img src="images/aml/11-aml-studio.PNG" height= 200>
 
-    1. Specify a name.
-    2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
-    3. Create a new compute that will be used to train your model.
+1. Specify a name.
+2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
+3. Create a new compute that will be used to train your model.
 
-    <img src="images/aml/12-aml-studio.PNG" height= 400>
-    <img src="images/aml/13-aml-studio.PNG" height= 400>
-    <img src="images/aml/14-aml-studio.PNG" height= 400>
+<img src="images/aml/12-aml-studio.PNG" height= 400>
+<img src="images/aml/13-aml-studio.PNG" height= 400>
+<img src="images/aml/14-aml-studio.PNG" height= 400>
 
 * We can now select the ML task type we want to use for this experiment, as we want to build prediction on a numeric value we will select the `Regression` task type. 
 <img src="images/aml/15-aml-studio.PNG" height= 400>
