@@ -231,7 +231,7 @@ The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 <img src="images/synapsews/cosmosDBSSQLapi.jpg" height=100>
 
 * Enter the connection parameters
-Azure Cosmos DB account ARI : `https://sbx-s4d-cosmos.documents.azure.com:443`
+Azure Cosmos DB account ARI : `<handed out at micro hack`
 Azure Cosmos DB access key : `<handed out at micro hack>`
 Database name : `SAPS4D` 
 <img src="images/synapsews/LS_CosmosDB.jpg" height=700>
