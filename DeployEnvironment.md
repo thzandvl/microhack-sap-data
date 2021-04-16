@@ -26,11 +26,11 @@ In this step, we'll prepare an Azure Virtual Machine to host the Integration Run
 We'll also install the SAP .net connector to enable RFC Connectivity to the SAP System.
 
 ### Install the SAP .Net Connector
-The downloads can best be done directly to the Gatewat VM. The VM uses Internet Explorer by default which demands you to make all the websites trusted one by one. Easiest is to download Microsoft Edge via PowerShell:
+The downloads can best be done directly to the Gateway VM. The VM uses Internet Explorer by default which demands you to make all the websites trusted one by one. Easiest is to download Microsoft Edge via PowerShell:
 ```powershell
 Start-Process -FilePath "https://msftdemosbxrgdiag.blob.core.windows.net/microhack/MicrosoftEdgeEnterpriseX64.msi"
 ```
-The first time you have to trust the website. Run the command a second time to download the Microsoft Edge MSI package. Once installed you can download the rest of the software via Microsoft Edge.
+The first time you have to trust the website. Run the command a second time to download the Microsoft Edge MSI package. Once installed you can download the rest of the software via Microsoft Edge. \
 The SAP .Net Connector can be downloaded from the [SAP Service Marketplace](https://support.sap.com/en/product/connectors/msnet.html) or [here](https://msftdemosbxrgdiag.blob.core.windows.net/microhack/sapnco30dotnet40P_23-20007348.zip) if you don't have an S-User. Make sure to download the version compiled with .Net Framework 4.0 for Windows 64-bit.
 
 * Extract the SAP connector and open the folder 
