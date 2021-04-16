@@ -12,7 +12,7 @@ When customers buy goods, the corresponding payments are not done immediatly. So
 <img src="images/00-microhack-scenario.png" height=400>
 
 ## Implementation
-To execute the Microhack follow the steps beneath :
+To execute the Microhack follow the steps below:
 
 0. [Software Prerequisites](SoftwarePrerequisites.md)
 1. [Deploy and Prepare the Microhack Environment](DeployEnvironment.md)
