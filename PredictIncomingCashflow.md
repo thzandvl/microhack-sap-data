@@ -65,7 +65,7 @@ You can now open the ML Studio from here or alternatively sign in via https://ml
 <img src="images/aml/02-aml-studio.PNG" height= 400>
 
 ### DataStore Creation
-First you have to point the ML studio to the location of your data, which is the Synapse SQl Pool. For this you have to create a `DataStore`
+First you have to point the ML studio to the location of your data, which is the Synapse SQL Pool. For this you have to create a `DataStore`
 <img src="images/aml/dsMenu.jpg" height=600>
 <img src="images/aml/synapseDS.jpg" height=600>
 
