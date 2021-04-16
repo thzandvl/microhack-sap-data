@@ -26,7 +26,7 @@ In this step, we'll prepare an Azure Virtual Machine to host the Integration Run
 We'll also install the SAP .net connector to enable RFC Connectivity to the SAP System.
 
 ### Install the SAP .Net Connector
-The SAP .Net Connector can be downloaded from the [SAP Service Marketplace](https://support.sap.com/en/product/connectors/msnet.html). Make sure to download the version compiled with .Net Framework 4.0 for Windows 64-bit.
+The SAP .Net Connector can be downloaded from the [SAP Service Marketplace](https://support.sap.com/en/product/connectors/msnet.html) or [here](https://msftdemosbxrgdiag.blob.core.windows.net/microhack/sapnco30dotnet40P_23-20007348.zip) if you don't have an S-User. Make sure to download the version compiled with .Net Framework 4.0 for Windows 64-bit.
 
 * Extract the SAP connector and open the folder 
 <img src="images/gw/vm-gw-connector.png" height=300>
