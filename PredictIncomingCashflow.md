@@ -48,7 +48,7 @@ You can now test the view.
 
 ## Azure Machine Learning
 
-* You will first have to create a Azure Machine Learning Workspace.
+* The Azure Machine Learning Workspace is automatically deployed with the Terraform script from the first steps. In that case you can skip to [Open the ML Studio](#open_ml_studio). If you didn't use that option you will first have to create an Azure Machine Learning Workspace.
 * In the azure portal search for `Azure Machine Learning`and select `create`
 
 <img src="images/aml/azure_ml_icon.jpg">
@@ -59,6 +59,7 @@ You can now test the view.
 * Enter a `Workspace Name`
 * Select the `Region` you've been using
 
+### <a name="open_ml_studio"></a> Open the ML Studio
 You can now open the ML Studio from here or alternatively sign in via https://ml.azure.com.
 
 <img src="images/aml/02-aml-studio.PNG" height= 400>
