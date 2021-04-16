@@ -34,7 +34,7 @@ The formula for the column will then change to `Table.TransformColumnTypes(dbo_S
 * Select `Close and Apply`
 
 ## Create the Relational Model
-In this step we'll model the relationships between the tabels.
+In this step we'll model the relationships between the tables.
 The Relationships are as follows :
 
 `SalesOrderHeader 1:n SalesOrderItems`
