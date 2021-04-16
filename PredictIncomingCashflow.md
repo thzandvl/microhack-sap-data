@@ -231,3 +231,5 @@ The HTTP response will looks as follows :
 ```
 
 >Note : if you're using `Postman`, you can find a sample test at [Postman Sample Test](scripts/MicroHack.postman_collection.json)
+
+You can now proceed with the [next](PowerBiVisualisation.md) step.
