@@ -36,7 +36,7 @@ Choose `DW100c` as performance level (to save on costs).
 
 # <a name="syn_config"></a>Synapse Configuration
 ## Setup Firewall
-In the Synapse workspace go to `Firewalls` and choose `+ Add client IP`. Further set the `Allow Azure services and resources to access this workspace` to `ON`. Choose `Save` to save the configuration. This is required to setup the linked services in the later steps.
+In the Synapse workspace go to `Firewalls` and check if the rules are properly set. If not, choose `+ Add client IP`. Choose `Save` to save the configuration. This is required to setup the linked services in the later steps.
 
 ## Register Integration Runtime
 The rest of the configuration is done via `Synapse Studio`:\
