@@ -191,7 +191,7 @@ select * from SalesOrderHeaders
 ```
 
 ## Implement the SalesOrderItems Pipeline
-The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData. We'll use the oData service at `http://52.183.47.112:54000/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
+The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData. We'll use the oData service at `<URL>/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
 ### Create a Linked Service to the SAP oData Service
 * Create a `Linked Service`of type `SAP ECC`
 <img src="images/synapsews/SAPECCService.jpg">
