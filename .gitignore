@@ -1,5 +1,5 @@
 scripts/.ipynb_checkpoints
-*Copy.pbix
+pbi/**
 
 # ignore terraform meta files
 **/.terraform/*

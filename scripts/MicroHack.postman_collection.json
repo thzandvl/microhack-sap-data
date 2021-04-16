@@ -20,10 +20,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://2fe78f13-726c-43d0-9182-7e0b084a295b.westeurope.azurecontainer.io/score",
+					"raw": "http://xxx.westeurope.azurecontainer.io/score",
 					"protocol": "http",
 					"host": [
-						"2fe78f13-726c-43d0-9182-7e0b084a295b",
+						"xxx",
 						"westeurope",
 						"azurecontainer",
 						"io"
