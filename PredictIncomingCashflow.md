@@ -130,7 +130,7 @@ Create the dataset
     <img src="images/aml/16-aml-studio.PNG" height= 400>
 
     2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, TensorFlowLinearRegressor, TensorFlowDNN`
-    >Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually
+    >>Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually
 
     3. Validate and click on `Finish`
     <img src="images/aml/17-aml-studio.PNG" height= 400>
