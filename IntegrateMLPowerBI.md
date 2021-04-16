@@ -17,7 +17,7 @@ In this section we'll add a new column to `SalesOrderPayments` which will contai
 
     <img src="images/aml/pbiMLMapping.jpg">
 
-> Note : if you can't map the fields then you might need to change the data type of your columns
+> Note : if you can't map the fields then you might need to change the data type of your columns. (Eg. BillingCompanyCode, DistributionChannel, Division, Sales Organization)
 
 * This will add an additional column to the table with the predicted offset
 
