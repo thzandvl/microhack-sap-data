@@ -5,10 +5,22 @@ Payment data will be extracted from CosmosDB using a third pipeline.
 We'll first start by setting up the target DB structures in Synapse.
 
 ## Synapse Table Setup
-* Create the Synapse tables in the SQL Pool
+Create the Synapse tables in the SQL Pool
 These tables are the receivers of the SAP Sales Order data and the Cosmos Payment Data.
 Use the following SQL Scripts to create the tables.
-You can do this via the Synapse workspace or use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
+You can do this via the Synapse workspace or alternatively use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
+
+We'll describe the usage of Synapse Workspace.
+
+* In the Azure Portal, select your Synapse Workspace.
+* Select `Open Synapse Studio`
+<img src="images/synapsews/openAzureDataStudio.jpg">
+
+* Select 'Develop'
+<img src="images/synapsews/SynapseStudioDevelop.jpg">
+
+* Create SQL Scripts for each of the tables
+<img src="images/synapsews/createSQLScript.jpg">
 
 - SalesOrderHeaders
 ```sql
@@ -80,7 +92,6 @@ CREATE TABLE SalesOrderItems(
     RequirementSegment nvarchar(40)
 )
 ```
-
 - Payments
 ```sql
 CREATE TABLE Payments(
@@ -93,10 +104,13 @@ CREATE TABLE Payments(
 	Currency nvarchar(5)
 )
 ```
+> Note: Ensure the SQL Script is attached to your SQL Pool. By default it will be connected to the 'builtin' SQL pool of Synapse.
+><img src="images/synapsews/connectToPool.jpg">
 
 # Implement the SalesOrderHeaders Pipeline
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses a RFC.
-The view to extract from is : `ZBD_ISALESDOC_E`. You can have a look in the SAP system to check the contents. Use the Data Dictionary, transaction `SE11`.
+The view to extract from is : `ZBD_ISALESDOC_E`. 
+>Note: You can have a look in the SAP system to check the contents. Use the Data Dictionary, transaction `SE11`.
 
 ## Create a Linked Service to the SAP System.
 * In Synapse Studio, go to the `Manage` View
@@ -217,7 +231,7 @@ This dataset will act as the sink for our pipeline.
 * As sink, select the Synapse SalesOrderItem DataSet
 * Enter the `Staging Area`
 * Publish, Trigger and Monitor the integration pipeline
-* Check the result in Synapse using SQL
+* Create a new SQL scrtipt to check the result in Synapse
 
 ```sql 
 select count(*) from SalesOrderItems
