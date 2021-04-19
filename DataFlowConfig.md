@@ -8,9 +8,9 @@ We'll first start by setting up the target DB structures in Synapse.
 Create the Synapse tables in the SQL Pool
 These tables are the receivers of the SAP Sales Order data and the Cosmos Payment Data.
 Use the following SQL Scripts to create the tables.
-You can do this via the Synapse workspace or alternatively use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
+You can do this via `Synapse Studio` or alternatively use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
 
-We'll describe the usage of Synapse Workspace.
+We'll describe the usage of Synapse Studio.
 
 * In the Azure Portal, select your Synapse Workspace.
 * Select `Open Synapse Studio`
