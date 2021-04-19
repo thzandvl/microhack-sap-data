@@ -8,7 +8,7 @@ Payment data will be extracted from CosmosDB using a third pipeline.
 We'll begin by setting up the target DB structures in Synapse.
 The next step is to define the pipelines to copy the data. For this we first need to create technical connections, called `Linked Services`, to the different data sources and sinks. These `Linked Services`define the adapter to use and the corresponding connection parameters. For our example we'll need 4 `Linked Services`. 
 
-| Scenario | Source LinkedService | Sink Integration Dataset |
+| Scenario | Source LinkedService | Sink Linked Service |
 |----------|:------:|---------------------:|
 | Sales Order Header | S4D - SAP Table Connector | Synapse SQL Pool MicroHack |
 | Sales Order Items | S4D - SAP ECC Connector | Synapse SQL Pool MicroHack |
