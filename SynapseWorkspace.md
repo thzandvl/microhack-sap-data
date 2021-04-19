@@ -1,7 +1,7 @@
 # Configure Synapse Workspace
 
 ## Introduction
-In this part we'll configure the Synapse Workspace and install the Ingration Runtion on our Azure Virtual Machine.
+In this part we'll configure the Synapse Workspace and install the Ingration Runtime on our Azure Virtual Machine. If you didn't install the Synapse workspace with the Terraform script (included by default) earlier you can deploy the Synapse Workspace following [these](DeploySynapseWorkspace.md) steps.
 
 # Synapse Configuration
 ## Setup Firewall
