@@ -60,17 +60,17 @@ The downloads can best be done directly to the Gateway VM. The VM uses Internet 
 
 <img src="images/gw/vm-gw3.jpg">
 
-Turn off the security for Administrators and Users: \
+Turn off the security for Administrators and Users:
 
-<img src="images/gw/vm-gw4.jpg" height=300> \
+<img src="images/gw/vm-gw4.jpg" height=300>
 
 Open `Internet Explorer` on the GW VM and use the recommended settings. The SAP .Net Connector can be downloaded from the [SAP Service Marketplace](https://support.sap.com/en/product/connectors/msnet.html). Make sure to download the version compiled with .Net Framework 4.0 for Windows 64-bit.
 
 * Extract the SAP connector and open the folder 
 <img src="images/gw/vm-gw-connector.png" height=300>
 
-* Start the executable .If you get the `Windows protected` screen choose `More info` and `Run anyway`
-<img src="images/gw/vm-gw5.jpg" height=300> \
+* Start the executable. If you get the `Windows protected` screen choose `More info` and `Run anyway`
+<img src="images/gw/vm-gw5.jpg" height=300>
 
 <img src="images/gw/vm-gw-connsetup1.png" height=300>
 
