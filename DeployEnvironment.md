@@ -78,12 +78,12 @@ Open `Internet Explorer` on the GW VM and use the recommended settings. The SAP 
 
 <img src="images/gw/vm-gw-connsetup2.png" height=300>
 
-* Choose `Install assemblies to GAC` \
+* Choose `Install assemblies to GAC`
 
 <img src="images/gw/vm-gw6.jpg" height=300>
  
  * Finally press `Next` 
- 
+
 <img src="images/gw/vm-gw-connsetup3.png" height=300>
 
 * Again press `Next` and choose `Close`
