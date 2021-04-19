@@ -19,7 +19,7 @@ We'll describe the usage of Synapse Studio.
 * Select 'Develop'
 <img src="images/synapsews/SynapseStudioDevelop.jpg">
 
-* Create SQL Scripts for each of the tables
+* Create SQL Scripts for each of the tables (`SalesOrderHeaders`, `SalesOrderItems`, `Payments`)
 <img src="images/synapsews/createSQLScript.jpg">
 
 - SalesOrderHeaders
