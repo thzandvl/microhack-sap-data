@@ -29,7 +29,7 @@ The table beneath summarizes the `Integration Datasets` and `Linked Services`.
 |--------------------|:-----------------------------------------------:|:---------------------:|:-----------------------------------------------------:|:--------------------:|
 |Sales Order Headers | CDS View `ZBD_ISALESDOC_E` | SAP Table Connector | Synape Table `SalesOrderHeaders` | `microHack` SQL Pool - Azure Synapse Analytics |
 |Sales Order Items | oData Entity Set `C_Salesorderitemfs` | SAP ECC Connector | Synape Table `SalesOrderItems` | `microHack` SQL Pool - Azure Synapse Analytics |
-|Payments | CosmosDB Collection `paymentData` | PaymentsCosmos DB - `SAPS4D` DataBase - CosmosDB SQL API | Synapse Table `Payments` | `microHack` SQL Pool - Azure Synapse Analytics |
+|Payments | CosmosDB Collection `paymentData` | Cosmos DB - `SAPS4D` DataBase - CosmosDB SQL API | Synapse Table `Payments` | `microHack` SQL Pool - Azure Synapse Analytics |
 
 The last step is to define the `Synapse Pipelines`which will execute the copy. Here we link the source and sink/target datasets. This also where you can execute data mappings if necessary.
 
