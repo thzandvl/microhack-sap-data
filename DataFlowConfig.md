@@ -3,7 +3,7 @@
 In this step we'll setup the dataflow from the SAP System towards the Synapse DB. Sales OrderHeaders will be extracted via the first Synapse pipeline using the SAP Table connector, Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
 Payment data will be extracted from CosmosDB using a third pipeline.
 
-architectureOverview.png
+<img src="images/synapsews/architectureOverview.png">
 
 We'll begin by setting up the target DB structures in Synapse.
 The next step is to define the pipelines to copy the data. For this we first need to create technical connections, called `Linked Services`, to the different data sources and sinks. These `Linked Services`define the adapter to use and the corresponding connection parameters. For our example we'll need 4 `Linked Services`. 
