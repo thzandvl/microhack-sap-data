@@ -160,10 +160,12 @@ In this step we will deploy the best model that has been trained by AutoML and t
 * When completed, click on the link to the `Deploy status` of the deployed model.
 <img src="images/aml/23-aml-studio.PNG" height= 400>
 
-* In this page, you will have access to the different information of your endpoint, code samples to consume it from Python or C# but also a page to directly test your model.
+* In this page, you will have access to information on your endpoint. It provides code samples to consume it from Python or C# but also a page to directly test your model.
 <img src="images/aml/24-aml-studio.PNG" height= 400>
 
 >Note: for a sample Python program, have a look at [testForecast.py](scripts/testForecast.py)
+
+* The Azure ML can also be called as a REST Interface. You could use this REST Interace in a custom Fiori App or ABAP code to execute a 'Payment Prediction' when creating a Sales Order.
 
 ## Test the Payment Delay/Offset Prediction
 Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view created at the beginning to replace the `example_value` value for the different fields and run the model.
