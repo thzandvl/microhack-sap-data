@@ -21,3 +21,4 @@ To execute the Microhack follow the steps below:
 4. [Predict Cash Flow](PredictIncomingCashflow.md)
 5. [PowerBI Visualisation](PowerBiVisualisation.md)
 6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
+7. [Cleanup the Microhack Environment](CleanEnvironment.md)

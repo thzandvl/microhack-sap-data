@@ -101,3 +101,5 @@ Payment at pred Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]
     <img src="images/aml/SalesPaymentForecast.jpg" height=600>
 
 In this picture you can judge how well our 'forecasted' payment values are compared to the past actual payment values.
+
+The Microhack is now finished, congratulations! You can continue to the [next](CleanEnvironment.md) step to clean up the environment.
