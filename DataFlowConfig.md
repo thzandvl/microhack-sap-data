@@ -1,11 +1,11 @@
 # Configure the DataFlow
 ## Introduction
-In this step we'll setup the dataflow from the SAP System towards the Synapse DB. Sales OrderHeaders will be extracted via the first Synapse pipeline using the SAP Table connector, Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
+In this step we'll setup the dataflow from the SAP System and Cosmos DB towards the Synapse DB. Sales OrderHeaders will be extracted via the first Synapse pipeline using the SAP Table connector, Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
 Payment data will be extracted from CosmosDB using a third pipeline.
 
 <img src="images/synapsews/architectureOverview.png">
 
-We'll begin by setting up the target DB structures in Synapse.
+The first step is to setup the target DB structures in Synapse.
 The next step is to define the pipelines to copy the data. For this we first need to create technical connections, called `Linked Services`, to the different data sources and sinks. These `Linked Services`define the adapter to use and the corresponding connection parameters. For our example we'll need 4 `Linked Services`. 
 
 | Scenario | Source LinkedService | Sink Linked Service |
@@ -19,17 +19,17 @@ This is defined in `Integration Datasets`.
 
 | Scenario | Source Integration Dataset | Sink Integration Dataset |
 |----------|:------:|---------------------:|
-| Sales Order Header | CDS View - ZBD_ISALESDOC_E | Table - SalesOrderHeaders |
-| Sales Order Items | oData EntitySet - C_Salesorderitemfs | Table -SalesOrderItems |
-| Payments | CosmosDB Collection - paymentData | Table - Payments | 
+| Sales Order Header | CDS View - `ZBD_ISALESDOC_E` | Table - `SalesOrderHeaders` |
+| Sales Order Items | oData EntitySet - `C_Salesorderitemfs` | Table -`SalesOrderItems` |
+| Payments | CosmosDB Collection - `paymentData` | Table - `Payments` | 
 
 The table beneath summarizes the `Integration Datasets` and `Linked Services`.
 
 |Scenario            |Source Integration Dataset                       | Source Linked Service |Sink Integration Dataset                               | Sink Linked Service  |
 |--------------------|:-----------------------------------------------:|:---------------------:|:-----------------------------------------------------:|:--------------------:|
-|Sales Order Headers | S4DSalesOrderHeaders - CDS View ZBD_ISALESDOC_E | S4DCLNT100 - SAP Table Connector | SynSalesOrderHeaders - Synape Table SalesOrderHeaders | microHack SQL Pool - Azure Synapse Analytics |
-|Sales Order Items | S4DSalesOrderItems - oData Entity Set C_Salesorderitemfs | S4DCLNT100_ODATA - SAP ECC Connector | SynSalesOrderItems - Synape Table SalesOrderItems |microHack SQL Pool - Azure Synapse Analytics |
-|Payments | CosmosDBPayments - paymentData collection | PaymentsCosmos DB - SAPS4D DataBase - CosmosDB SQL API | SynPayments - Synapse Table Payments | microHack SQL Pool - Azure Synapse Analytics |
+|Sales Order Headers | CDS View `ZBD_ISALESDOC_E` | SAP Table Connector | Synape Table `SalesOrderHeaders` | `microHack` SQL Pool - Azure Synapse Analytics |
+|Sales Order Items | oData Entity Set `C_Salesorderitemfs` | SAP ECC Connector | Synape Table `SalesOrderItems` | `microHack` SQL Pool - Azure Synapse Analytics |
+|Payments | CosmosDB Collection `paymentData` | PaymentsCosmos DB - `SAPS4D` DataBase - CosmosDB SQL API | Synapse Table `Payments` | `microHack` SQL Pool - Azure Synapse Analytics |
 
 The last step is to define the `Synapse Pipelines`which will execute the copy. Here we link the source and sink/target datasets. This also where you can execute data mappings if necessary.
 
@@ -146,7 +146,7 @@ The sales order headers are extracted from SAP using the SAP Table Adapter which
 The view to extract from is : `ZBD_ISALESDOC_E`. 
 >Note: You can have a look in the SAP system to check the contents. Use the Data Dictionary, transaction `SE11`.
 
-## Create a Linked Service to the SAP System.
+## Create a Linked Service to the SAP System
 * In Synapse Studio, go to the `Manage` View
 <img src="images/irt/syn-irt1.png" height=200>
 
@@ -170,17 +170,19 @@ This dataset will act as the source.
 <img src="images/synapsews/IntegrationDataSet.jpg">
 
 * Use type `SAP Table`
-* Use your previously created Linked Service
+* Use your previously created Linked Service for the SAP System (Table connector)
 * Use `ZBD_ISALESDOC_E` as table
 * Use `Preview Data` to check if the data can be retrieved
 
 <img src="images/synapsews/S4DSalesOrderHeadersDS.jpg">
 
 ## Create a Linked Service to the Synapse SQL Pool
+* this will represent the target/sink of the pipeline
 * Switch to the `Manage` view
 * Create a new Linked Service of type `Azure Synapse Analytics`
 <img src="images/synapsews/AzureSynapseAnalytics.jpg" height=150>
 <img src="images/synapsews/LS_SQLPool.jpg" height=800>
+>Note: Since this linked service represents is the Synapse SQL pool, it will be re-used in the `SalesOrderItems`and `Payments` pipeline.
 
 * Switch to the `Data`View
 
