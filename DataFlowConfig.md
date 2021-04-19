@@ -136,7 +136,10 @@ CREATE TABLE Payments(
 )
 ```
 > Note: Ensure the SQL Script is attached to your SQL Pool. By default it will be connected to the 'builtin' SQL pool of Synapse.
+
 ><img src="images/synapsews/connectToPool.jpg">
+
+Make sure to run all the scripts in order to create the tables.
 
 # Implement the SalesOrderHeaders Pipeline
 
@@ -157,7 +160,8 @@ The view to extract from is : `ZBD_ISALESDOC_E`.
 <img src="images/synapsews/SAPTable.jpg">
 
 * Enter the connection details for the SAP System 
-<img src="images/synapsews/LS_SAPRFC.jpg">
+
+<img src="images/synapsews/LS_SAPRFC.jpg" height=800>
 
 >Note : use `Test Connection` to verify your settings
 >Note : SAP Connection Details will be handed out at MicroHack
@@ -167,21 +171,30 @@ Create an Integration DataSet based on the previously created `Linked Service`.
 This dataset will act as the source.
 * Switch to the `Data` View
 * Create a new `Integration Dataset`
+
 <img src="images/synapsews/IntegrationDataSet.jpg">
 
 * Use type `SAP Table`
+
 * Use your previously created Linked Service for the SAP System (Table connector)
+
 * Use `ZBD_ISALESDOC_E` as table
+
 * Use `Preview Data` to check if the data can be retrieved
 
 <img src="images/synapsews/S4DSalesOrderHeadersDS.jpg">
 
 ## Create a Linked Service to the Synapse SQL Pool
 * this will represent the target/sink of the pipeline
+
 * Switch to the `Manage` view
+
 * Create a new Linked Service of type `Azure Synapse Analytics`
+
 <img src="images/synapsews/AzureSynapseAnalytics.jpg" height=150>
+
 <img src="images/synapsews/LS_SQLPool.jpg" height=800>
+
 >Note: Since this linked service represents is the Synapse SQL pool, it will be re-used in the `SalesOrderItems`and `Payments` pipeline.
 
 * Switch to the `Data`View
@@ -189,27 +202,35 @@ This dataset will act as the source.
 ### Create an Integration DataSet for the Synapse Sales Orders
 This dataset will act as the 'sink' in our pipeline.
 * Create an new `Integration DataSet` for the Synapse Sales Orders
+
 * Select the `SalesOrderHeaders` table
+
 <img src="images/synapsews/SynSalesOrderHeadersDS.jpg">
 
 ## Create an Integration pipeline
 * Swith to the `Integrate` view
+
 * Create a new `Pipeline`
+
 <img src="images/synapsews/pipelineView.jpg">
 
 * Use the `copy action` by dragging it onto the pipeline canvas
 <img src="images/synapsews/copyAction.jpg">
 
 * In the `source` tab, select your SAP Sales Order Dataset as the source
+
 <img src="images/synapsews/RFCCopyActionSource.jpg">
 
 * In the `sink` tab, select the Synapse Sales Order Dataset as the sink
+
 <img src="images/synapsews/RFCCopyActionSink.jpg">
 
 * In the mapping tab, select `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
+
 <img src="images/synapsews/rfcMapping.jpg">
 
 * For the prediction model we'll calcute the offset between the billing document date and the actual payment data. For this we need to have these date fields mapped to SQL Date fields. Therefore, go to the JSON Code for the pipeline and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.
+
 <img src="images/synapsews/jsonCodeButton.jpg">
 
 Add these parameters at the existing `typeproperties \ source` element :
@@ -226,12 +247,15 @@ Add these parameters at the existing `typeproperties \ source` element :
 ```
 
 * In the `Settings` blade, enable staging and enter the path to the staging directory of your Azure Data Lake
+
 <img src="images/synapsews/staging.jpg">
 
 * publish and trigger the pipeline
+
 <img src="images/synapsews/triggerNow.jpg">
 
 * Swith to the `Monitor`view to monitor the pipeline run
+
 <img src="images/synapsews/pipelineMonitor.jpg">
 * Check the result in Synapse using SQL
 
@@ -245,23 +269,30 @@ select * from SalesOrderHeaders
 <img src="images/synapsews/salesOrderItemsPipeline.jpg">
 
 The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData. We'll use the oData service at `<URL>/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
+
 ### Create a Linked Service to the SAP oData Service
 * Create a `Linked Service`of type `SAP ECC`
+
 <img src="images/synapsews/SAPECCService.jpg">
 
-* Enter the connection details\
+* Enter the connection details
+
 <img src="images/synapsews/LS_SAPOdata.jpg">
 
 ### Create a Integration DataSet for the SAP Sales Order Items
 This dataset will act as the source for our pipeline.
 * Create a `Integration DataSet` based on `SAP ECC adapter`
+
 * Use the previously created linked service
+
 * Use `C_Salesorderitemfs`as path
+
 <img src="images/synapsews/S4DSalesOrderItemsDS.jpg">
 
 ### Create a Integration DataSet for the Synapse Sales Order Items
 This dataset will act as the sink for our pipeline.
 * Create a `Integration DataSet` based on `Azure Synapse Analytics`
+
 * Select the `SalesOrderItems` table
 
 ### Create the integration pipeline
@@ -284,12 +315,14 @@ select * from SalesOrderItems
 The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 ### Create Linked Service for CosmosDB
 * Create a Linked Service of type CosmosDB (SQL API)
+
 <img src="images/synapsews/cosmosDBSSQLapi.jpg" height=100>
 
 * Enter the connection parameters
 Azure Cosmos DB account URI : `<handed out at micro hack`
 Azure Cosmos DB access key : `<handed out at micro hack>`
 Database name : `SAPS4D` 
+
 <img src="images/synapsews/LS_CosmosDB.jpg" height=700>
 
 * Test the connection and create the linked service.
@@ -298,6 +331,7 @@ Database name : `SAPS4D`
 This dataset will act as the source for our pipeline.
 * Create a 'source' DataSet for the Payment Data based on the CosmosDB 'SQL API' Adapter
 * Use collection : `paymentData`
+
 <img src="images/synapsews/cosmosPaymentDS.jpg">
 
 ### Create a Integration DataSet for the Synapse Payments
@@ -311,6 +345,7 @@ This dataset will act as the sink for our pipeline
 * As sink, select the Synapse Payment DataSet
 * Enter the `Staging Area`
 * Complete the mapping between 'source' and 'sink' datasets and make sure to remove the ones which are not shown in the screenshot starting with `_`.
+
 <img src="images/synapsews/paymentMapping.jpg">
 
 * Create, publish and trigger the integration pipeline
