@@ -13,8 +13,12 @@ If the subscription shown is not the right one change this with: \
 3. Clone the GitHub repository with the Terraform scripts: \
 `git clone https://github.com/thzandvl/microhack-sap-data`
 <img src="images/gw/deployTF2.jpg" height=150>
+<<<<<<< HEAD
 
 4. Change Directory into the terraform folder: \
+=======
+4. Change Directory into the terraform folder: 
+>>>>>>> 7317f72b148a871b2de60e3e6e66911ede981e0b
 `cd microhack-sap-data/terraform`
 <img src="images/gw/deployTF3.jpg" height=170>
 Check the `variables.tf` file by using the command `cat variables.tf` as shown in the screenshot, you should see an entry `object_id` with only zeroes as value:
