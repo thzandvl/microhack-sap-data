@@ -1,6 +1,7 @@
 scripts/.ipynb_checkpoints
 
 # ignore powerBi files
+pbi/*
 pbi/**
 
 # ignore terraform meta files
