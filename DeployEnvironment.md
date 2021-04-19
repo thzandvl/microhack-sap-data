@@ -9,13 +9,13 @@ To trigger the Terraform deployment, follow the steps below:
 If the subscription shown is not the right one change this with: \
 `az account set --subscription "YourSubscriptionName"`
 3. Clone the GitHub repository with the Terraform scripts: \
-`git clone https://github.com/thzandvl/microhack-sap-data` \
+`git clone https://github.com/thzandvl/microhack-sap-data`
 <img src="images/gw/deployTF2.jpg" height=150>
 4. Change Directory into the terraform folder: \
-`cd microhack-sap-data/terraform` \
-<img src="images/gw/deployTF3.jpg" height=170> \
-Check the `variables.tf` file by using the command `cat variables.tf` as shown in the screenshot, you should see an entry `object_id` with only zeroes as value: \
-<img src="images/gw/deployTF4.jpg" height=100> \
+`cd microhack-sap-data/terraform`
+<img src="images/gw/deployTF3.jpg" height=170>
+Check the `variables.tf` file by using the command `cat variables.tf` as shown in the screenshot, you should see an entry `object_id` with only zeroes as value:
+<img src="images/gw/deployTF4.jpg" height=100>
 We will update this values by running the script in the next step.
 5. Run `sh setObjectID.sh`, this will set the Principle ID of your user in the file `variables.tf` as it cannot be retrieved in the Azure cloud shell.
 <img src="images/gw/deployTF5.jpg" height=150>
@@ -28,7 +28,7 @@ We will update this values by running the script in the next step.
 8. Run apply to start the deployment, and choose `yes` once prompted to deploy the script:
 `terraform apply`
 <img src="images/gw/deployTF8.jpg" height=150>
-... \
+...
 <img src="images/gw/deployTF9.jpg" height=150>
 9. Once the script is finished you will get a public IP address, this is the public IP address of the Gateway VM just deployed.
 <img src="images/gw/deployTF10.jpg" height=100>
