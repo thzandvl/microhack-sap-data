@@ -1,6 +1,6 @@
 # Integrate Azure Machine Learning and PowerBI
 
-We can now integrate the ML Model within PowerBI. 
+We can now integrate the ML Model within PowerBI. The Azure ML exposes a REST interface which we can integrate in powerBi.
 > Note : for this example we'll predict the payment date of the 'Historical Sales Orders'. In real-life you would do this for new unpaid Sales Orders
 
 ## Add Machine Learning info to the PowerBI Datamodel

@@ -10,11 +10,11 @@ The next step is to define the pipelines to copy the data. For this we first nee
 
 | Scenario | Source LinkedService | Sink Linked Service |
 |----------|:------:|---------------------:|
-| Sales Order Header | S4D - SAP Table Connector | Synapse SQL Pool MicroHack |
-| Sales Order Items | S4D - SAP ECC Connector | Synapse SQL Pool MicroHack |
+| Sales Order Header | SAP Table Connector | Synapse SQL Pool MicroHack |
+| Sales Order Items | SAP ECC Connector | Synapse SQL Pool MicroHack |
 | Payments | CosmosDB Collection - paymentData | Synapse SQL Pool MicroHack | 
 
-Based upon the `Linked Services`, we need to define which datasets to extract and where to write them within the target.
+Based upon the `Linked Services`, we need to define the datasets to extract and where to write these within the target.
 This is defined in `Integration Datasets`.
 
 | Scenario | Source Integration Dataset | Sink Integration Dataset |
@@ -209,7 +209,7 @@ This dataset will act as the 'sink' in our pipeline.
 * In the mapping tab, select `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
 <img src="images/synapsews/rfcMapping.jpg">
 
-* For date and time fields we need to make sure the system maps these to the SQL Date fields. Therefore, go to the JSON Code and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.
+* For the prediction model we'll calcute the offset between the billing document date and the actual payment data. For this we need to have these date fields mapped to SQL Date fields. Therefore, go to the JSON Code for the pipeline and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.
 <img src="images/synapsews/jsonCodeButton.jpg">
 
 Add these parameters at the existing `typeproperties \ source` element :
