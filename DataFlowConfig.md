@@ -8,18 +8,22 @@ Payment data will be extracted from CosmosDB using a third pipeline.
 We'll begin by setting up the target DB structures in Synapse.
 The next step is to define the pipelines to copy the data. For this we first need to create technical connections, called `Linked Services`, to the different data sources and sinks. These `Linked Services`define the adapter to use and the corresponding connection parameters. For our example we'll need 4 `Linked Services`. 
 
-Source Systems
-* Sales Order Headers : SAP System using SAP Table Connector (RFC)
-* Sales Order Items : SAP System using SAP ECC Connector (oData)
-* Payments : CosmosDB (SQL API)
-
-Target Systems
-* Synapse : Azure Synapse Analytics
+| Scenario | Source LinkedService | Sink Integration Dataset |
+|----------|:------:|---------------------:|
+| Sales Order Header | S4D - SAP Table Connector | Synapse SQL Pool MicroHack |
+| Sales Order Items | S4D - SAP ECC Connector | Synapse SQL Pool MicroHack |
+| Payments | CosmosDB Collection - paymentData | Synapse SQL Pool MicroHack | 
 
 Based upon the `Linked Services`, we need to define which datasets to extract and where to write them within the target.
 This is defined in `Integration Datasets`.
 
-The last step is to define the `Synapse Pipelines`which will execute the copy. Here we link the source and sink/target datasets. This also where you can execute data mappings if necessary.
+| Scenario | Source Integration Dataset | Sink Integration Dataset |
+|----------|:------:|---------------------:|
+| Sales Order Header | CDS View - ZBD_ISALESDOC_E | Table - SalesOrderHeaders |
+| Sales Order Items | oData EntitySet - C_Salesorderitemfs | Table -SalesOrderItems |
+| Payments | CosmosDB Collection - paymentData | Table - Payments | 
+
+The table beneath summarizes the `Integration Datasets` and `Linked Services`.
 
 |Scenario            |Source Integration Dataset                       | Source Linked Service |Sink Integration Dataset                               | Sink Linked Service  |
 |--------------------|:-----------------------------------------------:|:---------------------:|:-----------------------------------------------------:|:--------------------:|
@@ -27,7 +31,9 @@ The last step is to define the `Synapse Pipelines`which will execute the copy. H
 |Sales Order Items | S4DSalesOrderItems - oData Entity Set C_Salesorderitemfs | S4DCLNT100_ODATA - SAP ECC Connector | SynSalesOrderItems - Synape Table SalesOrderItems |microHack SQL Pool - Azure Synapse Analytics |
 |Payments | CosmosDBPayments - paymentData collection | PaymentsCosmos DB - SAPS4D DataBase - CosmosDB SQL API | SynPayments - Synapse Table Payments | microHack SQL Pool - Azure Synapse Analytics |
 
-We'll start with creating the Synapse Tables, which will receive the extracted data.
+The last step is to define the `Synapse Pipelines`which will execute the copy. Here we link the source and sink/target datasets. This also where you can execute data mappings if necessary.
+
+We'll start with creating the Synapse Tables, which will receive the extracted data. The we'll define the extraction pipelines one by one.
 
 ## Synapse Table Setup
 Create the Synapse tables in the SQL Pool
