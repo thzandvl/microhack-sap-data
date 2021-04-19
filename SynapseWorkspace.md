@@ -1,42 +1,11 @@
-# Synapse Workspace
+# Configure Synapse Workspace
 
 ## Introduction
-In this part we'll create the Synapse Workspace and install the Ingration Runtion on our Azure Virtual Machine.
+In this part we'll configure the Synapse Workspace and install the Ingration Runtime on our Azure Virtual Machine. If you didn't install the Synapse workspace with the Terraform script (included by default) earlier you can deploy the Synapse Workspace following [these](DeploySynapseWorkspace.md) steps.
 
-## Creation
-If you have chosen to use the Terraform script to deploy the Synapse workspace you can skip to the [Synapse Configuration](#syn_config) step. Otherwise continue with the instructions.
-* Create a Synapse Analytics Workspace
-<img src="images/synapsews/synapsewsservice.jpg">
-
-Enter the following settings :
-### Basics :
-* Resource Group
-* Workspace Name
-* Data Lake Storage : Select an existing Data Lake or create a new one
-* File System Name : Select an exising File System or create a new one
-
-<img src="images/synapsews/synapsewsservice_basics.jpg">
-
-### Security :
-* Admin Username & Password : this will be there userId and password for the related SQL Pools.
-
-<img src="images/synapsews/synapsewsservice_security.jpg">
-
-Other settings can remain as default.
-
-# After deployment :
-* Create a `staging` directory within the Synapse Azure Data Lake container. This directory is used for storage of temporary files during data upload to Synapse.
-
-<img src="images/synapsews/stagingDirectory.jpg">
-
-* Create a new SQL Pool\
-Choose `DW100c` as performance level (to save on costs).
-
-<img src="images/synapsews/createSQLPool.jpg">
-
-# <a name="syn_config"></a>Synapse Configuration
+# Synapse Configuration
 ## Setup Firewall
-In the Synapse workspace go to `Firewalls` and check if the rules are properly set. If not, choose `+ Add client IP`. Choose `Save` to save the configuration. This is required to setup the linked services in the later steps.
+In the Synapse workspace go to `Firewalls` and check if the rules are properly set, this means that all the IP addresses are allowed. If not, choose `+ Add client IP`. Choose `Save` to save the configuration. This is required to setup the linked services in the later steps.
 
 ## Register Integration Runtime
 The rest of the configuration is done via `Synapse Studio`:\
