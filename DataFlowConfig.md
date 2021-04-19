@@ -139,6 +139,9 @@ CREATE TABLE Payments(
 ><img src="images/synapsews/connectToPool.jpg">
 
 # Implement the SalesOrderHeaders Pipeline
+
+<img src="images/synapsews/SalesOrderHeaderPipeline.jpg">
+
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses a RFC.
 The view to extract from is : `ZBD_ISALESDOC_E`. 
 >Note: You can have a look in the SAP system to check the contents. Use the Data Dictionary, transaction `SE11`.
@@ -236,6 +239,9 @@ select * from SalesOrderHeaders
 ```
 
 ## Implement the SalesOrderItems Pipeline
+
+<img src="images/synapsews/salesOrderItemsPipeline.jpg">
+
 The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData. We'll use the oData service at `<URL>/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
 ### Create a Linked Service to the SAP oData Service
 * Create a `Linked Service`of type `SAP ECC`
@@ -270,6 +276,9 @@ select * from SalesOrderItems
 ```
 
 ## Implement the Payment Pipeline
+
+<img src="images/synapsews/PaymentsPipeline.jpg">
+
 The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 ### Create Linked Service for CosmosDB
 * Create a Linked Service of type CosmosDB (SQL API)
