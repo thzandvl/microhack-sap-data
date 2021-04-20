@@ -38,41 +38,41 @@ CREATE VIEW [dbo].[SalesPaymentsFull]
 JOIN [dbo].[Payments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')), ' ', '0') = p.[SalesOrderNr]
 ```
 
-After `Refresh`the view will appear under `Views`.
+After `Refresh`the view will appear under `Views` when using Azure Data Studio.
 
 <img src="images/aml/01a-synapse-query.PNG" height=300>
 
-You can now test the view.
+You can now test the view by executing the SQL:
+
+```sql
+select * from SalesPaymentsFull
+```
 
 <img src="images/aml/01b-synapse-query.PNG" >
 
+
 ## Azure Machine Learning
 
-* The Azure Machine Learning Workspace is automatically deployed with the Terraform script from the first steps. In that case you can skip to [Open the ML Studio](#open_ml_studio). If you didn't use that option you will first have to create an Azure Machine Learning Workspace.
-* In the azure portal search for `Azure Machine Learning`and select `create`
+The Azure Machine Learning Workspace is automatically deployed with the Terraform script from the first steps. If you didn't use that option you will first have to create an Azure Machine Learning Workspace via [these](DeployAzureMLWorkspace.md) instructions.
 
-<img src="images/aml/azure_ml_icon.jpg">
 
-<img src="images/aml/02a-aml-ws-setup.PNG" height= 400>
-
-* Enter the 'Resource Group' you've been using before or create a new one. 
-* Enter a `Workspace Name`
-* Select the `Region` you've been using
-
-### <a name="open_ml_studio"></a> Open the ML Studio
-You can now open the ML Studio from here or alternatively sign in via https://ml.azure.com.
+### Open the ML Studio
+By default the name for the ML Workspace is `sap-data-ml-ws`. Go to this workspace via your resource group or using the search bar. You can now open the ML Studio via `Launch studio` from here or alternatively sign in via https://ml.azure.com.
 
 <img src="images/aml/02-aml-studio.PNG" height= 400>
 
 ### DataStore Creation
-First you have to point the ML studio to the location of your data, which is the Synapse SQL Pool. For this you have to create a `DataStore`
-<img src="images/aml/dsMenu.jpg" height=600>
-<img src="images/aml/synapseDS.jpg" height=600>
+First you have to point the ML studio to the location of your data, which is the Synapse SQL Pool. For this you have to create a `DataStore`.
+
+* Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data_ml_ds`. Connect to the Synapse database.
+
+<img src="images/aml/ml1.jpg" height=600>
 
 ### Automated ML
-We'll be using `Automated Machine Learning` to predict when customers will pay for their Sales Orders/
+We'll be using `Automated Machine Learning` to predict when customers will pay for their Sales Orders
 
-* On the left menu, click on `Automated ML`,
+* On the left menu, click on `Automated ML`
+
 <img src="images/aml/automated_ml.jpg" height= 300>
 
 * Select `New Automated ML Run`
@@ -80,15 +80,18 @@ We'll be using `Automated Machine Learning` to predict when customers will pay f
 <img src="images/aml/dataSetFromDataStore.jpg" height=300>
 
 A Guided Procedure will appear :
-* <b>Basic info : </b> Provide a Name for the `Dataset`
-<img src="images/aml/03-aml-studio.PNG" height= 200>
+* <b>Basic info : </b> Provide a Name for the `Dataset`. We use `SalesPaymentsView`. `Next`.
+
+<img src="images/aml/03-aml-studio.PNG" height=300>
+
 * <b>DataStore Selection : </b> Select your datastore.
-<img src="images/aml/dsSelection.jpg" height= 200>
+
+<img src="images/aml/ml2.jpg" height=300>
 
 
 * Use the following SQL query to get all the data from the view defined above.
 ```sql
-SELECT * FROM SalesPaymentsFull
+select * from SalesPaymentsFull
 ```
 
 <img src="images/aml/05-aml-studio.PNG" height= 200>
@@ -109,33 +112,39 @@ SELECT * FROM SalesPaymentsFull
 
 * <b>Confirm details</b>
 Create the dataset
-<img src="images/aml/10-aml-studio.PNG" height= 400>
+
+<img src="images/aml/ml3.jpg">
 
 ## Configure the Automated ML Run
 * Select the newly created `Dataset` and create a new experiment.
 <img src="images/aml/11-aml-studio.PNG" height= 200>
 
-1. Specify a name.
+1. Specify a name, we use `sap-data-ml-expirement`
 2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
-3. Create a new compute that will be used to train your model.
 
-<img src="images/aml/12-aml-studio.PNG" height= 400>
-<img src="images/aml/13-aml-studio.PNG" height= 400>
-<img src="images/aml/14-aml-studio.PNG" height= 400>
+<img src="images/aml/ml4.jpg">
+
+3. Create a new compute that will be used to train your model. In this example we use a maximum of 3 nodes to increase the processing power.
+
+<img src="images/aml/ml5.jpg" height=500>
+<img src="images/aml/ml6.jpg">
+<img src="images/aml/ml7.jpg" height=300>
 
 * We can now select the ML task type we want to use for this experiment, as we want to build prediction on a numeric value we will select the `Regression` task type. 
+
 <img src="images/aml/15-aml-studio.PNG" height= 400>
 
 * Then we need to configure the `Regression` using `Additional Configuration settings`.
     1. Select `Normalized root mean squared error` as Primary metric.
-    <img src="images/aml/16-aml-studio.PNG" height= 400>
+    <img src="images/aml/ml8.jpg" height=300>
 
-    2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM`
+    2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, FastLinearRegressor, OnlineGradientDescentRegressor`
     <!-- >>>Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually -->
 
-    3. Validate and click on `Finish`
+    3. `Save` and click on `Finish`
+
     <img src="images/aml/17-aml-studio.PNG" height= 400>
-    <img src="images/aml/18-aml-studio.PNG" height= 400>
+    <img src="images/aml/ml9.jpg" height=300>
 
     4. During the run you can follow-up on the tested models via the `Models` tab
     <img src="images/aml/mlModelsTab.jpg" height = 300>
