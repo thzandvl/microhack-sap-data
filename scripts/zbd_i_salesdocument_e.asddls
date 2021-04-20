@@ -43,8 +43,6 @@ define view ZBD_I_Salesdocument_E as select from I_SalesDocument {
     
     CustomerGroup,
     CreditControlArea,
-    //Note this seems to select all the languages
-    //_CustomerGroup._Text.CustomerGroupName,
     PurchaseOrderByCustomer,
     
     //Pricing
