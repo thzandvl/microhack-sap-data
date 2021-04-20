@@ -18,7 +18,6 @@ resource "azurerm_storage_account" "adlsaccount" {
 #######################################################################
 
 resource "azurerm_storage_data_lake_gen2_filesystem" "adls" {
-  depends_on            = [time_sleep.wait_10_seconds]
   name                  = "${var.prefix}-adls"
   storage_account_id    = azurerm_storage_account.adlsaccount.id
 }
