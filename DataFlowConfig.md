@@ -248,7 +248,7 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/jsonCodeButton.jpg">
 
-Add these parameters at the existing `typeproperties > source` element :
+Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the existing `typeproperties > source` element. The resulting document should looks as follows :
 ```javascript
   "typeProperties": {
                     "source": {
@@ -260,6 +260,7 @@ Add these parameters at the existing `typeproperties > source` element :
                     "sink": { 
                         ...
 ```
+<!-- >>Note : if these parameters are not entered correctly the date fields will remain as a String format. -->
 
 * In the `Settings` blade, enable staging and enter the path to the staging directory of your Azure Data Lake
 
