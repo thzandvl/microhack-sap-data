@@ -189,7 +189,7 @@ This dataset will act as the source.
 
 * Once the information is entered succesfully and the data can be retrieved, leave the tab as-is. We will publish the changes after the rest of the components of this data flow are done.
 
-> Note : Source code of the CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls
+> Note : the source code of the CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls)
 
 ## Create a Linked Service to the Synapse SQL Pool
 * this will represent the target/sink of the pipeline
