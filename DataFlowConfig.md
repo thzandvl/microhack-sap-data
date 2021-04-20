@@ -174,6 +174,8 @@ This dataset will act as the source.
 * Use `ZBD_ISALESDOC_E` as table
 * Use `Preview Data` to check if the data can be retrieved
 
+> Note : Source code of the CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls)
+
 <img src="images/synapsews/S4DSalesOrderHeadersDS.jpg">
 
 ## Create a Linked Service to the Synapse SQL Pool
