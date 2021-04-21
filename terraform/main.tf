@@ -42,11 +42,6 @@ resource "azurerm_role_assignment" "storagerole" {
   principal_id          = local.object_id
 }
 
-resource "time_sleep" "wait_10_seconds" {
-    depends_on = [azurerm_role_assignment.storagerole]
-    create_duration = "10s"
-}
-
 #######################################################################
 ## Create Virtual Networks
 #######################################################################
@@ -100,4 +95,49 @@ resource "azurerm_network_security_group" "nsg" {
 resource "azurerm_subnet_network_security_group_association" "nsg-ass" {
   subnet_id                 = azurerm_subnet.subnet.id
   network_security_group_id = azurerm_network_security_group.nsg.id
+}
+
+#######################################################################
+## Create Key Vault
+#######################################################################
+
+resource "azurerm_key_vault" "keyvault" {
+  name                  = "sapkv${lower(random_id.id.hex)}"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  tenant_id             = data.azurerm_client_config.user.tenant_id
+  sku_name              = "standard"
+  tags                  = var.tags
+
+  access_policy {
+    tenant_id = data.azurerm_client_config.user.tenant_id
+    object_id = local.object_id
+
+    key_permissions = [
+      "create",
+      "get",
+      "purge",
+      "list",
+      "delete"
+    ]
+
+    secret_permissions = [
+      "set",
+      "get",
+      "delete",
+      "purge",
+      "recover",
+      "list"
+    ]
+  }
+}
+
+#######################################################################
+## Add secret to Key Vault
+#######################################################################
+
+resource "azurerm_key_vault_secret" "secret" {
+  name         = var.username
+  value        = var.password
+  key_vault_id = azurerm_key_vault.keyvault.id
 }

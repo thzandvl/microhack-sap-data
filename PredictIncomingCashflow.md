@@ -152,7 +152,8 @@ Create the dataset
     <img src="images/aml/ml9.jpg" height=300>
 
     4. During the run you can follow-up on the tested models via the `Models` tab
-    <img src="images/aml/mlModelsTab.jpg" height = 300>
+
+    <img src="images/aml/ml10.jpg" height = 400>
 
 >Note : The ML run will take some time. You can start with the [PowerBI section](PowerBiVisualisation.md) and return here at a later moment.
 
@@ -161,33 +162,37 @@ In this step we will deploy the best model that has been trained by AutoML and t
 >Note : the best model is selectect based on the error between the predicted Payment Offset and the Actual offset. The model with the least error is selected. For more info on this, see [How automated ML wo(https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#how-automated-ml-works)
 
 * When the training is over, you can see the `Best model summary` section filled with the best algorithm, click on it.
-<img src="images/aml/19-aml-studio.PNG" height= 400>
+<img src="images/aml/ml11.jpg">
 
 * You can navigate into the different sections and visualize the information about this algorithm, then click on deploy.
-<img src="images/aml/20-aml-studio.PNG" height= 400>
+<img src="images/aml/ml12.jpg" height=400>
 
-* Specify a name for your deployment and select `Azure Container Instance` as compute type.
-<img src="images/aml/21-aml-studio.PNG" height= 400>
+* Specify a name for your deployment, we used `sap-data-ml-model`, and select `Azure Container Instance` as compute type.
 
-* Validate and wait for the completion of the deployment.
-<img src="images/aml/22-aml-studio.PNG" height= 400>
+<img src="images/aml/ml13.jpg" height=300>
+
+* Validate and wait for the completion of the deployment. This can take a few minutes.
+
+<img src="images/aml/ml14.jpg" height= 400>
 
 * When completed, click on the link to the `Deploy status` of the deployed model.
-<img src="images/aml/23-aml-studio.PNG" height= 400>
+
+<img src="images/aml/ml15.jpg">
 
 * In this page, you will have access to information on your endpoint. It provides code samples to consume it from Python or C# but also a page to directly test your model.
-<img src="images/aml/24-aml-studio.PNG" height= 400>
+
+<img src="images/aml/ml16.jpg" height=600>
 
 >Note: for a sample Python program, have a look at [testForecast.py](scripts/testForecast.py)
 
-* The Azure ML can also be called as a REST Interface. You could use this REST Interace in a custom Fiori App or ABAP code to execute a 'Payment Prediction' when creating a Sales Order.
+* The Azure ML can also be called as a REST Interface. You could use this REST Interace in a custom Fiori App or ABAP code to execute a `Payment Prediction` when creating a Sales Order.
 
 ## Test the Payment Delay/Offset Prediction
 Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view created at the beginning to replace the `example_value` value for the different fields and run the model.
 
-<img src="images/aml/25-aml-studio.PNG" height= 400>
+<img src="images/aml/ml17.jpg">
 
-> Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset. You can also compare with the actual value in powerBi or in Synapse.
+> Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset. You can also compare with the actual value in powerBI or in Synapse.
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
 

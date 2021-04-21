@@ -11,19 +11,6 @@ resource "azurerm_application_insights" "insights" {
 }
 
 #######################################################################
-## Create Key Vault
-#######################################################################
-
-resource "azurerm_key_vault" "keyvault" {
-  name                  = "sapmlkv${lower(random_id.id.hex)}"
-  resource_group_name   = azurerm_resource_group.rg.name
-  location              = azurerm_resource_group.rg.location
-  tenant_id             = data.azurerm_client_config.user.tenant_id
-  sku_name              = "standard"
-  tags                  = var.tags
-}
-
-#######################################################################
 ## Create Blob Storage Account
 #######################################################################
 
