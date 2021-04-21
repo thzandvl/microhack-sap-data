@@ -53,8 +53,9 @@ select * from SalesPaymentsFull
 
 ## Azure Machine Learning
 
-The Azure Machine Learning Workspace is automatically deployed with the Terraform script from the first steps. If you didn't use that option you will first have to create an Azure Machine Learning Workspace via [these](DeployAzureMLWorkspace.md) instructions.
+The Azure Machine Learning Workspace is automatically deployed with the Terraform script from the first steps. If you didn't use the Terraform option you will first have to create an Azure Machine Learning Workspace via [these](DeployAzureMLWorkspace.md) instructions.
 
+For more info on Azure ML, pleae have a look at [What is automated machine learning (AutoML)](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml).
 
 ### Open the ML Studio
 By default the name for the ML Workspace is `sap-data-ml-ws`. Go to this workspace via your resource group or using the search bar. You can now open the ML Studio via `Launch studio` from here or alternatively sign in via https://ml.azure.com.
@@ -130,6 +131,8 @@ Create the dataset
 <img src="images/aml/ml6.jpg">
 <img src="images/aml/ml7.jpg" height=300>
 
+> Note : Create a cluster of for example 3 nodes. Azure ML can then run multiple trainings in parallel. This will reduce the runtime of the Automated ML run.
+
 * We can now select the ML task type we want to use for this experiment, as we want to build prediction on a numeric value we will select the `Regression` task type. 
 
 <img src="images/aml/15-aml-studio.PNG" height= 400>
@@ -138,8 +141,10 @@ Create the dataset
     1. Select `Normalized root mean squared error` as Primary metric.
     <img src="images/aml/ml8.jpg" height=300>
 
-    2. Select all the following algorithms as blocked (useless for the regression task type) : `ElasticNet, GradientBoosting, DecisionTree, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, FastLinearRegressor, OnlineGradientDescentRegressor`
+    2. In order to reduce the runtime of our 'Automated ML Run', we'll deselect some algorithms : `ElasticNet, GradientBoosting, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, FastLinearRegressor, OnlineGradientDescentRegressor`)
+    > Note : If you have time you can include these algorithms.
     <!-- >>>Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually -->
+    <!-- keep decisiontree? -->
 
     3. `Save` and click on `Finish`
 
@@ -153,6 +158,7 @@ Create the dataset
 
 ## Deploy the best model
 In this step we will deploy the best model that has been trained by AutoML and test it.
+>Note : the best model is selectect based on the error between the predicted Payment Offset and the Actual offset. The model with the least error is selected. For more info on this, see [How automated ML wo(https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#how-automated-ml-works)
 
 * When the training is over, you can see the `Best model summary` section filled with the best algorithm, click on it.
 <img src="images/aml/19-aml-studio.PNG" height= 400>
