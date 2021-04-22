@@ -383,7 +383,7 @@ This dataset will act as the sink for our pipeline
 
 <img src="images/synapsews/syn11.jpg" height=300>
 
-* Select the `Payments` table
+* As name we use `SynPayments`. Select the `Payments` table
 
 ### Create the Integration pipeline for the Payment flow
 * Go to the `Integrate` view
