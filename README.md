@@ -25,4 +25,4 @@ To execute the Microhack follow the steps below:
 
 ## Setup
 This section shortly describes the setup needed to run your own MicroHack. It also contains tooling to generate your own payments.
-[Mciro Hack Setup](setup.md)
+[Micro Hack Setup](setup.md)
