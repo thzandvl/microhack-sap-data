@@ -27,12 +27,16 @@ We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated App
 
 * Create an new `Data Definition`
     *  Select `File > New > Other`
+    
     * In the wizard, search for `ABAP` > `Core Data Services` > `Data Definition`.
     <img src="../images/setup/05_setup_CreateDataDefinition.jpg" height = 350>
+    
     * Enter the name of CDS View, eg. `ZBD_ISalesDocument_E`
     <img src="../images/setup/06_setup_DataDefinitionName.jpg" height = 500>
+    
     * Enter the following code, see [ZBD_ISalesDocument_E](../scripts/zbd_i_salesdocument_e.asddls)
     <img src="../images/setup/07_setup_ViewDefinition.jpg" height = 800>
+    
     * Activate the view
     <img src="../images/setup/08_setup_Activate.jpg" height = 50>
 
