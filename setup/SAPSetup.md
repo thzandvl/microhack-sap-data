@@ -2,7 +2,9 @@
 
 ## SAP System
 The MicroHack relies on Sales Data, so you'll need an SAP System containing Sales Orders. From technical point of view, we extract Sales Data via a CDS View and via a oData.
+
 The code for the CDS View can be found at [ZBD_ISALESDOC_E CDS View](../scripts/zbd_t_salesdocument_e.asddls).
+
 The oData Service used is ´/sap/opu/odata/sap/sd_f1814_so_fs_srv/´, which is available in the SAP CAL Image.
 
 We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated Appliance´.
@@ -35,7 +37,7 @@ We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated App
     <img src="../images/setup/08_setup_Activate.jpg" height = 50>
 
 * You can test the view by rightClikcing on the view and selecting `Open with > Data Preview`
-<img src="../images/setup/09_setup_openwith.jpg" height= 50>
+<img src="../images/setup/09_setup_openwith.jpg" height= 60>
 
 <img src="../images/setup/10_setup_DataPreview.jpg">
 
@@ -67,7 +69,7 @@ We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated App
     >Note : the SAP DDIC view name is defined by the `@AbapCatalog.sqlViewName` in the Core Data Service Defintion
     
     * Select `Contents` to swith to the `Data Browser`
-    <img src="images/setup/19_setup_ddicContents.jpg" height = 40>
+    <img src="../images/setup/19_setup_ddicContents.jpg" height = 40>
     
     * Press `Execute`of `F8` to see the contents
     <img src="../images/setup/20_setup_databrowserExecute.jpg">
