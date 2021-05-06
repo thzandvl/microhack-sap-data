@@ -1,4 +1,5 @@
-resource "azurerm_cosmosdb_account" "db" {
+#Create CosmosDB Account
+resource "azurerm_cosmosdb_account" "acc" {
   name                = "${var.prefix}-cosmos"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -7,7 +8,6 @@ resource "azurerm_cosmosdb_account" "db" {
   tags                = var.tags
 
   enable_automatic_failover = false
-
   consistency_policy {
     consistency_level       = "Session"
   }
@@ -18,38 +18,20 @@ resource "azurerm_cosmosdb_account" "db" {
   }
 }
 
+#Create SQL Database
 resource "azurerm_cosmosdb_sql_database" "db" {
-  name                = "firstcosmosdb"
+  name                = "SAPS4D"
   resource_group_name = azurerm_cosmosdb_account.acc.resource_group_name
   account_name        = azurerm_cosmosdb_account.acc.name
 }
 
-resource "azurerm_cosmosdb_sql_container" "example" {
-  name                  = "example-container"
-  resource_group_name   = azurerm_cosmosdb_account.example.resource_group_name
-  account_name          = azurerm_cosmosdb_account.example.name
-  database_name         = azurerm_cosmosdb_sql_database.example.name
-  partition_key_path    = "/definition/id"
+#Create Collection
+resource "azurerm_cosmosdb_sql_container" "paymentData" {
+  name                  = "paymentData"
+  resource_group_name   = azurerm_cosmosdb_account.acc.resource_group_name
+  account_name          = azurerm_cosmosdb_account.acc.name
+  database_name         = azurerm_cosmosdb_sql_database.db.name
+  partition_key_path    = "/CustomerNr"
   partition_key_version = 1
   throughput            = 400
-
-  indexing_policy {
-    indexing_mode = "Consistent"
-
-    included_path {
-      path = "/*"
-    }
-
-    included_path {
-      path = "/included/?"
-    }
-
-    excluded_path {
-      path = "/excluded/?"
-    }
-  }
-
-  unique_key {
-    paths = ["/definition/idlong", "/definition/idshort"]
-  }
 }
