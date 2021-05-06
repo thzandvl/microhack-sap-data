@@ -33,9 +33,9 @@ We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated App
     * Activate the view
     <img src="../images/setup/08_setup_Activate.jpg" height = 25>
 * You can test the view by rightClikcing onthe view and selecting `Open with > Data Preview`
-<img src="images/setup/09_setup_openwith.jpg" height= 30>
+<img src="../images/setup/09_setup_openwith.jpg" height= 30>
 
-<img src="images/setup/10_setup_DataPreview.jpg" height= 500>
+<img src="../images/setup/10_setup_DataPreview.jpg" height= 500>
 
 * You can also test the view using the SAP Data Dictionary
     * Logon via SAP Logon (SAP Gui is installed in the remote desktop environment)
