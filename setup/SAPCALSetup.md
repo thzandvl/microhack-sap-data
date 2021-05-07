@@ -59,13 +59,13 @@ We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated App
         * using Menu : 
         
             * swith to the SAP Standard Menu
-            <img src="../images/setup/14_setup_standardMenu.jpg" height=50>
+            <img src="../images/SAPCALsetup/14_setup_standardMenu.jpg" height=50>
         
             * Double Click `Data Dictionary` in the Menu tree
-            <img src="../images/setup/15_setup_ddicMenu.jpg" height = 300>
+            <img src="../images/SAPCALsetup/15_setup_ddicMenu.jpg" height = 300>
         
         * or directly enter the transaction shortcut `se11` and press `Enter`
-        <img src="../images/setup/16_setup_se11.jpg" height = 40>
+        <img src="../images/SAPCALsetup/16_setup_se11.jpg" height = 40>
     
     * In the SAP Data Dictionary : Enter the view Name `ZBD_ISALESDOC_E`
     <img src="../images/SAPCALsetup/17_setup_ddic1.jpg" height = 300>
