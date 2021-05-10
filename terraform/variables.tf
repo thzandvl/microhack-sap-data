@@ -43,6 +43,12 @@ variable "password" {
   default     = "Sapdata!pass123"
 }
 
+variable "SID" {
+  description = "The SAP SID name"
+  type        = string
+  default     = "S4D"
+}
+
 variable "object_id" {
   description = "Principal ID for logged in user, only required when using Cloud Shell"
   type        = string
