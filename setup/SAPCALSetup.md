@@ -70,6 +70,7 @@ We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated App
     * In the SAP Data Dictionary : Enter the view Name `ZBD_ISALESDOC_E`
     <img src="../images/SAPCALsetup/17_setup_ddic1.jpg" height = 300>
     <img src="../images/SAPCALsetup/18_setup_ddic3.jpg" height = 600>
+    
     >Note : the SAP DDIC view name is defined by the `@AbapCatalog.sqlViewName` in the Core Data Service Defintion
     
     * Select `Contents` to swith to the `Data Browser`

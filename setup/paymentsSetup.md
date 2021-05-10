@@ -1,4 +1,4 @@
-# Payment Generation
+# Payments
 The payments are generated based on the extracted Sales Order Headers. 
 The underlying logic we used :
 
@@ -8,7 +8,7 @@ In our example the Payment Offset and Payment Offset Variance is depending on th
 
 In order to upload the payments to cosmosDB, you can either 
     * upload a pregenerated file. The provided file is generated from Sales Orders availabla in S4/HANA Fully Activated Appliance - 1909.
-    * use a Spark program to generate the payments based upon extract Sales Orders
+    * use a Spark program to generate the payments based upon extract Sales Orders (see [Payment Generation](generatePayments.md))
     * Create you own program
 
 ## Payment upload from pregenerated file
@@ -25,7 +25,9 @@ We used Azure Cosmos DB as container for the Payments. You need to create a Syna
 ### Source Setup - Azure Data Lake
 * Create a Linked Service to connect to Azure Data Lake
 You can do this by selecting `New Integration dataset`. 
-newIntegrationDataSet.jpg
+
+<img src="../images/paymentsSetup/newIntegrationDataSet.jpg">
+
     * Enter a name for you Integration DataSet
     * Enter 'DelimitedText' as format
     * Import Schema : None
@@ -91,8 +93,7 @@ The terraform scripts have created a CosmosDB account with a SQL Database `SAPS4
     * select `items`
     <img src="../images/paymentsSetup/cosmosDBContents.jpg">
 
-## Payment Generation 
-[] Todo
+If you want to generate your own payments, switch to [Payment Generation](generatePayments.md)
 
 
 
