@@ -120,7 +120,7 @@ Create the dataset
 * Select the newly created `Dataset` and create a new experiment.
 <img src="images/aml/11-aml-studio.PNG" height= 200>
 
-1. Specify a name, we use `sap-data-ml-expirement`
+1. Specify a name, we use `sap-data-ml-experiment`
 2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
 
 <img src="images/aml/ml4.jpg">
