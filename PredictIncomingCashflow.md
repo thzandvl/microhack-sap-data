@@ -141,7 +141,7 @@ Create the dataset
     1. Select `Normalized root mean squared error` as Primary metric.
     <img src="images/aml/ml8.jpg" height=300>
 
-    2. In order to reduce the runtime of our 'Automated ML Run', we'll deselect some algorithms : `ElasticNet, GradientBoosting, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, FastLinearRegressor, OnlineGradientDescentRegressor`)
+    2. In order to reduce the runtime of our 'Automated ML Run', we'll deselect some algorithms : `ElasticNet, GradientBoosting, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, FastLinearRegressor, OnlineGradientDescentRegressor`
     > Note : If you have time you can include these algorithms.
     <!-- >>>Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually -->
     <!-- keep decisiontree? -->
