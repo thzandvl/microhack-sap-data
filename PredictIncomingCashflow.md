@@ -255,3 +255,22 @@ The HTTP response will looks as follows :
 >Note : if you're using `Postman`, you can find a sample test at [Postman Sample Test](scripts/MicroHack.postman_collection.json)
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
+
+## [Optional] Automated ML - Best Model - Additional Info
+If you're interested in the 'Best Model' Auto ML, select your 'Automated ML Run'.
+
+<img src="images/aml/automated_ml2.jpg">
+
+Under Model Summary you can see the Algorithm which was selected as best and the corresponding error.
+
+<img src="images/aml/BestModelSummary.jpg">
+
+Under Models, you can see all the algorithms which were evaluated during the Auto ML run.
+
+<img src="images/aml/models.jpg">
+
+Select your Best Model, and select `View Explanation`. Select an `Explanation ID` and `Aggregate Feature Importance`.
+
+<img src="images/aml/featureImportance.jpg">
+
+From this view, you can see that `CUSTOMERGROUP` was the most important feature to determine the offset.
