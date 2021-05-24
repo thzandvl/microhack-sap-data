@@ -48,7 +48,7 @@ In PowerBI switch to the `Data` View and select `New table`.
 Use the formula beneath
 
 ```
-Date  = 
+Date = 
 VAR MinYear = YEAR ( MIN ( 'SalesOrderPayments'[CREATIONDATE]) )
 VAR MaxYear = YEAR ( MAX ( 'SalesOrderPayments'[predPaymentDate] ) )
 RETURN
