@@ -22,3 +22,10 @@ To execute the Microhack follow the steps below:
 5. [PowerBI Visualisation](PowerBiVisualisation.md)
 6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
 7. [Cleanup the Microhack Environment](CleanEnvironment.md)
+
+## Additional Documentation
+* [Copy data from an SAP table using Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-table)
+* [Copy data from SAP using oData and Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-ecc)
+* [SAP Data Integration using Azure Data Factory](https://github.com/Azure/Azure-DataFactory/blob/main/whitepaper/SAP%20Data%20Integration%20using%20Azure%20Data%20Factory.pdf)
+* [SAP Data Extraction using Azure Data Factory](https://github.com/bdelangh/ADF_SAPDataExtraction)
+* [What is Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)
