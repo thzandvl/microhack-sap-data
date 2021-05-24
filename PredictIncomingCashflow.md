@@ -159,7 +159,7 @@ Create the dataset
 
 ## Deploy the best model
 In this step we will deploy the best model that has been trained by AutoML and test it.
->Note : the best model is selectect based on the error between the predicted Payment Offset and the Actual offset. The model with the least error is selected. For more info on this, see [How automated ML wo(https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#how-automated-ml-works)
+>Note : the best model is selected based on the error between the predicted Payment Offset and the Actual offset. The model with the least error is selected. For more info on this, see [How automated ML works](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#how-automated-ml-works)
 
 * When the training is over, you can see the `Best model summary` section filled with the best algorithm, click on it.
 <img src="images/aml/ml11.jpg">
