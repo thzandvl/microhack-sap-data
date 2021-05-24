@@ -257,7 +257,7 @@ The HTTP response will looks as follows :
 You can now proceed with the [next](PowerBiVisualisation.md) step.
 
 ## [Optional] Automated ML - Best Model - Additional Info
-If you're interested in the 'Best Model' Auto ML, select your 'Automated ML Run'.
+If you're interested in the 'Best Model' Auto ML selected, return to your 'Automated ML Run'.
 
 <img src="images/aml/automated_ml2.jpg">
 
