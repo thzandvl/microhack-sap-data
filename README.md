@@ -13,7 +13,6 @@ When customers buy goods, the corresponding payments are not done immediatly. So
 
 ## Implementation
 To execute the Microhack follow the steps below:
-
 0. [Software Prerequisites](SoftwarePrerequisites.md)
 1. [Deploy and Prepare the Microhack Environment](DeployEnvironment.md)
 2. [Synapse Workspace Setup](SynapseWorkspace.md)
@@ -23,6 +22,5 @@ To execute the Microhack follow the steps below:
 6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
 7. [Cleanup the Microhack Environment](CleanEnvironment.md)
 
-## Setup
-This section shortly describes the setup needed to run your own MicroHack. It also contains tooling to generate your own payments.
-[Micro Hack Setup](setup.md)
+>Note: The steps above assume you've setup a S/4HANA system based upon a SAP CAL 1909 or 2020 image. Also a CosmosDB were the corresponding payment data is uploaded is assumed to be available.
+If you want to setup your own SAP CAL image and cosmosdb, follow the steps here [MicroHack Setup](setup/SAPCALSetup.md).
