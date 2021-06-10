@@ -6,10 +6,11 @@ The underlying logic we used :
 
 In our example the Payment Offset and Payment Offset Variance is depending on the CustomerGroup in the Sales Order Header.
 
-In order to upload the payments to cosmosDB, you can either 
-    * upload a pregenerated file. The provided file is generated from Sales Orders availabla in S4/HANA Fully Activated Appliance - 1909.
-    * use a Spark program to generate the payments based upon extract Sales Orders (see [Payment Generation](generatePayments.md))
-    * Create you own program
+In order to upload the payments to cosmosDB, you can either :
+
+* upload a pregenerated file. The provided file is generated from Sales Orders availabla in S4/HANA Fully Activated Appliance - 1909.
+* use a Spark program to generate the payments based upon extract Sales Orders (see [Payment Generation](generatePayments.md))
+* Create you own program
 
 ## Payment upload from pregenerated file
 We used Azure Cosmos DB as container for the Payments. You need to create a Synapse Pipeline to pick up the generated Payments and import them in a Cosmos DB Collection.
@@ -17,12 +18,14 @@ We used Azure Cosmos DB as container for the Payments. You need to create a Syna
 * The pre-generated file is available at : [paymendData.csv](../data/paymentData.csv)
 * This file needs to be copied to a directory on for example Azure Data Lake. A Synapse pipeline can pick up the payments from there and copy them to CosmosDB
 
-## Pipeline Setup
+### Pipeline Setup
 * When the Terrafrom scripts are executed, an Azure Synapse is deployed with an underlying Azure Data Lake. In this datalake you can create a directory to store the paymentData csv file. You can do this from the Azure Synapse Workspace
 
 <img src="../images/paymentsSetup/azdlDirectory.jpg">
 
-### Source Setup - Azure Data Lake
+>Note : When you generate your own payments, you'll need to setup a similar pipeline.
+
+#### Source Setup - Azure Data Lake
 * Create a Linked Service to connect to Azure Data Lake
 You can do this by selecting `New Integration dataset`. 
 
@@ -45,7 +48,7 @@ You can do this by selecting `New Integration dataset`.
 * Publish the Integration Dataset
 <img src="../images/paymentsSetup/publishDS.jpg">
 
-### Sink Setup - CosmosDB
+#### Sink Setup - CosmosDB
 The terraform scripts have created a CosmosDB account with a SQL Database `SAPS4D` and Container `paymentData`for the payments.
 
 * Create a Linked Service to connect CosmosDB

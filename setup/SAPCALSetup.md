@@ -1,14 +1,12 @@
 # MicroHack Setup
 
 ## SAP System
-The MicroHack relies on Sales Data, so you'll need an SAP System containing Sales Orders. From technical point of view, we extract Sales Data via a CDS View and via a oData.
+The MicroHack relies on Sales Data, so you'll need an SAP System containing Sales Orders. From technical point of view, we extract Sales Data via a CDS View and via a oData service.
 
-The code for the CDS View can be found at [ZBD_ISALESDOC_E CDS View](../scripts/zbd_t_salesdocument_e.asddls).
+We recommend to use a ´SAP S/4HANA Fully-Activated Appliance´ image from [SAP CAL](http://cal.sap.com).
 
-The oData Service used is ´/sap/opu/odata/sap/sd_f1814_so_fs_srv/´, which is available in the SAP CAL Image.
-
-We would recommend to use a SAP CAL image of a ´SAP S/4HANA Fully-Activated Appliance´.
-> Disclaimer : Until now we haven't tested the MicroHack with a SAP CAL system.
+The code for the CDS View to extract the Sales Order Headers can be found at [ZBD_ISALESDOC_E CDS View](../scripts/zbd_i_salesdocument_e.asddls). The code for this view needs to be imported into your SAP system.
+The oData Service used to extract the Sales Order Items is ´/sap/opu/odata/sap/sd_f1814_so_fs_srv/´, which is available in the "SAP S/4HANA Fully-Activated Appliance" image.
 
 ### Deployment of the ZBD_ISALESDOC_E view
 * logon to the Windows Virtual Machine using Remote Desktop and use the `Administrator` user with the master password entered during SAP CAL deployment.
