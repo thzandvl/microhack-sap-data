@@ -54,5 +54,5 @@ As sink for your pipeline, you need to create a Integration DataSet towards Azur
 
 <img src="../images/paymentGen/paymentsDataCSV.jpg">
 
-* The resulting csv file can be uploaded to cosmos db. For pipeline setup you can refer to <b>Pipeline Setup</b> at [Payment Generation](paymentsSetup.md)
+* The resulting csv file can be uploaded to cosmos db. For pipeline setup you can refer to <b>Pipeline Setup</b> at [Payment Generation](paymentsSetup.md#Pipeline Setup)
 
