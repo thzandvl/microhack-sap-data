@@ -25,4 +25,4 @@ To execute the Microhack follow the steps below:
 
 ## Setup
 The steps above assume you've setup a S/4HANA system based upon a `SAP CAL S/4HANA Fully Activated Appliance 1909 or 2020 image`. Also a Cosmos DB were the corresponding payment data is uploaded is assumed to be available.
-If you want to setup your own SAP CAL image and Cosmos DB, follow the steps here [MicroHack Setup](setup/SAPCALSetup.md).
+If you want to setup your own SAP CAL image and Cosmos DB, follow the steps at [MicroHack Setup](setup/SAPCALSetup.md).
