@@ -1,6 +1,6 @@
 # SAP Microhack: CashFlow Prediction
 ## Summary
-For this Microhack we will:
+In this Microhack we will:
 * Extract (Historical) Sales Orders from SAP S/4HANA and load this in Synapse
 * Upload historical payments from a non-SAP system, in this example Cosmos DB, to Synapse
 * Visualize the extracted Sales Orders and invoice data with Power BI
@@ -23,9 +23,14 @@ To execute the Microhack follow the steps below:
 6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
 7. [Cleanup the Microhack Environment](CleanEnvironment.md)
 
+## Setup
+The steps above assume you've setup a S/4HANA system based upon a `SAP CAL S/4HANA Fully Activated Appliance 1909 or 2020 image`. Also a Cosmos DB were the corresponding payment data is uploaded is assumed to be available.
+If you want to setup your own SAP CAL image and Cosmos DB, follow the steps at [MicroHack Setup](setup/SAPCALSetup.md).
+
 ## Additional Documentation
 * [Copy data from an SAP table using Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-table)
 * [Copy data from SAP using oData and Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-ecc)
 * [SAP Data Integration using Azure Data Factory](https://github.com/Azure/Azure-DataFactory/blob/main/whitepaper/SAP%20Data%20Integration%20using%20Azure%20Data%20Factory.pdf)
 * [SAP Data Extraction using Azure Data Factory (Examples)](https://github.com/bdelangh/ADF_SAPDataExtraction)
 * [What is Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)
+
