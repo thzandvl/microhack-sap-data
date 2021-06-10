@@ -7,10 +7,10 @@ The underlying logic we used :
 
 In our example the Payment Offset and Payment Offset Variance is depending on the CustomerGroup in the Sales Order Header.
 
-An example SPARK program is provided at [example Payment Generation] (../scripts/CreatePaymentsFromCSV.ipynb).
-You can off course create your own program in python, jupither notebook, xls, ... .
+An example SPARK program is provided at [example Payment Generation](../scripts/CreatePaymentsFromCSV.ipynb).
+You can off course create your own program in python, jupiter notebooks, xls, ... .
 
-The spark program starts by reading the exported Sales Order Headers from a csv file on Azure Data Lake. So you need to create a Azure pipeline to execute this.
+The spark program starts by reading the exported Sales Order Headers from a csv file on Azure Data Lake. So you need to create an Azure pipeline to extract the Sales Order Headers to a csv file.
 
 ## Sales Order Extraction
 You can reuse the Linked Service and Integration DataSet to export the Sales Order Headers from your SAP system towards Synapse. You can find the description [here](../DataFlowConfig.md).
@@ -54,5 +54,7 @@ As sink for your pipeline, you need to create a Integration DataSet towards Azur
 
 <img src="../images/paymentGen/paymentsDataCSV.jpg">
 
-* The resulting csv file can be uploaded to cosmos db. For pipeline setup you can refer to <b>Pipeline Setup</b> at [Payment Generation](paymentsSetup.md#Pipeline Setup)
+* The resulting csv file can be uploaded to cosmos db. For pipeline setup you can refer to <b>Pipeline Setup</b> paragraph at [Payment Generation](paymentsSetup.md).
+<!-- paymentsSetup.md#pipeline-setup doesn't seem to work on gitHub>
+
 
