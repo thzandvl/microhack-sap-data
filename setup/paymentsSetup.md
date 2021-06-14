@@ -31,9 +31,9 @@ You can do this by selecting `New Integration dataset`.
 
 <img src="../images/paymentsSetup/newIntegrationDataSet.jpg">
 
-    * Enter a name for you Integration DataSet
-    * Enter 'DelimitedText' as format
-    * Import Schema : None
+* Enter a name for you Integration DataSet
+* Enter 'DelimitedText' as format
+* Import Schema : None
 
 <img src="../images/paymentsSetup/createIntegrationDS.jpg">
 
