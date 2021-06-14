@@ -11,6 +11,10 @@ When customers buy goods, the corresponding payments are not done immediatly. So
 
 <img src="images/overview/ScenarioOverview.jpg">
 
+## Setup
+The implementation steps beneath assume you've setup a S/4HANA system based upon a `SAP S/4HANA Fully Activated Appliance` 1909 or 2020 image from [SAP CAL](http://cal.sap.com). Also a Cosmos DB were the corresponding payment data is uploaded is assumed to be available.
+If you want to setup your own SAP CAL system and Cosmos DB, follow the steps at [MicroHack Setup](setup/SAPCALSetup.md).
+
 ## Implementation
 To execute the Microhack follow the steps below:
 
@@ -22,10 +26,6 @@ To execute the Microhack follow the steps below:
 5. [PowerBI Visualisation](PowerBiVisualisation.md)
 6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
 7. [Cleanup the Microhack Environment](CleanEnvironment.md)
-
-## Setup
-The steps above assume you've setup a S/4HANA system based upon a `SAP S/4HANA Fully Activated Appliance` 1909 or 2020 image from [SAP CAL](http://cal.sap.com). Also a Cosmos DB were the corresponding payment data is uploaded is assumed to be available.
-If you want to setup your own SAP CAL image and Cosmos DB, follow the steps at [MicroHack Setup](setup/SAPCALSetup.md).
 
 ## Additional Documentation
 * [Copy data from an SAP table using Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-table)

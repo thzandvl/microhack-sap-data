@@ -15,7 +15,7 @@ In order to upload the payments to cosmosDB, you can either :
 ## Payment upload from pregenerated file
 We used Azure Cosmos DB as container for the Payments. You need to create a Synapse Pipeline to pick up the generated Payments and import them in a Cosmos DB Collection.
 
-* The pre-generated file is available at : [paymendData.csv](../data/paymentData.csv)
+* Pre-generated payment data files for different SAP CAL images are available at : [paymendData](../data/)
 * This file needs to be copied to a directory on for example Azure Data Lake. A Synapse pipeline can pick up the payments from there and copy them to CosmosDB
 
 ### Pipeline Setup
