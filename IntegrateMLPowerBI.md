@@ -30,7 +30,7 @@ In this section we'll add a new column to `SalesOrderPayments` which will contai
         Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
         ```
 
-        <img src="images/aml/pbiMLPredPaymentDateColumn.jpg">
+        <img src="images/aml/pbiMLPredPaymentDateColumn.jpg" height=400>
 
 * Change the data type of this column to `Date`
 
@@ -79,14 +79,8 @@ In the `Date` table, create new measures.
 
 ```
 Sales at CreationDate = sum('SalesOrderPayments'[TOTALNETAMOUNT])
-```
-```
 Sales at BillingDate = CALCULATE(sum(SalesOrderPayments[TOTALNETAMOUNT]),USERELATIONSHIP('Date'[Date],SalesOrderPayments[BILLINGDOCUMENTDATE]))
-```
-```
 Payment at Actual Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]), USERELATIONSHIP('Date'[Date],SalesOrderPayments[Payments.PaymentDate]))
-```
-```
 Payment at pred Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]), USERELATIONSHIP('Date'[Date], SalesOrderPayments[predPaymentDate]))
 ```
 
