@@ -240,6 +240,8 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/RFCCopyActionSink.jpg">
 
+>Note : Ensure to select `PolyBase`
+
 * In the mapping tab, select `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
 
 <img src="images/synapsews/rfcMapping.jpg">
@@ -261,6 +263,7 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
                         ...
 ```
 <!-- >>Note : if these parameters are not entered correctly the date fields will remain as a String format. -->
+<!-- Note : these are internal parameters!!! -->
 
 * In the `Settings` blade, `enable staging` and create create a Linked Service pointing to the Data Lake attached to your Synapse.
 
