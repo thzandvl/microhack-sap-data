@@ -143,13 +143,19 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 
 ### Calculate Payment Offset
 We now need to calculate the difference between the Billing date and the actual payment date.
-* Switch to the Data View
-* Select the `SalesOrderPayments` table
-* Select `New Column` and enter the following as formula:
+* Add a new `Custom Column` to the `SalesOrderPayments` table
+
+<img src="images/powerBi/AddCustomColumn.png" height=200>
+
+* Name the column `Offset`
+* Use the following formula
 
 ```
-Offset = DATEDIFF(SalesOrderPayments[BILLINGDOCUMENTDATE],SalesOrderPayments[Payments.PaymentDate],DAY)
+Duration.Days([Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 ```
+
+* Change the data type to `Whole Number`
+* Use `Close and Apply` from the Home tab to switch to the data view
 
 ### Average Offset Report
 * Swith to the reporting view
