@@ -171,6 +171,11 @@ In this step we will deploy the best model that has been trained by AutoML and t
 
 <img src="images/aml/ml13.jpg" height=300>
 
+>Note: Select `Deploy to WebService`
+
+<img src="images/aml/deployWebService.png" height=100>
+
+
 * Validate and wait for the completion of the deployment. This can take a few minutes.
 
 <img src="images/aml/ml14.jpg" height= 400>
