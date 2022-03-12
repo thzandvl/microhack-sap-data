@@ -265,9 +265,7 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
 <!-- >>Note : if these parameters are not entered correctly the date fields will remain as a String format. -->
 <!-- Note : these are internal parameters!!! -->
 
-* In the `Settings` blade, `enable staging` and create create a Linked Service pointing to the Data Lake attached to your Synapse.
-
-<img src="images/synapsews/LSStaging.png" height=500>
+* In the `Settings` blade, `enable staging` and use the automatically created Linked Service to the Synapse Data Lake.
 
 * Enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
 
