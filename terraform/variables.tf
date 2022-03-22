@@ -49,12 +49,6 @@ variable "SID" {
   default     = "S4D"
 }
 
-variable "object_id" {
-  description = "Principal ID for logged in user, only required when using Cloud Shell"
-  type        = string
-  default     = "00000000-0000-0000-0000-000000000000"
-}
-
 variable "vmsize" {
   description = "Size of the VMs"
   default     = "Standard_B2s"

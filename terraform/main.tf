@@ -29,11 +29,15 @@ resource "azurerm_resource_group" "rg" {
 ## Assign Storage Role to User
 #######################################################################
 
+data "external" "azaccount" {
+  program = ["az","ad","signed-in-user","show","--query","{displayName: displayName,objectId: objectId,objectType: objectType}"]
+}
+
 data "azurerm_client_config" "user" {
 }
 
 locals {
-  object_id = data.azurerm_client_config.user.object_id == "" ? var.object_id : data.azurerm_client_config.user.object_id
+  object_id = data.azurerm_client_config.user.object_id == "" ? data.external.azaccount.result.objectId : data.azurerm_client_config.user.object_id
 }
 
 resource "azurerm_role_assignment" "storagerole" {

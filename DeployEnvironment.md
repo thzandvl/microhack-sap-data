@@ -18,34 +18,24 @@ If the subscription shown is not the right one change this with: \
 `cd microhack-sap-data/terraform`
 <img src="images/gw/deployTF3.jpg" height=170>
 
-Check the `variables.tf` file by using the command `cat variables.tf` as shown in the screenshot, you should see an entry `object_id` with only zeroes as value:
+5. Check the default values defined in `variables.tf` and change them if required. You can do this with `nano variables.tf`
 
-<img src="images/gw/deployTF4.jpg" height=100>
-We will update this values by running the script in the next step.
+Remember the username and password which you will need to login to the Gateway VM once deployed and these credentials will also be used for the Synapse workspace.
 
-5. Run `sh setObjectID.sh`, this will set the Principle ID of your user in the file `variables.tf` as it cannot be retrieved in the Azure cloud shell.
-<img src="images/gw/deployTF5.jpg" height=150>
-
-6. Check the default values defined in `variables.tf` and change them if required. You can do this again with `cat variables.tf` as shown in the screenshot above
-
-<img src="images/gw/deployTF6.jpg" height=300>
-
-Make sure that the `object_id` is set and not only shows zeroes. Remember the username and password which you will need to login to the Gateway VM once deployed and these credentials will also be used for the Synapse workspace.
-
-7. Download the AzureRM resource provider:
+6. Download the AzureRM resource provider:
 `terraform init`
 <img src="images/gw/deployTF7.jpg" height=400>
 
-8. Run apply to start the deployment, and choose `yes` once prompted to deploy the script:
+7. Run apply to start the deployment, and choose `yes` once prompted to deploy the script:
 `terraform apply`
 <img src="images/gw/deployTF8.jpg" height=150>
 ...
 <img src="images/gw/deployTF9.jpg" height=150>
 
-9. Once the script is finished you will get a public IP address, this is the public IP address of the Gateway VM just deployed.
+8. Once the script is finished you will get a public IP address, this is the public IP address of the Gateway VM just deployed.
 <img src="images/gw/deployTF10.jpg" height=100>
 
-10. Use `Remote Desktop Connection` to login to the new VM and continue with the next section.
+9. Use `Remote Desktop Connection` to login to the new VM and continue with the next section.
 <img src="images/gw/vm-gw1.jpg" height=200>
 Enter the IP address shown at the end of the Terraform script
 <img src="images/gw/vm-gw2.jpg" height=200>
