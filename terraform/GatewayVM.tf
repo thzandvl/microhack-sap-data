@@ -50,7 +50,7 @@ resource "azurerm_virtual_machine" "gw-vm" {
   storage_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2019-datacenter-gensecond"
+    sku       = "2022-datacenter-azure-edition"
     version   = "latest"
   }
 
