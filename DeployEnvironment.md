@@ -46,15 +46,9 @@ In this step, we'll prepare an Azure Virtual Machine to host the Integration Run
 We'll also install the SAP .net connector to enable RFC Connectivity to the SAP System.
 
 ### Install the SAP .Net Connector
-The downloads can best be done directly to the Gateway VM. The VM uses Internet Explorer by default which demands you to make all the websites trusted one by one. Easiest is to turn off the `IE Enhanced Security Configuration` setting in the `Server Manager` for `Local Server`. Click on `On` marked in the red square as shown in the screenshot.
+The downloads can best be done directly to the Gateway VM.
 
-<img src="images/gw/vm-gw3.jpg">
-
-Turn off the security for Administrators and Users:
-
-<img src="images/gw/vm-gw4.jpg" height=300>
-
-Open `Internet Explorer` on the GW VM and use the recommended settings. The SAP .Net Connector can be downloaded from the [SAP Service Marketplace](https://support.sap.com/en/product/connectors/msnet.html). Make sure to download the version compiled with .Net Framework 4.0 for Windows 64-bit.
+Open `Microsoft Edge` on the GW VM. The SAP .Net Connector can be downloaded from the [SAP Service Marketplace](https://support.sap.com/en/product/connectors/msnet.html). Make sure to download the version compiled with .Net Framework 4.0 for Windows 64-bit.
 
 * Extract the SAP connector and open the folder 
 <img src="images/gw/vm-gw-connector.png" height=300>
