@@ -259,7 +259,7 @@ The HTTP response will looks as follows :
 
 >Note : if you're using `Postman`, you can find a sample test at [Postman Sample Test](scripts/MicroHack.postman_collection.json)
 
-You can now proceed with the [next](PowerBiVisualisation.md) step.
+You can now proceed with the [next](IntegrateMLPowerBI.md) step.
 
 ## [Optional] Automated ML - Best Model - Additional Info
 If you're interested in the 'Best Model' Auto ML selected, return to your 'Automated ML Run'.

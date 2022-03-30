@@ -53,6 +53,12 @@ We'll describe the usage of Synapse Studio.
 * Create SQL Scripts for each of the tables (`SalesOrderHeaders`, `SalesOrderItems`, `Payments`)
 <img src="images/synapsews/createSQLScript.jpg">
 
+> Note: Make sure to change the "Connect to" value from 'builtin' to your own SQL pool as shown in the screenshot below. As by default it will be connected to the 'builtin' SQL pool of Synapse.
+
+><img src="images/synapsews/connectToPool.jpg">
+
+Make sure to run all the scripts in order to create the tables.
+
 - SalesOrderHeaders
 ```sql
 CREATE TABLE SalesOrderHeaders(
@@ -135,11 +141,6 @@ CREATE TABLE Payments(
 	Currency nvarchar(5)
 )
 ```
-> Note: Ensure the SQL Script is attached to your SQL Pool. By default it will be connected to the 'builtin' SQL pool of Synapse.
-
-><img src="images/synapsews/connectToPool.jpg">
-
-Make sure to run all the scripts in order to create the tables.
 
 # Implement the SalesOrderHeaders Pipeline
 
@@ -409,4 +410,4 @@ select count(*) from Payments
 select * from Payments
 ```
 
-Continue with the [next](PredictIncomingCashflow.md) step.
+You can now proceed with the [next](PowerBiVisualisation.md) step.

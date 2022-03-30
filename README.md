@@ -22,8 +22,8 @@ To execute the Microhack follow the steps below:
 1. [Deploy and Prepare the Microhack Environment](DeployEnvironment.md)
 2. [Synapse Workspace Setup](SynapseWorkspace.md)
 3. [DataFlow Config](DataFlowConfig.md)
-4. [Predict Cash Flow](PredictIncomingCashflow.md)
-5. [PowerBI Visualisation](PowerBiVisualisation.md)
+4. [PowerBI Visualisation](PowerBiVisualisation.md)
+5. [Predict Cash Flow](PredictIncomingCashflow.md)
 6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
 7. [Cleanup the Microhack Environment](CleanEnvironment.md)
 
@@ -33,4 +33,3 @@ To execute the Microhack follow the steps below:
 * [SAP Data Integration using Azure Data Factory](https://github.com/Azure/Azure-DataFactory/blob/main/whitepaper/SAP%20Data%20Integration%20using%20Azure%20Data%20Factory.pdf)
 * [SAP Data Extraction using Azure Data Factory (Examples)](https://github.com/bdelangh/ADF_SAPDataExtraction)
 * [What is Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)
-
