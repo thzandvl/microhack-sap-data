@@ -23,7 +23,7 @@ resource "azurerm_network_interface" "gw-nic" {
   ip_configuration {
     name                          = "${var.prefix}-gw-nic-cfg"
     subnet_id                     = azurerm_subnet.subnet.id
-    private_ip_address_allocation = "dynamic"
+    private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.gw-pip.id
   }
 }
