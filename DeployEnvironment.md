@@ -35,7 +35,25 @@ Remember the username and password which you will need to login to the Gateway V
 8. Once the script is finished you will get a public IP address, this is the public IP address of the Gateway VM just deployed.
 <img src="images/gw/deployTF10.jpg" height=100>
 
-9. Use `Remote Desktop Connection` to login to the new VM and continue with the next section.
+9. You can check if you can already access the RDP session by executing step 10 as the Terraform opens this port. Microsoft policies automatically remove open RDP ports after an hour. Therefore, after this time, you need to enable Just-in-time VM access (JIT). In the deployed resource group click on the GW VM. Navigate in the left pane to `Settings -> Configuration` and click on `Enable just-in-time`.
+
+<img src="images/gw/vm-gw-jit1.png">
+
+After you pressed the button you should get a notification that JIT is successfully enabled. The button will be replaced by the following message where you can directly navigate to `Open Azure Security Center`.
+
+<img src="images/gw/vm-gw-jit2.png" height=100>
+
+You will get a next screen with your VM's. Select the GW VM and choose `Request Access`.
+
+<img src="images/gw/vm-gw-jit3.png" height=300>
+
+Change the `toggle` option to `On` and choose `Open ports` in the right bottom corner of the screen.
+
+<img src="images/gw/vm-gw-jit4.png">
+
+The port should now be open. Continue to the next step.
+
+10. Use `Remote Desktop Connection` to login to the new VM and continue with the next section.
 <img src="images/gw/vm-gw1.jpg" height=200>
 Enter the IP address shown at the end of the Terraform script
 <img src="images/gw/vm-gw2.jpg" height=200>
@@ -53,8 +71,7 @@ Open `Microsoft Edge` on the GW VM. The SAP .Net Connector can be downloaded fro
 * Extract the SAP connector and open the folder 
 <img src="images/gw/vm-gw-connector.png" height=300>
 
-* Start the executable. If you get the `Windows protected` screen choose `More info` and `Run anyway`
-<img src="images/gw/vm-gw5.jpg" height=300>
+* Start the executable
 
 <img src="images/gw/vm-gw-connsetup1.png" height=300>
 
