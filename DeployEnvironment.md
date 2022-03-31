@@ -11,7 +11,9 @@ az account show
 
 <img src="images/gw/deployTF1.jpg" height=300> \
 If the subscription shown is not the right one change this with: \
-`az account set --subscription "YourSubscriptionName"`
+```
+az account set --subscription "YourSubscriptionName"
+```
 
 3. Clone the GitHub repository with the Terraform scripts:
 ```
