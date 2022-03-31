@@ -71,9 +71,9 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ##  Sales per Date and CustomerGroup
 * Select a `Stacked Column Chart`.
-* Use the `SalesOrderHeaders.CREATIONDATE` hierarchy as Axis.
-* Use `SalesOrderHeaders.TOTALNETAMOUNT`as Values.
-* Use `SalesOrderHeaders.CUSTOMERGROUP`as Legend.
+* Use the `SalesOrderHeaders.CREATIONDATE` hierarchy as X-Axis
+* Use `SalesOrderHeaders.TOTALNETAMOUNT`as Y-Axis
+* Use `SalesOrderHeaders.CUSTOMERGROUP`as Legend
 
 <img src="images/powerBi/SalesPerYearCustomerGroupSetup.jpg">
 <img src="images/powerBi/SalesPerYearCustomerGroup.jpg">
@@ -82,9 +82,9 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ## Sales per Region and CustomerGroup
 * Select `Map`.
-* Use `SalesOrderHeaders.CITYNAME` as Location.
-* Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend.
-* Use `SalesOrderHeaders.TOTALNETAMOUNT` as Size. 
+* Use `SalesOrderHeaders.CITYNAME` as Location
+* Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
+* Use `SalesOrderHeaders.TOTALNETAMOUNT` as Size 
 
 <img src="images/powerBi/SalesPerRegionSetup.jpg">
 <img src="images/powerBi/SalesPerRegion.jpg">
@@ -95,8 +95,8 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ## Payments per Date and CustomerGroup
 * Select a `Stacked Column Chart`
-* Use `Payments.PaymentDate` hierarchy as Axis
-* Use `Payments.PaymentValue` as Values
+* Use `Payments.PaymentDate` hierarchy as X-Axis
+* Use `Payments.PaymentValue` as Y-Axis
 * Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
 
 The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrderHeaders`and `Payments` table.
