@@ -75,13 +75,8 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ##  Sales per Date and CustomerGroup
 * Select a `Stacked Column Chart`.
-<<<<<<< HEAD
 * Use the `SalesOrderHeaders.CREATIONDATE` hierarchy as X-axis
 * Use `SalesOrderHeaders.TOTALNETAMOUNT`as Y-axis
-=======
-* Use the `SalesOrderHeaders.CREATIONDATE` hierarchy as X-Axis
-* Use `SalesOrderHeaders.TOTALNETAMOUNT`as Y-Axis
->>>>>>> ed32d0fc43772baad46b9d0e9525af2428543ddd
 * Use `SalesOrderHeaders.CUSTOMERGROUP`as Legend
 
 <img src="images/powerBi/SalesPerYearCustomerGroupSetup.jpg">
@@ -93,11 +88,7 @@ Some example Reports are given beneath. Feel free to experiment.
 * Select `Map`.
 * Use `SalesOrderHeaders.CITYNAME` as Location
 * Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
-<<<<<<< HEAD
 * Use `SalesOrderHeaders.TOTALNETAMOUNT` as Bubble size
-=======
-* Use `SalesOrderHeaders.TOTALNETAMOUNT` as Size 
->>>>>>> ed32d0fc43772baad46b9d0e9525af2428543ddd
 
 <img src="images/powerBi/SalesPerRegionSetup.jpg">
 <img src="images/powerBi/SalesPerRegion.jpg">
@@ -108,13 +99,8 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ## Payments per Date and CustomerGroup
 * Select a `Stacked Column Chart`
-<<<<<<< HEAD
 * Use `Payments.PaymentDate` hierarchy as X-axis
 * Use `Payments.PaymentValue` as Y-axis
-=======
-* Use `Payments.PaymentDate` hierarchy as X-Axis
-* Use `Payments.PaymentValue` as Y-Axis
->>>>>>> ed32d0fc43772baad46b9d0e9525af2428543ddd
 * Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
 
 The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrderHeaders`and `Payments` table.
@@ -125,13 +111,8 @@ The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrde
 
 ## Sales Per CustomerGroup and MaterialGroup
 * Select a 'Stacked Bar Chart'
-<<<<<<< HEAD
 * Use `SalesOrderHeaders.CUSTOMERGROUP`as X-axis
 * Use `SalesOrderItems.NetAmount`as Y-axis
-=======
-* Use `SalesOrderHeaders.CUSTOMERGROUP`as X-Axis
-* Use `SalesOrderItems.NetAmount`as Y-Axis
->>>>>>> ed32d0fc43772baad46b9d0e9525af2428543ddd
 * Use `SalesOrderItems.MaterialGroup`as Legend
 
 <img src="images/powerBi/SalesCustMatGroup.jpg">
@@ -162,11 +143,8 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 
 <img src="images/powerBi/selectPaymentFields.jpg">
 
-<<<<<<< HEAD
 * Select `Apply` under `Close & Apply`
 
-=======
->>>>>>> ed32d0fc43772baad46b9d0e9525af2428543ddd
 ### Calculate Payment Offset
 We now need to calculate the difference between the Billing date and the actual payment date.
 * Add a new `Custom Column` to the `SalesOrderPayments` table
@@ -186,13 +164,8 @@ Duration.Days([Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 ### Average Offset Report
 * Swith to the reporting view
 * Select a Stacked Column chart
-<<<<<<< HEAD
 * Use `SalesOrderPayments.CUSTOMERGROUP` as X-axis
 * Use `SalesOrderPayments.Offset` as Y-axis
-=======
-* Use `SalesOrderPayments.CUSTOMERGROUP` as X-Axis
-* Use `Offset` as Y-Axis
->>>>>>> ed32d0fc43772baad46b9d0e9525af2428543ddd
 * Select `Average` instead of the default sum
 
 <img src="images/powerBi/average.jpg">
