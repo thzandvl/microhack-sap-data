@@ -51,5 +51,5 @@ variable "SID" {
 
 variable "vmsize" {
   description = "Size of the VMs"
-  default     = "Standard_B2s"
+  default     = "Standard_D4_v3"
 }
