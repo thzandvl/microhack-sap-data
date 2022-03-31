@@ -135,7 +135,7 @@ Create the dataset
 
 <img src="images/aml/ml4.jpg">
 
-3. Create a new compute that will be used to train your model. In this example we use a maximum of 3 nodes to increase the processing power.
+3. Create a new compute that will be used to train your model. As name we use `sap-data-ml-vm`. In this example we use a maximum of 3 nodes to increase the processing power.
 
 <img src="images/aml/ml5.jpg" height=500>
 <img src="images/aml/ml6.jpg">
@@ -156,7 +156,7 @@ Create the dataset
     <!-- >>>Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually -->
     <!-- keep decisiontree? -->
 
-    3. `Save` and click on `Finish`
+    3. `Save`, `Next`, skip the optional steps and click on `Finish`
 
     <img src="images/aml/17-aml-studio.PNG" height= 400>
     <img src="images/aml/ml9.jpg" height=300>
@@ -165,7 +165,6 @@ Create the dataset
 
     <img src="images/aml/ml10.jpg" height = 400>
 
->Note : The ML run will take some time. You can start with the [PowerBI section](PowerBiVisualisation.md) and return here at a later moment.
 
 ## Deploy the best model
 In this step we will deploy the best model that has been trained by AutoML and test it.
