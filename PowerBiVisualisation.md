@@ -35,7 +35,7 @@ The formula for the column will then change to `Table.TransformColumnTypes(dbo_S
 
 <img src="images/powerBi/whole_number.jpg">
 
-* Select `Close and Apply`
+* Select `Close & Apply`
 
 ## Create the Relational Model
 In this step we'll model the relationships between the tables.
