@@ -107,14 +107,14 @@ The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrde
 
 ## Sales Per CustomerGroup and MaterialGroup
 * Select a 'Stacked Bar Chart'
-* Use `SalesOrderHeaders.CUSTOMERGROUP`as Axis
+* Use `SalesOrderHeaders.CUSTOMERGROUP`as X-Axis
+* Use `SalesOrderItems.NetAmount`as Y-Axis
 * Use `SalesOrderItems.MaterialGroup`as Legend
-* Use `SalesOrderItems.NetAmount`as Value
 
 <img src="images/powerBi/SalesCustMatGroup.jpg">
 
 ## Payment Offset per CustomerGroup
-With this report we'll show the average date by which each customergroup pays his SalesOrders. We can compare this with the outcome of our Machine Learning Model.
+With this report we'll show the average number of days by which each customergroup pays his SalesOrders. Afterwards we can compare this with the outcome of our Machine Learning Model.
 For this we need to join the SalesOrderHeaders and the Payment data to calculate the number of days between the billing date and the payment date.
 
 >Note : In the ML part you created a similar view in Synapse. This section explains how you can create a 'view' locally in PowerBI.
@@ -139,8 +139,6 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 
 <img src="images/powerBi/selectPaymentFields.jpg">
 
-* Select 'Close and Apply'
-
 ### Calculate Payment Offset
 We now need to calculate the difference between the Billing date and the actual payment date.
 * Add a new `Custom Column` to the `SalesOrderPayments` table
@@ -160,8 +158,8 @@ Duration.Days([Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 ### Average Offset Report
 * Swith to the reporting view
 * Select a Stacked Column chart
-* Use `SalesOrderPayments.CUSTOMERGROUP` as Axis
-* Use `Offset` as Values
+* Use `SalesOrderPayments.CUSTOMERGROUP` as X-Axis
+* Use `Offset` as Y-Axis
 * Select `Average` instead of the default sum
 
 <img src="images/powerBi/average.jpg">
