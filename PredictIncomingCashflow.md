@@ -65,9 +65,19 @@ By default the name for the ML Workspace is `sap-data-ml-ws`. Go to this workspa
 ### DataStore Creation
 First you have to point the ML studio to the location of your data, which is the Synapse SQL Pool. For this you have to create a `DataStore`.
 
-* Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data_ml_ds`. Connect to the Synapse database.
+Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data_ml_ds`. Connect to the Synapse database.
 
-<img src="images/aml/ml1.jpg" height=600>
+* Datastore name : `sap_data_ml_ds`
+* Use Data store type : `Azure SQL Database`
+* Use Account Selection method : `Enter Manually`
+* Use your Synapse Workspace name as `Server Name`
+* Use your Synapse SQL Pool as Database Name, in our case this is `sapdatasynsql`
+* Select your Subscription
+* Enter your resource group name, in our case this is `microhack-sap-data-rg`
+* Authentication Type : `SQL Authentication`
+* Enter UserId and Password
+
+<img src="images/aml/ml1bis.jpg" height=600>
 
 ### Automated ML
 We'll be using `Automated Machine Learning` to predict when customers will pay for their Sales Orders
