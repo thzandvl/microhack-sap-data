@@ -5,29 +5,29 @@ To trigger the Terraform deployment, follow the steps below:
 1. Login to Azure cloud shell https://shell.azure.com/
 
 2. Check the subscription you will be using for the Microhack: \
-`az account show` \
+```az account show``` \
 <img src="images/gw/deployTF1.jpg" height=300> \
 If the subscription shown is not the right one change this with: \
 `az account set --subscription "YourSubscriptionName"`
 
 3. Clone the GitHub repository with the Terraform scripts: \
-`git clone https://github.com/thzandvl/microhack-sap-data`
+```git clone https://github.com/thzandvl/microhack-sap-data```
 <img src="images/gw/deployTF2.jpg" height=150>
 
 4. Change Directory into the terraform folder: \
-`cd microhack-sap-data/terraform`
+```cd microhack-sap-data/terraform```
 <img src="images/gw/deployTF3.jpg" height=170>
 
-5. Check the default values defined in `variables.tf` and change them if required. You can do this with `nano variables.tf`
+5. Check the default values defined in `variables.tf` and change them if required. You can do this with ```nano variables.tf```
 
 Remember the username and password which you will need to login to the Gateway VM once deployed and these credentials will also be used for the Synapse workspace.
 
 6. Download the AzureRM resource provider:
-`terraform init`
+```terraform init```
 <img src="images/gw/deployTF7.jpg" height=400>
 
 7. Run apply to start the deployment, and choose `yes` once prompted to deploy the script:
-`terraform apply`
+```terraform apply```
 <img src="images/gw/deployTF8.jpg" height=150>
 ...
 <img src="images/gw/deployTF9.jpg" height=150>
