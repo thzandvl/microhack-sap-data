@@ -105,8 +105,6 @@ A Guided Procedure will appear :
 select * from SalesPaymentsFull
 ```
 
-<img src="images/aml/05-aml-studio.PNG" height= 200>
-
 * <b>Settings and Preview :</b> To Ensure that your query is working fine you are able to visualize the data in the next window.
 <img src="images/aml/06-aml-studio.PNG" height= 400>
 
@@ -208,7 +206,7 @@ Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view
 
 > Note : Experiment with CustomerGroup `Z1` and `Z2` and note the Payment Delay/Offset. You can also compare with the actual value in powerBI or in Synapse.
 
-You can now proceed with the [next](PowerBiVisualisation.md) step.
+You can now proceed with the [next](IntegrateMLPowerBI.md) step.
 
 ## [Optional] Test the ML Endpoint via HTTP
 You can also test the ML model via http. You can find the URL to use via the ML `endpoint` menu.
