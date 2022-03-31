@@ -152,12 +152,15 @@ The view to extract from is : `ZBD_ISALESDOC_E`.
 
 ## Create a Linked Service to the SAP System
 * In Synapse Studio, go to the `Manage` View
+
 <img src="images/irt/syn-irt1.png" height=200>
 
 * Select `Linked Services`
+
 <img src="images/synapsews/LinkedServices.jpg">
 
 * Create a new `Linked Service` of type `SAP Table`
+
 <img src="images/synapsews/SAPTable.jpg">
 
 * Enter the connection details for the SAP System, we use the name `S4DCLNT100`. Use the username and password for the SAP system provided to you at the start of the Microhack.
@@ -166,7 +169,7 @@ The view to extract from is : `ZBD_ISALESDOC_E`.
 
 >Note : use `Test Connection` to verify your settings
 
->Note : SAP Connection Details will be handed out at MicroHack
+>Note : SAP Connection Details will be handed out before the MicroHack
 
 ## Select the data to extract
 Create an Integration DataSet based on the previously created `Linked Service`.
@@ -197,7 +200,7 @@ This dataset will act as the source.
 
 * Switch to the `Manage` view
 
-* Create a new Linked Service of type `Azure Synapse Analytics`
+* Create a new Linked Service of type `Azure Synapse Analytics`, as name we used `SynMicroHackPool`
 
 <img src="images/synapsews/syn3.jpg" height=300>
 
@@ -231,6 +234,7 @@ This dataset will act as the `sink` in our pipeline.
 <img src="images/synapsews/pipelineView.jpg">
 
 * Use the `copy action` by dragging it onto the pipeline canvas
+
 <img src="images/synapsews/copyAction.jpg">
 
 * In the `source` tab, select your SAP Sales Order Dataset as the source
@@ -243,7 +247,7 @@ This dataset will act as the `sink` in our pipeline.
 
 >Note : Ensure to select `PolyBase`
 
-* In the mapping tab, select `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
+* In the mapping tab, choose `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
 
 <img src="images/synapsews/rfcMapping.jpg">
 
@@ -272,7 +276,7 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
 
 <img src="images/synapsews/staging.jpg" height=400>
 
-* publish and trigger the pipeline, use `Add trigger` -> `Trigger now`
+* Now `Publish all` and once this is successfull trigger the pipeline, use `Add trigger` -> `Trigger now` -> `OK`
 
 <img src="images/synapsews/syn7.jpg" height=200>
 
@@ -337,7 +341,7 @@ This dataset will act as the sink for our pipeline.
 <img src="images/synapsews/syn9.jpg">
 
 * As source select the SAP SalesOrderItem oData Dataset, which we named as `S4DSalesOrderItems`.
-* As sink, select the Synapse SalesOrderItem DataSet. We named this as `SynSalesOrderItems`.
+* As sink, select the Synapse SalesOrderItem DataSet. We named this as `SynSalesOrderItems`. Again, change the copy method to `PolyBase`.
 * Under the `Mapping` tab use `Import schemas`
 * Under the `Settings` tab enable and configure the `Staging Area` as done in the SalesOrderHeaders step
 * Publish, Trigger and Monitor the integration pipeline
@@ -396,7 +400,7 @@ This dataset will act as the sink for our pipeline
 * Add a new `Pipeline`
 * Use the `Copy` action and name it `ExtractPayments`
 * As source select the Cosmos DB payment Dataset, we named this `CosmosPaymentData`.
-* As sink, select the Synapse Payment DataSet. We names this `SynPayments`.
+* As sink, select the Synapse Payment DataSet. We named this `SynPayments`. As Copy method choose `PolyBase`.
 * Under the `Settings` tab enable and configure the `Staging Area` as done in the earlier pipelines
 * Go to the tab `Mapping` and choose `Import schemas`. Make sure to remove the mappings which are not shown in the screenshot starting with `_`, you can remove them my unchecking the checkbox behind them. Do not forget to change the `Column name` for `Value` to `PaymentValue`.
 

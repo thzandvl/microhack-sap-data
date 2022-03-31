@@ -19,14 +19,21 @@ To register the integration runtime click on manage:
 
 <img src="images/irt/syn-irt3.png" height=300>
 
+
+* Choose `Azure, Self-Hosted`:
+
+<img src="images/irt/syn-irt4-1.png" height = 400>
+
 * Choose `Self-Hosted`:
 
 <img src="images/irt/syn-irt4.png" height = 400>
 
 * Choose a name for the runtime installation:
+
 <img src="images/irt/syn-irt5.png" height = 400>
 
-* You will receive two key values. Make sure to note these down, in the next step you need one of these keys\
+* You will receive two key values. Make sure to note these down, in the next step you need one of these keys
+
 <img src="images/irt/syn-irt6.png" height=400>
 
 * In `Option 2: Manual setup` you can download the integration runtime via `Step 1`. Click on the link and copy the URL from the URL bar. Paste this URL in `Microsoft Edge` on your Gateway VM.
@@ -45,9 +52,10 @@ Choose `Next`. The download will start.
 
 <img src="images/irt/gw-irt1.png" height=400>
 
-* Enter one of the keys you noted down earlier from integration runtime setup and choose `Register`.
+* Enter one of the keys you noted down earlier from the integration runtime setup and choose `Register`.
 
-* Enter the name of the integration runtime node configured earlier
+* Enter the name of the integration runtime node configured earlier, this is already completed by default
+
 <img src="images/irt/gw-irt2.png" height=400>
 
 * Choose `Finish`, this can take a few minutes.

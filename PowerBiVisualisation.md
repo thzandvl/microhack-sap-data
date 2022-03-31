@@ -1,19 +1,23 @@
 # PowerBI Visualization
-In this section we'll setup some example powerBi reports.
+In this section we'll setup some example powerBI reports.
 
-We'll be using [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/) for this.
+We will be using [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/) for this.
 
 ## Setup & Importing Data
 In PowerBI, we first need to connect to our Synapse.
 * Choose `Get Data`and select `Synapse Analytics (SQL DW)`
+
 <img src="images/powerBi/getdata.jpg" height=100>
 
 * In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` in the overview blade of your Synapse Workspace.
 The Database is the SQL server pool you created.
+
 <img src="images/powerBi/sqlendpoint.jpg" height=100>
 
 * Select `Import Data`
+
 <img src="images/powerBi/synapseconnection.jpg" height= 175>
+
 * Use your Azure credentials to logon or the userid and password used during the Synapse Workspace creation.
 
 * Select the 3 tables created in the previous steps.
@@ -71,9 +75,9 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ##  Sales per Date and CustomerGroup
 * Select a `Stacked Column Chart`.
-* Use the `SalesOrderHeaders.CREATIONDATE` hierarchy as Axis.
-* Use `SalesOrderHeaders.TOTALNETAMOUNT`as Values.
-* Use `SalesOrderHeaders.CUSTOMERGROUP`as Legend.
+* Use the `SalesOrderHeaders.CREATIONDATE` hierarchy as X-axis
+* Use `SalesOrderHeaders.TOTALNETAMOUNT`as Y-axis
+* Use `SalesOrderHeaders.CUSTOMERGROUP`as Legend
 
 <img src="images/powerBi/SalesPerYearCustomerGroupSetup.jpg">
 <img src="images/powerBi/SalesPerYearCustomerGroup.jpg">
@@ -82,9 +86,9 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ## Sales per Region and CustomerGroup
 * Select `Map`.
-* Use `SalesOrderHeaders.CITYNAME` as Location.
-* Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend.
-* Use `SalesOrderHeaders.TOTALNETAMOUNT` as Size. 
+* Use `SalesOrderHeaders.CITYNAME` as Location
+* Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
+* Use `SalesOrderHeaders.TOTALNETAMOUNT` as Bubble size
 
 <img src="images/powerBi/SalesPerRegionSetup.jpg">
 <img src="images/powerBi/SalesPerRegion.jpg">
@@ -95,8 +99,8 @@ Some example Reports are given beneath. Feel free to experiment.
 
 ## Payments per Date and CustomerGroup
 * Select a `Stacked Column Chart`
-* Use `Payments.PaymentDate` hierarchy as Axis
-* Use `Payments.PaymentValue` as Values
+* Use `Payments.PaymentDate` hierarchy as X-axis
+* Use `Payments.PaymentValue` as Y-axis
 * Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
 
 The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrderHeaders`and `Payments` table.
@@ -107,9 +111,9 @@ The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrde
 
 ## Sales Per CustomerGroup and MaterialGroup
 * Select a 'Stacked Bar Chart'
-* Use `SalesOrderHeaders.CUSTOMERGROUP`as Axis
+* Use `SalesOrderHeaders.CUSTOMERGROUP`as X-axis
+* Use `SalesOrderItems.NetAmount`as Y-axis
 * Use `SalesOrderItems.MaterialGroup`as Legend
-* Use `SalesOrderItems.NetAmount`as Value
 
 <img src="images/powerBi/SalesCustMatGroup.jpg">
 
@@ -139,7 +143,7 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 
 <img src="images/powerBi/selectPaymentFields.jpg">
 
-* Select 'Close and Apply'
+* Select `Apply` under `Close & Apply`
 
 ### Calculate Payment Offset
 We now need to calculate the difference between the Billing date and the actual payment date.
@@ -155,13 +159,13 @@ Duration.Days([Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 ```
 
 * Change the data type to `Whole Number`
-* Use `Close and Apply` from the Home tab to switch to the data view
+* Use `Close & Apply` from the Home tab to switch to the data view
 
 ### Average Offset Report
 * Swith to the reporting view
 * Select a Stacked Column chart
-* Use `SalesOrderPayments.CUSTOMERGROUP` as Axis
-* Use `Offset` as Values
+* Use `SalesOrderPayments.CUSTOMERGROUP` as X-axis
+* Use `SalesOrderPayments.Offset` as Y-axis
 * Select `Average` instead of the default sum
 
 <img src="images/powerBi/average.jpg">
@@ -170,7 +174,7 @@ Duration.Days([Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 
 ### (Optional) Boxplot
 If you'd like a more detailed view on the payment offset then you can use a 'Box Plot'. This gives you an idea of the variance on the offset.
-For this you have to import a 'Box and Whisker chart' visualization. 
+For this you have to import a `Box and Whisker chart` visualization. 
 In the `Visualizations` view, press the 3 dots and select `Get more visuals`.
 
 <img src="images/powerBi/getMoreVisuals.jpg" height=250>
@@ -182,7 +186,7 @@ Search for `Box and Whisker chart` and press `Add`.
 You can now use the chart in your visuals
 
 * Use `SalesOrderPayments.CUSTOMERGROUP` as `Category`
-* Use `Offset` as `Sampling`
+* Use `SalesOrderPayments.Offset` as `Sampling`
 * Use `Average of Offset` as `Value`
 
 <img src="images/powerBi/BoxAndWhiskerChart.jpg">
