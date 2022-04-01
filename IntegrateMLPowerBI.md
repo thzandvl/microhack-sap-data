@@ -87,10 +87,10 @@ Payment at pred Date = CALCULATE(sum('SalesOrderPayments'[Payments.PaymentValue]
 ### Create Sales and Payment Forecast report
 
 * Select a `Clustered' Column Chart`
-* Use the `Date.Date` hierarchy as Axis
-* Use `Date.Sales at Billing Date`as Values
-* Use `Date.Payment at pred Date` as Values
-* Use `Date.Payment at actual Date`as values if you want to compare prediction and actual
+* Use the `Date.Date` hierarchy as X-axis
+* Use `Date.Sales at Billing Date`as Y-axis
+* Use `Date.Payment at pred Date` as Y-axis
+* Use `Date.Payment at actual Date`as Y-axis if you want to compare prediction and actual
 
     <img src="images/aml/SalesPaymentForecast.jpg" height=600>
 
