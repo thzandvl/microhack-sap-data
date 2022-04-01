@@ -1,5 +1,5 @@
 # Remove the Microhack environment with Terraform
-Once you are finished with the Microhack environment it is best to remove the environment. You can do this by using Terraform or by removing the Resource Group yourself.
+Once you are finished with the Microhack environment it is best to remove the environment. You can do this by using removing the Resource Group.
 
 ## Remove the Resource Group
 * Click on the Resource Group and choose the option `Delete resource group`
