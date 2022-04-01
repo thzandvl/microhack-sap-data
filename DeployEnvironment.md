@@ -87,7 +87,7 @@ Open `Microsoft Edge` on the GW VM. The SAP .Net Connector can be downloaded fro
 * Extract the SAP connector and open the folder 
 <img src="images/gw/vm-gw-connector.png" height=300>
 
-* Start the executable
+* Start the executable, choose the latest version
 
 <img src="images/gw/vm-gw-connsetup1.png" height=300>
 
