@@ -10,9 +10,19 @@ az account show
 ``` 
 
 <img src="images/gw/deployTF1.jpg" height=300> \
-If the subscription shown is not the right one change this with: \
+If the subscription shown is not the right one change this with:
 ```
 az account set --subscription "YourSubscriptionName"
+```
+
+By default the Azure CLI uses JSON as output format, if this is not the case change this to avoid errors while executing the Terraform script. Check if you changed the core output value:
+```
+az config get core.output
+```
+
+If the value is not set you are good to go, otherwise if you set the `core.output` to another value change this back to `json`:
+```
+az config set core.output=json
 ```
 
 3. Clone the GitHub repository with the Terraform scripts:
