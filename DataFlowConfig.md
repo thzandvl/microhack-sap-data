@@ -183,7 +183,7 @@ This dataset will act as the source.
 
 <img src="images/synapsews/syn1.jpg" height=300>
 
-* Use your previously created Linked Service for the SAP System (Table connector), as name we used `S4DSalesOrderHeaders`
+* Use your previously created Linked Service for the SAP System (Table connector), as name we used `S4DCLNT100`
 
 * Use `ZBD_ISALESDOC_E` as table, it can take some time before the list of tables is loaded
 
