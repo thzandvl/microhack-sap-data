@@ -355,8 +355,8 @@ This dataset will act as the sink for our pipeline
 * Check the result in Synapse using SQL
 
 ```sql
-select count(*) from Payments
-select * from Payments
+select count(*) from XXPayments
+select * from XXPayments
 ```
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
