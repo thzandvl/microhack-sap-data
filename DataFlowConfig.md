@@ -150,27 +150,6 @@ The sales order headers are extracted from SAP using the SAP Table Adapter which
 The view to extract from is : `ZBD_ISALESDOC_E`. 
 >Note: You can have a look in the SAP system to check the contents. Use the Data Dictionary, transaction `SE11`.
 
-## Create a Linked Service to the SAP System
-* In Synapse Studio, go to the `Manage` View
-
-<img src="images/irt/syn-irt1.png" height=200>
-
-* Select `Linked Services`
-
-<img src="images/synapsews/LinkedServices.jpg">
-
-* Create a new `Linked Service` of type `SAP Table`
-
-<img src="images/synapsews/SAPTable.jpg">
-
-* Enter the connection details for the SAP System, we use the name `S4DCLNT100`. Use the username and password for the SAP system provided to you at the start of the Microhack.
-
-<img src="images/synapsews/LS_SAPRFC.jpg" height=800>
-
->Note : use `Test Connection` to verify your settings
-
->Note : SAP Connection Details will be handed out before the MicroHack
-
 ## Select the data to extract
 Create an Integration DataSet based on the previously created `Linked Service`.
 This dataset will act as the source.
