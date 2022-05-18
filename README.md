@@ -19,13 +19,11 @@ If you want to setup your own SAP CAL system and Cosmos DB, follow the steps at 
 To execute the Microhack follow the steps below:
 
 0. [Software Prerequisites](SoftwarePrerequisites.md)
-1. [Deploy and Prepare the Microhack Environment](DeployEnvironment.md)
-2. [Synapse Workspace Setup](SynapseWorkspace.md)
-3. [DataFlow Config](DataFlowConfig.md)
-4. [PowerBI Visualisation](PowerBiVisualisation.md)
-5. [Predict Cash Flow](PredictIncomingCashflow.md)
-6. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
-7. [Cleanup the Microhack Environment](CleanEnvironment.md)
+1. [DataFlow Config](DataFlowConfig.md)
+2. [PowerBI Visualisation](PowerBiVisualisation.md)
+3. [Predict Cash Flow](PredictIncomingCashflow.md)
+4. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
+5. [Cleanup the Microhack Environment](CleanEnvironment.md)
 
 ## Additional Documentation
 * [Copy data from an SAP table using Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-table)
