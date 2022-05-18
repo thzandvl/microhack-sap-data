@@ -7,4 +7,4 @@ Please have the following software installed on your computer :
 
 > SQL Statements and Azure Data Lake interaction can also be executed via Synapse Studio in your browser.
 
-[Go to Deploy and Prepare the Microhack Environment](DeployEnvironment.md)
+[Go to DataFlow Config](DataFlowConfig.md)
