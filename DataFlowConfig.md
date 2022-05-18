@@ -320,23 +320,6 @@ select * from XXSalesOrderItems
 
 The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 
-### Create Linked Service for CosmosDB
-* Create a Linked Service of type CosmosDB (SQL API)
-
-<img src="images/synapsews/cosmosDBSSQLapi.jpg" height=100>
-
-* Enter the connection parameters, as name we use `CosmosSAPS4D`
-
-Azure Cosmos DB account URI : `<handed out at micro hack>`
-
-Azure Cosmos DB access key : `<handed out at micro hack>`
-
-Database name : `SAPS4D` 
-
-<img src="images/synapsews/LS_CosmosDB.jpg" height=600>
-
-* Test the connection and create the linked service.
-
 
 ### Create a Integration DataSet for the CosmosDB Payments
 This dataset will act as the source for our pipeline.
