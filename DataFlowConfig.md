@@ -53,6 +53,8 @@ We'll describe the usage of Synapse Studio.
 * Create SQL Scripts for each of the tables (`SalesOrderHeaders`, `SalesOrderItems`, `Payments`)
 <img src="images/synapsews/createSQLScript.jpg">
 
+> Note: Each participant will create his/her own tables by adding a prefix 01, 02, 03, ... Make sure to change the XX in the SQL scripts to the participant number assigned you 
+
 > Note: Make sure to change the "Connect to" value from 'builtin' to your own SQL pool as shown in the screenshot below. As by default it will be connected to the 'builtin' SQL pool of Synapse.
 
 ><img src="images/synapsews/connectToPool.jpg">
@@ -61,7 +63,7 @@ Make sure to run all the scripts in order to create the tables.
 
 - SalesOrderHeaders
 ```sql
-CREATE TABLE SalesOrderHeaders(
+CREATE TABLE XXSalesOrderHeaders(
 	BILLINGCOMPANYCODE nvarchar(4),
 	BILLINGDOCUMENTDATE date,
 	COUNTRY nvarchar(3),
@@ -95,7 +97,7 @@ CREATE TABLE SalesOrderHeaders(
 ```
 - SalesOrderItems
 ```sql
-CREATE TABLE SalesOrderItems(
+CREATE TABLE XXSalesOrderItems(
     SalesOrder nvarchar(10),
     SalesOrderItem nvarchar(6),
     SalesOrderItemText nvarchar(40),
@@ -131,7 +133,7 @@ CREATE TABLE SalesOrderItems(
 ```
 - Payments
 ```sql
-CREATE TABLE Payments(
+CREATE TABLE XXPayments(
 	PaymentNr nvarchar(10),
 	SalesOrderNr nvarchar(10),
 	CustomerNr nvarchar(10),
@@ -174,18 +176,6 @@ This dataset will act as the source.
 
 > Note : the source code of the CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls)
 
-## Create a Linked Service to the Synapse SQL Pool
-* this will represent the target/sink of the pipeline
-
-* Switch to the `Manage` view
-
-* Create a new Linked Service of type `Azure Synapse Analytics`, as name we used `SynMicroHackPool`
-
-<img src="images/synapsews/syn3.jpg" height=300>
-
-<img src="images/synapsews/LS_SQLPool.jpg" height=800>
-
->Note: Since this linked service represents the Synapse SQL pool, it will be re-used in the `SalesOrderItems`and `Payments` pipeline.
 
 ### Create an Integration DataSet for the Synapse Sales Orders
 This dataset will act as the `sink` in our pipeline.
@@ -279,15 +269,6 @@ select * from SalesOrderHeaders
 The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData. We will use the oData service at `http://<System IP>/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
 
 
-### Create a Linked Service to the SAP oData Service
-* Create a `Linked Service`of type `SAP ECC`
-
-<img src="images/synapsews/SAPECCService.jpg" height=300>
-
-* Enter the connection details, we used `S4DCLNT100_ODATA` as the name
-
-<img src="images/synapsews/LS_SAPOdata.jpg" height=600>
-
 ### Create a Integration DataSet for the SAP Sales Order Items
 This dataset will act as the source for our pipeline.
 * Create a `Integration DataSet` based on `SAP ECC` adapter
@@ -324,11 +305,13 @@ This dataset will act as the sink for our pipeline.
 * Under the `Mapping` tab use `Import schemas`
 * Under the `Settings` tab enable and configure the `Staging Area` as done in the SalesOrderHeaders step
 * Publish, Trigger and Monitor the integration pipeline
-* Create a new SQL scrtipt to check the result in Synapse
+* Create a new SQL script to check the result in Synapse
+
+> Note: Make sure to replace the XX in the SQL scripts with the participant number assigned to you
 
 ```sql 
-select count(*) from SalesOrderItems
-select * from SalesOrderItems
+select count(*) from XXSalesOrderItems
+select * from XXSalesOrderItems
 ```
 
 ## Implement the Payment Pipeline
