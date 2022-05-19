@@ -183,19 +183,21 @@ This dataset will act as the source.
 > Note : the source code of the CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls)
 
 
-### Create an Integration DataSet for the Synapse Sales Orders
+### Create an Integration DataSet for the Synapse Sales Orders Headers
 This dataset will act as the `sink` in our pipeline.
 * Switch to the `Data`View
 
-* Create a new `Integration DataSet` for the Synapse Sales Orders
+* Create a new `Integration DataSet` for the Synapse Sales Order Headers
 
 <img src="images/synapsews/syn4.jpg" height=300>
 
-* As a name we used `SynSalesOrderHeaders` and for the linked service we used the one we just created `SynMicroHackPool`
+* As a name we used `U##SynSalesOrderHeaders` and for the linked service we used the one we just created `SynMicroHackPool`
 
-* Select the `SalesOrderHeaders` table
+* Select the `U##SalesOrderHeaders` table
 
 <img src="images/synapsews/syn5.jpg" height=300>
+
+* Click on `OK`
 
 * Again leave the information on the tab as-is and move to the next step
 
@@ -204,7 +206,7 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/syn6.jpg" height=300>
 
-* Create a new `Pipeline`, we used `ExtractSalesOrderHeaders` as a name
+* Create a new `Pipeline`, we used `U##ExtractSalesOrderHeaders` as a name
 
 <img src="images/synapsews/pipelineView.jpg">
 
@@ -212,11 +214,14 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/copyAction.jpg">
 
+* Under General change the Name to `U##ExtractSalesOrderHeaders`
+<img src="images/synapsews/CopyUpdateName.jpg">
+
 * In the `source` tab, select your SAP Sales Order Dataset as the source
 
 <img src="images/synapsews/RFCCopyActionSource.jpg">
 
-* In the `sink` tab, select the Synapse Sales Order Dataset as the sink
+* In the `sink` tab, select the U## Synapse Sales Order Headers Dataset as the sink
 
 <img src="images/synapsews/RFCCopyActionSink.jpg">
 
@@ -264,8 +269,8 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
 * Check the result in Synapse using SQL. You can do this via the `Develop` view and create a new SQL script.
 
 ```sql
-select count(*) from SalesOrderHeaders
-select * from SalesOrderHeaders
+select count(*) from U##SalesOrderHeaders
+select * from U##SalesOrderHeaders
 ```
 
 ## Implement the SalesOrderItems Pipeline
@@ -279,11 +284,13 @@ The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is 
 This dataset will act as the source for our pipeline.
 * Create a `Integration DataSet` based on `SAP ECC` adapter
 
-* Use the previously created linked service and as a name we used `S4DSalesOrderItems`
+* Use the previously created linked service and as a name we used `UXXS4DSalesOrderItems`
 
-* Use `C_Salesorderitemfs`as path
+* Use `C_Salesorderitemfs` as path
 
 <img src="images/synapsews/S4DSalesOrderItemsDS.jpg">
+
+* Click on `OK`
 
 * Leave the information as-is and move to the next step
 
@@ -295,29 +302,31 @@ This dataset will act as the sink for our pipeline.
 
 <img src="images/synapsews/syn8.jpg" height=300>
 
-* As a name we use `SynSalesOrderItems` and select the `SalesOrderItems` table
+* As a name we use `U##SynSalesOrderItems` and select the `U##SalesOrderItems` table
+
+* Click on `OK`
 
 
 ### Create the integration pipeline
 
 * Go to the `Integrate` view, and execute the same steps as for the SalesOrderHeaders data
 * Create a new `Pipeline`
-* Use the `Copy` action, as name we use `ExtractSalesOrderItems`
+* Use the `Copy` action, as name we use `U##ExtractSalesOrderItems`
 
 <img src="images/synapsews/syn9.jpg">
 
-* As source select the SAP SalesOrderItem oData Dataset, which we named as `S4DSalesOrderItems`.
-* As sink, select the Synapse SalesOrderItem DataSet. We named this as `SynSalesOrderItems`. Again, change the copy method to `PolyBase`.
+* As source select the SAP SalesOrderItem oData Dataset, which we named as `U##S4DSalesOrderItems`.
+* As sink, select the Synapse SalesOrderItem DataSet. We named this as `U##SynSalesOrderItems`. Again, change the copy method to `PolyBase`.
 * Under the `Mapping` tab use `Import schemas`
 * Under the `Settings` tab enable and configure the `Staging Area` as done in the SalesOrderHeaders step
 * Publish, Trigger and Monitor the integration pipeline
 * Create a new SQL script to check the result in Synapse
 
-> Note: Make sure to replace the XX in the SQL scripts with the participant number assigned to you
+> Note: Make sure to replace the ## in the SQL scripts with the participant number assigned to you
 
 ```sql 
-select count(*) from XXSalesOrderItems
-select * from XXSalesOrderItems
+select count(*) from U##SalesOrderItems
+select * from U##SalesOrderItems
 ```
 
 ## Implement the Payment Pipeline
@@ -333,10 +342,11 @@ This dataset will act as the source for our pipeline.
 
 <img src="images/synapsews/syn10.jpg" height=300>
 
-* As name we use `CosmosPaymentData`. Use collection : `paymentData`.
+* As name we use `U##CosmosPaymentData`. Use collection : `paymentData`.
 
 <img src="images/synapsews/cosmosPaymentDS.jpg" height=300>
 
+* Click on OK
 
 ### Create a Integration DataSet for the Synapse Payments
 This dataset will act as the sink for our pipeline
@@ -344,16 +354,21 @@ This dataset will act as the sink for our pipeline
 
 <img src="images/synapsews/syn11.jpg" height=300>
 
-* As name we use `SynPayments`. Select the `Payments` table
+* As name we use `U##SynPayments`. Select the `U##Payments` table
 
 ### Create the Integration pipeline for the Payment flow
 * Go to the `Integrate` view
 * Add a new `Pipeline`
-* Use the `Copy` action and name it `ExtractPayments`
-* As source select the Cosmos DB payment Dataset, we named this `CosmosPaymentData`.
-* As sink, select the Synapse Payment DataSet. We named this `SynPayments`. As Copy method choose `PolyBase`.
+* Use the `Copy` action and name it `U##ExtractPayments`
+* As source select the Cosmos DB payment Dataset, we named this `U##CosmosPaymentData`.
+* As sink, select the Synapse Payment DataSet. We named this `U##SynPayments`. As Copy method choose `PolyBase`.
 * Under the `Settings` tab enable and configure the `Staging Area` as done in the earlier pipelines
-* Go to the tab `Mapping` and choose `Import schemas`. Make sure to remove the mappings which are not shown in the screenshot starting with `_`, you can remove them my unchecking the checkbox behind them. Do not forget to change the `Column name` for `Value` to `PaymentValue`.
+* Go to the tab `Mapping` and choose `Import schemas`. Make sure to remove the mappings which are not shown in the screenshot: 
+* starting with `_` and 
+* also the mapping of `id`. 
+
+You can remove them my unchecking the checkbox behind them. 
+Do not forget to change the `Column name` for `Value` to `PaymentValue`.
 
 <img src="images/synapsews/paymentMapping.jpg">
 
