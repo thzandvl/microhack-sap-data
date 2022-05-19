@@ -53,7 +53,7 @@ We'll describe the usage of Synapse Studio.
 * Create SQL Scripts for each of the tables (`SalesOrderHeaders`, `SalesOrderItems`, `Payments`)
 <img src="images/synapsews/createSQLScript.jpg">
 
-> Note: Each participant will create his/her own tables by adding a prefix 01, 02, 03, ... Make sure to change the XX in the SQL scripts to the participant number assigned you 
+> Note: Each participant will create his/her own tables by adding a prefix U01, U02, U03, ... Make sure to change the U\<XX> in the SQL scripts to the participant number assigned you 
 
 > Note: Make sure to change the "Connect to" value from 'builtin' to your own SQL pool as shown in the screenshot below. As by default it will be connected to the 'builtin' SQL pool of Synapse.
 
@@ -61,9 +61,9 @@ We'll describe the usage of Synapse Studio.
 
 Make sure to run all the scripts in order to create the tables.
 
-- SalesOrderHeaders
+- U\<XX>SalesOrderHeaders
 ```sql
-CREATE TABLE XXSalesOrderHeaders(
+CREATE TABLE U<XX>SalesOrderHeaders(
 	BILLINGCOMPANYCODE nvarchar(4),
 	BILLINGDOCUMENTDATE date,
 	COUNTRY nvarchar(3),
@@ -95,9 +95,9 @@ CREATE TABLE XXSalesOrderHeaders(
 	POSTALCODE nvarchar(10)
 )
 ```
-- SalesOrderItems
+- U\<XX>SalesOrderItems
 ```sql
-CREATE TABLE XXSalesOrderItems(
+CREATE TABLE UXXSalesOrderItems(
     SalesOrder nvarchar(10),
     SalesOrderItem nvarchar(6),
     SalesOrderItemText nvarchar(40),
@@ -131,9 +131,9 @@ CREATE TABLE XXSalesOrderItems(
     RequirementSegment nvarchar(40)
 )
 ```
-- Payments
+- U\<XX>Payments
 ```sql
-CREATE TABLE XXPayments(
+CREATE TABLE UXXPayments(
 	PaymentNr nvarchar(10),
 	SalesOrderNr nvarchar(10),
 	CustomerNr nvarchar(10),
