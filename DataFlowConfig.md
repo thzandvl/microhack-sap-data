@@ -61,9 +61,9 @@ We'll describe the usage of Synapse Studio.
 
 Make sure to run all the scripts in order to create the tables.
 
-- U\<XX>SalesOrderHeaders
+- U##SalesOrderHeaders
 ```sql
-CREATE TABLE U<XX>SalesOrderHeaders(
+CREATE TABLE U##SalesOrderHeaders(
 	BILLINGCOMPANYCODE nvarchar(4),
 	BILLINGDOCUMENTDATE date,
 	COUNTRY nvarchar(3),
@@ -95,9 +95,9 @@ CREATE TABLE U<XX>SalesOrderHeaders(
 	POSTALCODE nvarchar(10)
 )
 ```
-- U\<XX>SalesOrderItems
+- U##SalesOrderItems
 ```sql
-CREATE TABLE UXXSalesOrderItems(
+CREATE TABLE U##SalesOrderItems(
     SalesOrder nvarchar(10),
     SalesOrderItem nvarchar(6),
     SalesOrderItemText nvarchar(40),
@@ -131,9 +131,9 @@ CREATE TABLE UXXSalesOrderItems(
     RequirementSegment nvarchar(40)
 )
 ```
-- U\<XX>Payments
+- U##Payments
 ```sql
-CREATE TABLE UXXPayments(
+CREATE TABLE U##Payments(
 	PaymentNr nvarchar(10),
 	SalesOrderNr nvarchar(10),
 	CustomerNr nvarchar(10),
@@ -150,12 +150,15 @@ CREATE TABLE UXXPayments(
 
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses an RFC.
 The view to extract from is : `ZBD_ISALESDOC_E`. 
->Note: You can have a look in the SAP system to check the contents. Use the Data Dictionary, transaction `SE11`.
+
 
 ## Select the data to extract
 Create an Integration DataSet based on the previously created `Linked Service`.
 This dataset will act as the source.
 * Switch to the `Data` View
+* Select the `Linked` Tab. 
+<img src="images/synapsews/LinkedTab.jpg>
+
 * Create a new `Integration Dataset`
 
 <img src="images/synapsews/IntegrationDataSet.jpg">
@@ -164,9 +167,12 @@ This dataset will act as the source.
 
 <img src="images/synapsews/syn1.jpg" height=300>
 
+* Provide a name, U##S4DSalesOrderHeaders
 * Use your previously created Linked Service for the SAP System (Table connector), as name we used `S4DCLNT100`
 
 * Use `ZBD_ISALESDOC_E` as table, it can take some time before the list of tables is loaded
+
+* Click `OK` 
 
 * Use `Preview Data` to check if the data can be retrieved
 
