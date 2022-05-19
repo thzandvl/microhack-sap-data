@@ -9,8 +9,8 @@ In PowerBI, we first need to connect to our Synapse.
 
 <img src="images/powerBi/getdata.jpg" height=100>
 
-* In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` in the overview blade of your Synapse Workspace.
-The Database is the SQL server pool you created.
+* In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` (sapdatasynwse6205e9c2a2122ba.sql.azuresynapse.net) in the overview blade of your Synapse Workspace.
+The Database is the SQL server pool you created (sapdatasynsql).
 
 <img src="images/powerBi/sqlendpoint.jpg" height=100>
 
@@ -20,18 +20,18 @@ The Database is the SQL server pool you created.
 
 * Use your Azure credentials to logon or the userid and password used during the Synapse Workspace creation.
 
-* Select the 3 tables created in the previous steps.
+* Select the 3 tables created in the previous steps. Make sure to select the ones with your Prefix U##
 
 <img src="images/powerBi/dataselection.jpg" height= 300>
 
 * Select `Transform Data`
 In order for all 3 tables to have the same sales order number, we'll convert the sales order number from string to integer.
-In the 3 tables select the sales order number column and change the type to `Whole Number`.
+In the 3 tables select the sales order (number) column and change the type to `Whole Number`.
 The formula for the column will then change to `Table.TransformColumnTypes(dbo_SalesOrderItems,{{"SalesOrder", Int64.Type}})`.
 
-    * For `SalesOrderHeaders`, change the `SALESDOCUMENT` column. The transformation will remove the leading zeros
-    * For `SalesOrderItems`, change the `SalesOrder` column
-    * For `Payments`, change the `SalesOrderNr` column
+    * For `U##SalesOrderHeaders`, change the `SALESDOCUMENT` column. The transformation will remove the leading zeros
+    * For `U##SalesOrderItems`, change the `SalesOrder` column
+    * For `U##Payments`, change the `SalesOrderNr` column
 
 <img src="images/powerBi/whole_number.jpg">
 
@@ -41,15 +41,15 @@ The formula for the column will then change to `Table.TransformColumnTypes(dbo_S
 In this step we'll model the relationships between the tables.
 The Relationships are as follows :
 
-`SalesOrderHeader 1:n SalesOrderItems`
+`U##SalesOrderHeader 1:n U##SalesOrderItems`
 
-`Payment 1:1 SalesOrderHeader`
+`U##Payment 1:1 U##SalesOrderHeader`
 
 * Switch to the `Model`view
 
 <img src="images/powerBi/relationalModel.jpg">
 
-* From the `SalesOrderHeaders`table, select the `SALESDOCUMENT`field and drag and drop it on the `SalesOrder`field of the `SalesOrderItems`table.
+* From the `SalesOrderHeaders` table, select the `SALESDOCUMENT`field and drag and drop it on the `SalesOrder`field of the `SalesOrderItems`table.
 The relationship defaults to `1:*`
 
 <img src="images/powerBi/SalesOrderHeadersItemsRel.jpg">
@@ -58,7 +58,7 @@ You can look at the relationship details by double clicking.
 
 <img src="images/powerBi/SalesOrderHeadersItemsRelDetails.jpg">
 
-* In the same way create the relationship between the `Payments`and the `SalesOrderHeaders` table using the `SalesOrderNr`and `SALESDOCUMENT`field.
+* In the same way create the relationship between the `U##Payments`and the `U##SalesOrderHeaders` table using the `SalesOrderNr`and `SALESDOCUMENT`field.
 
 * The end results looks as follows :
 
@@ -139,7 +139,7 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 
 * Rename the merged table to `SalesOrderPayments`
 
-* In the `SalesOrderPayments`table select column `Payments`. Expand this column and select the fields `PaymentNr`, `PaymentDate`, `PaymentValue`, `Currency`
+* In the `SalesOrderPayments` table select column `Payments`. Expand this column and select the fields `PaymentNr`, `PaymentDate`, `PaymentValue`, `Currency`
 
 <img src="images/powerBi/selectPaymentFields.jpg">
 
