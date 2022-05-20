@@ -147,6 +147,8 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 
 ### Calculate Payment Offset
 We now need to calculate the difference between the Billing date and the actual payment date.
+* From the `Report`screen select `Transform data`
+
 * Add a new `Custom Column` to the `SalesOrderPayments` table
 
 <img src="images/powerBi/AddCustomColumn.png" height=200>
@@ -155,7 +157,7 @@ We now need to calculate the difference between the Billing date and the actual 
 * Use the following formula
 
 ```
-Duration.Days([Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
+Duration.Days([U##Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 ```
 
 * Change the data type to `Whole Number`
