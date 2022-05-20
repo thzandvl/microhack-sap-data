@@ -161,7 +161,7 @@ Duration.Days([U##Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 ```
 
 * Change the data type to `Whole Number`
-* Use `Close & Apply` from the Home tab to switch to the data view
+* From the `Start` section use `Close & Apply` from the Home tab to switch to the data view
 
 ### Average Offset Report
 * Swith to the reporting view
