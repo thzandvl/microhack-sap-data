@@ -15,7 +15,7 @@ You can create this view either via Synapse Studio or via Azure Data Studio.
 * In the newly created script tab, copy paste the following SQL Query that will execute a join between `SalesOrderHeaders` and `Payments` to create a new view.
 
 ```sql
-CREATE VIEW [dbo].[SalesPaymentsFull]
+CREATE VIEW [dbo].[UXXSalesPaymentsFull]
 	AS SELECT s.[SALESDOCUMENT]
     , s.[CUSTOMERNAME]
     , s.[CUSTOMERGROUP]
@@ -34,8 +34,8 @@ CREATE VIEW [dbo].[SalesPaymentsFull]
     , s.[CITYNAME]
     , s.[POSTALCODE]
     , DATEDIFF(dayofyear, s.BILLINGDOCUMENTDATE, p.PaymentDate) as PAYMENTDELAYINDAYS
- FROM [dbo].[SalesOrderHeaders] as s
-JOIN [dbo].[Payments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')), ' ', '0') = p.[SalesOrderNr]
+ FROM [dbo].[UXXSalesOrderHeaders] as s
+JOIN [dbo].[UXXPayments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')), ' ', '0') = p.[SalesOrderNr]
 ```
 
 After `Refresh`the view will appear under `Views` when using Azure Data Studio.
@@ -45,17 +45,13 @@ After `Refresh`the view will appear under `Views` when using Azure Data Studio.
 You can now test the view by executing the SQL:
 
 ```sql
-select * from SalesPaymentsFull
+select * from UXXSalesPaymentsFull
 ```
 
 <img src="images/aml/01b-synapse-query.PNG" >
 
 
 ## Azure Machine Learning
-
-The Azure Machine Learning Workspace is automatically deployed with the Terraform script from the first steps. If you didn't use the Terraform option you will first have to create an Azure Machine Learning Workspace via [these](DeployAzureMLWorkspace.md) instructions.
-
-For more info on Azure ML, pleae have a look at [What is automated machine learning (AutoML)](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml).
 
 ### Open the ML Studio
 By default the name for the ML Workspace is `sap-data-ml-ws`. Go to this workspace via your resource group or using the search bar. You can now open the ML Studio via `Launch studio` from here or alternatively sign in via https://ml.azure.com.
@@ -67,10 +63,10 @@ First you have to point the ML studio to the location of your data, which is the
 
 Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data_ml_ds`. Connect to the Synapse database.
 
-* Datastore name : `sap_data_ml_ds`
+* Datastore name : `UXXsap_data_ml_ds`
 * Use Data store type : `Azure SQL Database`
 * Use Account Selection method : `Enter Manually`
-* Use your Synapse Workspace name as `Server Name`
+* Use your Synapse Workspace name as `Server Name`, (e.g. sapdatasynws56cae348989bc61e)
 * Use your Synapse SQL Pool as Database Name, in our case this is `sapdatasynsql`
 * Select your Subscription
 * Enter your resource group name, in our case this is `microhack-sap-data-rg`
@@ -91,7 +87,7 @@ We'll be using `Automated Machine Learning` to predict when customers will pay f
 <img src="images/aml/dataSetFromDataStore.jpg" height=300>
 
 A Guided Procedure will appear :
-* <b>Basic info : </b> Provide a Name for the `Dataset`. We use `SalesPaymentsView`. `Next`.
+* <b>Basic info : </b> Provide a Name for the `Dataset`. We use `UXXSalesPaymentsView`. `Next`.
 
 <img src="images/aml/03-aml-studio.PNG" height=300>
 
@@ -102,7 +98,7 @@ A Guided Procedure will appear :
 
 * Use the following SQL query to get all the data from the view defined above.
 ```sql
-select * from SalesPaymentsFull
+select * from UXXSalesPaymentsFull
 ```
 
 * <b>Settings and Preview :</b> To Ensure that your query is working fine you are able to visualize the data in the next window.
@@ -128,12 +124,12 @@ Create the dataset
 * Select the newly created `Dataset` and create a new experiment.
 <img src="images/aml/11-aml-studio.PNG" height= 200>
 
-1. Specify a name, we use `sap-data-ml-experiment`
+1. Specify a name, we use `u##sap-data-ml-experiment`
 2. Select the `Target Column` : in our case we will use `PAYMENTDELAYINDAYS` to predict the forecast.
 
 <img src="images/aml/ml4.jpg">
 
-3. Create a new compute that will be used to train your model. As name we use `sap-data-ml-vm`. In this example we use a maximum of 3 nodes to increase the processing power.
+3. Create or re-use a new compute that will be used to train your model. As name we use `u##sap-data-ml-vm`. In this example we use a maximum of 3 nodes to increase the processing power.
 
 <img src="images/aml/ml5.jpg" height=500>
 <img src="images/aml/ml6.jpg">
@@ -149,7 +145,7 @@ Create the dataset
     1. Select `Normalized root mean squared error` as Primary metric.
     <img src="images/aml/ml8.jpg" height=300>
 
-    2. In order to reduce the runtime of our 'Automated ML Run', we'll deselect some algorithms : `ElasticNet, GradientBoosting, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, FastLinearRegressor, OnlineGradientDescentRegressor`
+    2. In order to reduce the runtime of our 'Automated ML Run', we'll deselect some algorithms : (just make sure that only the two `DecisionTree` and `XGBoostRegressor` are unselected!) `ElasticNet, GradientBoosting, KNN, LassoLars, SGD, RandomForest, ExtremeRandomTrees, LightGBM, FastLinearRegressor, OnlineGradientDescentRegressor`
     > Note : If you have time you can include these algorithms.
     <!-- >>>Note : You need to add `TensorFlowLinearRegressor`, `TensorFlowDNN` manually -->
     <!-- keep decisiontree? -->
@@ -174,7 +170,7 @@ In this step we will deploy the best model that has been trained by AutoML and t
 * You can navigate into the different sections and visualize the information about this algorithm, then click on deploy.
 <img src="images/aml/ml12.jpg" height=400>
 
-* Specify a name for your deployment, we used `sap-data-ml-model`, and select `Azure Container Instance` as compute type.
+* Specify a name for your deployment, we used `u##sap-data-ml-model`, and select `Azure Container Instance` as compute type.
 
 <img src="images/aml/ml13.jpg" height=300>
 
@@ -183,7 +179,7 @@ In this step we will deploy the best model that has been trained by AutoML and t
 <img src="images/aml/deployWebService.png" height=100>
 
 
-* Validate and wait for the completion of the deployment. This can take a few minutes.
+* Select `Endpoints` from `Assets` and select your endpoints 'u##sap-data-ml-model'. Validate and wait for the completion of the deployment. This can take a few minutes. 
 
 <img src="images/aml/ml14.jpg" height= 400>
 
