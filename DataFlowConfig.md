@@ -53,7 +53,7 @@ We'll describe the usage of Synapse Studio.
 * Create SQL Scripts for each of the tables (`SalesOrderHeaders`, `SalesOrderItems`, `Payments`)
 <img src="images/synapsews/createSQLScript.jpg">
 
-> Note: Each participant will create his/her own tables by adding a prefix U01, U02, U03, ... Make sure to change the U\<XX> in the SQL scripts to the participant number assigned you 
+> Note: Each participant will create his/her own tables by adding a prefix U01, U02, U03, ... Make sure to change the U## in the SQL scripts to the participant number assigned you 
 
 > Note: Make sure to change the "Connect to" value from 'builtin' to your own SQL pool as shown in the screenshot below. As by default it will be connected to the 'builtin' SQL pool of Synapse.
 
