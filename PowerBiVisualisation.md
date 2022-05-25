@@ -9,8 +9,8 @@ In PowerBI, we first need to connect to our Synapse.
 
 <img src="images/powerBi/getdata.jpg" height=100>
 
-* In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` (sapdatasynwse6205e9c2a2122ba.sql.azuresynapse.net) in the overview blade of your Synapse Workspace.
-The Database is the SQL server pool you created (sapdatasynsql).
+* In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` (`sapdatasynws56cae348989bc61e.sql.azuresynapse.net`) in the overview blade of your Synapse Workspace.
+The Database is the SQL server pool you created (`sapdatasynsql`).
 
 <img src="images/powerBi/sqlendpoint.jpg" height=100>
 
@@ -111,8 +111,8 @@ The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrde
 
 ## Sales Per CustomerGroup and MaterialGroup
 * Select a 'Stacked Bar Chart'
-* Use `SalesOrderHeaders.CUSTOMERGROUP`as X-axis
-* Use `SalesOrderItems.NetAmount`as Y-axis
+* Use `SalesOrderItems.NetAmount`as X-axis
+* Use `SalesOrderHeaders.CUSTOMERGROUP`as Y-axis
 * Use `SalesOrderItems.MaterialGroup`as Legend
 
 <img src="images/powerBi/SalesCustMatGroup.jpg">
