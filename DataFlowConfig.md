@@ -318,7 +318,7 @@ This dataset will act as the sink for our pipeline.
 * As source select the SAP SalesOrderItem oData Dataset, which we named as `U##S4DSalesOrderItems`.
 * As sink, select the Synapse SalesOrderItem DataSet. We named this as `U##SynSalesOrderItems`. Again, change the copy method to `PolyBase`.
 * Under the `Mapping` tab use `Import schemas`
-* Under the `Settings` tab enable and configure the `Staging Area` as done in the SalesOrderHeaders step
+* Under the `Settings` tab enable and configure the `Staging Area` as done in the SalesOrderHeaders step (e.g. `sap-data-adls/staging` for the Storage Path)
 * Publish, Trigger and Monitor the integration pipeline
 * Create a new SQL script to check the result in Synapse
 
@@ -362,7 +362,7 @@ This dataset will act as the sink for our pipeline
 * Use the `Copy` action and name it `U##ExtractPayments`
 * As source select the Cosmos DB payment Dataset, we named this `U##CosmosPaymentData`.
 * As sink, select the Synapse Payment DataSet. We named this `U##SynPayments`. As Copy method choose `PolyBase`.
-* Under the `Settings` tab enable and configure the `Staging Area` as done in the earlier pipelines
+* Under the `Settings` tab enable and configure the `Staging Area` as done in the earlier pipelines (e.g. `sap-data-adls/staging` for the Storage Path)
 * Go to the tab `Mapping` and choose `Import schemas`. Make sure to remove the mappings which are not shown in the screenshot: 
 * starting with `_` and 
 * also the mapping of `id`. 
@@ -376,8 +376,8 @@ Do not forget to change the `Column name` for `Value` to `PaymentValue`.
 * Check the result in Synapse using SQL
 
 ```sql
-select count(*) from XXPayments
-select * from XXPayments
+select count(*) from UXXPayments
+select * from UXXPayments
 ```
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
