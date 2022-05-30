@@ -153,7 +153,7 @@ The view to extract from is : `ZBD_ISALESDOC_E`.
 
 
 ## Select the data to extract
-Create an Integration DataSet based on the Linked Service: `S4DCLNT100`
+Create an Integration Dataset.
 
 This dataset will act as the `source` in our pipeline.
 * Switch to the `Data` View
@@ -207,11 +207,11 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/syn6.jpg" height=300>
 
-* Create a new `Pipeline`, we used `U##ExtractSalesOrderHeaders` as a name
+* Create a new `Pipeline`. Change its name to `U##ExtractSalesOrderHeaders` in the properties window
 
 <img src="images/synapsews/pipelineView.jpg">
 
-* Use the `copy action` by dragging it onto the pipeline canvas
+* Use the `Copy Data` activity from the `Move and transform` section from the left hand menu. Drag it to the pipeline canvas.
 
 <img src="images/synapsews/copyAction.jpg">
 
@@ -223,14 +223,19 @@ This dataset will act as the `sink` in our pipeline.
 <img src="images/synapsews/RFCCopyActionSource.jpg">
 
 * In the `sink` tab, select the U## Synapse Sales Order Headers Dataset as the sink
+* Choose `Polybase` as the Copy Method
 
 <img src="images/synapsews/RFCCopyActionSink.jpg">
-
->Note : Ensure to select `PolyBase`
 
 * In the mapping tab, choose `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
 
 <img src="images/synapsews/rfcMapping.jpg">
+
+* In the `Settings` blade, choose `enable staging` and use the existing Linked Service to the Synapse Data Lake.
+
+* Enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
+
+<img src="images/synapsews/staging.jpg" height=400>
 
 * For the prediction model we will calculate the offset between the billing document date and the actual payment data. For this we need to have these date fields mapped to SQL Date fields. Therefore, go to the JSON Code for the pipeline and add `convertDateToDateTime` and `convertTimeToTimespan` parameters.
 
@@ -251,15 +256,11 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
 <!-- >>Note : if these parameters are not entered correctly the date fields will remain as a String format. -->
 <!-- Note : these are internal parameters!!! -->
 
-* In the `Settings` blade, `enable staging` and use the existing Linked Service to the Synapse Data Lake.
-
-* Enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
-
-<img src="images/synapsews/staging.jpg" height=400>
-
-* Now `Publish all` and once this is successfull trigger the pipeline, use `Add trigger` -> `Trigger now` -> `OK`
+* Click `Publish all` to save newly created objects 
 
 <img src="images/synapsews/syn7.jpg" height=200>
+
+* Trigger the pipeline by choosing `Add trigger` -> `Trigger now` -> `OK`
 
 <img src="images/synapsews/triggerNow.jpg">
 
@@ -273,6 +274,8 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
 select count(*) from U##SalesOrderHeaders
 select * from U##SalesOrderHeaders
 ```
+
+> Note: Running the same pipeline more than once will results in duplicated rows. Ensure you truncate all rows in the table if you want to re-run the pipeline.
 
 ## Implement the SalesOrderItems Pipeline
 
@@ -315,13 +318,14 @@ This dataset will act as the sink for our pipeline.
 ### Create the integration pipeline
 
 * Go to the `Integrate` view, and execute the same steps as for the SalesOrderHeaders data
-* Create a new `Pipeline`
+* Create a new `Pipeline` and change the name in the Property window
 * Use the `Copy` action, as name we use `U##ExtractSalesOrderItems`
 
 <img src="images/synapsews/syn9.jpg">
 
 * As source select the SAP SalesOrderItem oData Dataset, which we named as `U##S4DSalesOrderItems`.
-* As sink, select the Synapse SalesOrderItem DataSet. We named this as `U##SynSalesOrderItems`. Again, change the copy method to `PolyBase`.
+* As sink, select the Synapse SalesOrderItem DataSet. We named this as `U##SynSalesOrderItems`. 
+* Change the Copy Method to `Polybase`
 * Under the `Mapping` tab use `Import schemas`
 * Under the `Settings` tab enable and configure the `Staging Area` as done in the SalesOrderHeaders step (e.g. `sap-data-adls/staging` for the Storage Path)
 * Publish, Trigger and Monitor the integration pipeline
@@ -377,7 +381,7 @@ Do not forget to change the `Column name` for `Value` to `PaymentValue`.
 
 <img src="images/synapsews/paymentMapping.jpg">
 
-* Create, publish and trigger the integration pipeline
+* Publish and then trigger the integration pipeline
 * Check the result in Synapse using SQL
 
 ```sql
