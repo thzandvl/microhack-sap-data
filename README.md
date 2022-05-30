@@ -22,7 +22,9 @@ To execute the Microhack follow the steps below:
 2. [PowerBI Visualisation](PowerBiVisualisation.md)
 3. [Predict Cash Flow](PredictIncomingCashflow.md)
 4. [Integrate ML and PowerBI](IntegrateMLPowerBI.md)
-5. [Cleanup the Microhack Environment](CleanEnvironment.md)
+5. [Create Alerting Rule](CreateAlertingRule.md)
+6. [Take Actions in the SAP system](UpdateInformationInSap.md)
+ 
 
 ## Additional Documentation
 * [Copy data from an SAP table using Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-table)
