@@ -18,7 +18,6 @@ If you want to setup your own SAP CAL system and Cosmos DB, follow the steps at 
 ## Implementation
 To execute the Microhack follow the steps below:
 
-0. [Software Prerequisites](SoftwarePrerequisites.md)
 1. [DataFlow Config](DataFlowConfig.md)
 2. [PowerBI Visualisation](PowerBiVisualisation.md)
 3. [Predict Cash Flow](PredictIncomingCashflow.md)
