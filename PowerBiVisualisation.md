@@ -5,12 +5,13 @@ We will be using [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/)
 
 ## Setup & Importing Data
 In PowerBI, we first need to connect to our Synapse.
-* Choose `Get Data`and select `Synapse Analytics (SQL DW)`
+* Choose `Get Data`and select `Azure Synapse Analytics SQL`
 
-<img src="images/powerBi/getdata.jpg" height=100>
+<img src="images/synapsews/getDataSynapseSQL.jpg" height=100>
 
-* In the next screen fill in the server and database. You can find the server in the Azure Portal as `Dedicated SQl Endpoint` (`sapdatasynws56cae348989bc61e.sql.azuresynapse.net`) in the overview blade of your Synapse Workspace.
-The Database is the SQL server pool you created (`sapdatasynsql`).
+* In the next screen provide the name of the Synapse server and the database name. 
+Server: `sapdatasynws56cae348989bc61e.sql.azuresynapse.net`)
+Database: `sapdatasynsql`
 
 <img src="images/powerBi/sqlendpoint.jpg" height=100>
 
@@ -18,22 +19,23 @@ The Database is the SQL server pool you created (`sapdatasynsql`).
 
 <img src="images/powerBi/synapseconnection.jpg" height= 175>
 
-* Use your Azure credentials to logon or the userid and password used during the Synapse Workspace creation.
+* Use your Microsoft account to log in.
 
 * Select the 3 tables created in the previous steps. Make sure to select the ones with your Prefix U##
 
 <img src="images/powerBi/dataselection.jpg" height= 300>
 
 * Select `Transform Data`
-In order for all 3 tables to have the same sales order number, we'll convert the sales order number from string to integer.
-In the 3 tables select the sales order (number) column and change the type to `Whole Number`.
-The formula for the column will then change to `Table.TransformColumnTypes(dbo_SalesOrderItems,{{"SalesOrder", Int64.Type}})`.
+Columns that store the sales order number are incorrectly represented as strings. To change their types to integer, click with the right mouse button on column name and choose `Change Type -> Whole Number`. 
+Apply this change to the following columns:
 
     * For `U##SalesOrderHeaders`, change the `SALESDOCUMENT` column. The transformation will remove the leading zeros
     * For `U##SalesOrderItems`, change the `SalesOrder` column
     * For `U##Payments`, change the `SalesOrderNr` column
 
 <img src="images/powerBi/whole_number.jpg">
+
+You will notice that the column formula will contain additional transformation, e.g. `Table.TransformColumnTypes(dbo_SalesOrderItems,{{"SalesOrder", Int64.Type}})`.
 
 * Select `Close & Apply`
 
@@ -139,7 +141,9 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 
 * Rename the merged table to `SalesOrderPayments`
 
-* In the `SalesOrderPayments` table select column `Payments`. Expand this column and select the fields `PaymentNr`, `PaymentDate`, `PaymentValue`, `Currency`
+* By default the joined table is initially represented as a single column. To include only selected fields choose the icon on the right hand side of the `Payments` column. 
+
+* Select `PaymentNr`, `PaymentDate`, `PaymentValue` and `Currency` fields.
 
 <img src="images/powerBi/selectPaymentFields.jpg">
 
@@ -161,7 +165,7 @@ Duration.Days([U##Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 ```
 
 * Change the data type to `Whole Number`
-* From the `Start` section use `Close & Apply` from the Home tab to switch to the data view
+* From the `Home` section use `Close & Apply` from the Home tab to switch to the data view
 
 ### Average Offset Report
 * Swith to the reporting view
