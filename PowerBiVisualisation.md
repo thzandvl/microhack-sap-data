@@ -22,7 +22,7 @@ Database: `sapdatasynsql`
 * On the next screen provide your Microsoft credentials to log in. 
 > Note: Choose Microsoft Account from the authentication options
 
-<img src="images/synapsews/authentication.jpg" height=100>
+<img src="images/synapsews/authentication.jpg" height=170>
 
 * Select the 3 tables created in the previous steps. Make sure to select the ones with your Prefix U##
 
@@ -131,9 +131,9 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 ### Merge SalesOrderHeaders and Payments
 * Under `Home` select `Transform data`
 * Select the `SalesOrderHeaders`table
-* Select `Merge Queries > Merge Queries as New`
+* Select `Merge Queries > Merge Queries as New` from the `Home` ribbon
 
-<img src="images/powerBi/MergeQueries.jpg">
+<img src="images/synapsews/mergeQueries.jpg">
 
 * Define the merge with the Payments table
     * In `SalesOrderHeaders`select the `SALESDOCUMENT`column
