@@ -55,6 +55,10 @@ To create tables in Synapse follow below steps:
 
 ><img src="images/synapsews/connectToPool.jpg">
 
+> Note: Every time you create a new object in Synapse, like a pipeline or SQL Script it is a good practice to change the default name. You can do this in the Properties window.
+
+><img src="images/synapsews/changeNameProperties.jpg">
+
 Make sure to run all the scripts in order to create the tables.
 
 - U##SalesOrderHeaders
@@ -149,8 +153,9 @@ The view to extract from is : `ZBD_ISALESDOC_E`.
 
 
 ## Select the data to extract
-Create an Integration DataSet based on the previously created `Linked Service`.
-This dataset will act as the source.
+Create an Integration DataSet based on the Linked Service: `S4DCLNT100`
+
+This dataset will act as the `source` in our pipeline.
 * Switch to the `Data` View
 * Select the `Linked` Tab. 
 <img src="images/synapsews/LinkedTab.jpg>
@@ -164,9 +169,9 @@ This dataset will act as the source.
 <img src="images/synapsews/syn1.jpg" height=300>
 
 * Provide a name, U##S4DSalesOrderHeaders
-* Use your previously created Linked Service for the SAP System (Table connector), as name we used `S4DCLNT100`
+* Use the `S4DCLNT100` Linked Service
 
-* Use `ZBD_ISALESDOC_E` as table, it can take some time before the list of tables is loaded
+* Use `ZBD_ISALESDOC_E` as table. You can wait until Synapse loads all available tables from SAP system (which can take a bit of time), or alternatively select Edit checkbox and enter the table name manually.
 
 * Click `OK` 
 
@@ -187,7 +192,7 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/syn4.jpg" height=300>
 
-* As a name we used `U##SynSalesOrderHeaders` and for the linked service we used the one we just created `SynMicroHackPool`
+* As a name we used `U##SynSalesOrderHeaders` and choose `SynMicroHackPool` as a Linked Service
 
 * Select the `U##SalesOrderHeaders` table
 
@@ -280,7 +285,9 @@ The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is 
 This dataset will act as the source for our pipeline.
 * Create a `Integration DataSet` based on `SAP ECC` adapter
 
-* Use the previously created linked service and as a name we used `UXXS4DSalesOrderItems`
+* Choose `UXXS4DSalesOrderItems` as the name
+
+* Use the `S4DCLNT100_ODATA` as the linked service
 
 * Use `C_Salesorderitemfs` as path
 
@@ -294,9 +301,11 @@ This dataset will act as the source for our pipeline.
 ### Create a Integration DataSet for the Synapse Sales Order Items
 
 This dataset will act as the sink for our pipeline.
-* Create a `Integration DataSet` based on `Azure Synapse Analytics`, we use the linked service created earlier
+* Create a `Integration DataSet` based on `Azure Synapse Analytics`
 
 <img src="images/synapsews/syn8.jpg" height=300>
+
+* Choose `SynMicroHackPool` as the Linked Service
 
 * As a name we use `U##SynSalesOrderItems` and select the `U##SalesOrderItems` table
 
