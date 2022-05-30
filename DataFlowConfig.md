@@ -171,7 +171,7 @@ This dataset will act as the `source` in our pipeline.
 * Provide a name, U##S4DSalesOrderHeaders
 * Use the `S4DCLNT100` Linked Service
 
-* Use `ZBD_ISALESDOC_E` as table. You can wait until Synapse loads all available tables from SAP system (which can take a bit of time), or alternatively select Edit checkbox and enter the table name manually.
+* Use `ZBD_ISALESDOC_E` as table. You can wait until Synapse loads all available tables from SAP system (which can take a bit of time), or alternatively check the Edit box and enter the table name manually.
 
 * Click `OK` 
 
