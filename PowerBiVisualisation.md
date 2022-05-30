@@ -17,9 +17,10 @@ Database: `sapdatasynsql`
 
 <img src="images/synapsews/importFromSQLDB.jpg" height=175>
 
-* Confirm by clicking `Import Data`
+* Confirm by clicking `OK`
 
-* Use your Microsoft account to log in.
+* On the next screen provide your Microsoft credentials to log in. 
+> Note: Choose Microsoft Account from the authentication options
 
 * Select the 3 tables created in the previous steps. Make sure to select the ones with your Prefix U##
 
