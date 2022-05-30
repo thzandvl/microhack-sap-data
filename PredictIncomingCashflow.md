@@ -1,18 +1,17 @@
 # Predict Incoming Cashflow
 In this section we'll create a model to predict incoming cashflow based on historical payment delays for previous sales.
 
-We'll be using [Azure Machine Learning](https://ml.azure.com) for this.
+Firstly, we will prepare the data model in Synapse Workspace. Then we will use [Azure Machine Learning](https://ml.azure.com) to create and train the algorithm.
 
 ## Setup in Synapse
-In Synapse Studio, we will create a view joining data coming from `SalesOrderHeaders` and `Payments` tables that will be used for the prediction. 
-You can create this view either via Synapse Studio or via Azure Data Studio.
+Open [Synapse Studio](https://web.azuresynapse.net/?workspace=%2fsubscriptions%2f67f16219-3421-4cef-89b9-c06cf90d7bea%2fresourceGroups%2fmicrohack-sap-data-rg%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsapdatasynws56cae348989bc61e) to create a new view that joins data coming from the `SalesOrderHeaders` and the `Payments` tables. We will use it later to run the prediction. 
 
 * Choose the `Develop` tab, select `SQL Scripts` and click on `Actions` then `New SQL Script`
 <img src="images/aml/01-synapse-query.PNG" height=200>
 
 > Note : Ensure to connect to your SQL Pool
 
-* In the newly created script tab, copy paste the following SQL Query that will execute a join between `SalesOrderHeaders` and `Payments` to create a new view.
+* In the newly created script tab, copy paste the following SQL Query to create a new view that joins the `SalesOrderHeaders` and the `Payments` tables.
 
 ```sql
 CREATE VIEW [dbo].[UXXSalesPaymentsFull]
@@ -54,22 +53,23 @@ select * from UXXSalesPaymentsFull
 ## Azure Machine Learning
 
 ### Open the ML Studio
-By default the name for the ML Workspace is `sap-data-ml-ws`. Go to this workspace via your resource group or using the search bar. You can now open the ML Studio via `Launch studio` from here or alternatively sign in via https://ml.azure.com.
+Open [Azure Machine Learning](https://ml.azure.com) and select the `sap-data-ml-ws` workspace.
 
-<img src="images/aml/02-aml-studio.PNG" height= 400>
+<img src="images/aml/MLWelcome.png" height=175>
 
 ### DataStore Creation
 First you have to point the ML studio to the location of your data, which is the Synapse SQL Pool. For this you have to create a `DataStore`.
 
 Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data_ml_ds`. Connect to the Synapse database.
 
-* Datastore name : `UXXsap_data_ml_ds`
+* Datastore name : `uXXsap_data_ml_ds`
 * Use Data store type : `Azure SQL Database`
 * Use Account Selection method : `Enter Manually`
 * Use your Synapse Workspace name as `Server Name`, (e.g. sapdatasynws56cae348989bc61e)
 * Use your Synapse SQL Pool as Database Name, in our case this is `sapdatasynsql`
 * Select your Subscription
 * Enter your resource group name, in our case this is `microhack-sap-data-rg`
+* Save credentials with the datastore for data access: Yes
 * Authentication Type : `SQL Authentication`
 * Enter UserId and Password
 
@@ -82,8 +82,8 @@ We'll be using `Automated Machine Learning` to predict when customers will pay f
 
 <img src="images/aml/automated_ml.jpg" height= 300>
 
-* Select `New Automated ML Run`
-* Select `Create Dataset` > `From datastore`
+* Select `New Automated ML Job`
+* Select `Create` > `From datastore`
 <img src="images/aml/dataSetFromDataStore.jpg" height=300>
 
 A Guided Procedure will appear :
@@ -105,7 +105,7 @@ select * from UXXSalesPaymentsFull
 <img src="images/aml/06-aml-studio.PNG" height= 400>
 
 * <b>Schema :</b> In order to get a model we have to do some cleaning of the data.
-<img src="images/aml/07-aml-studio.PNG" height= 400>
+<img src="images/aml/MLFields.png" height= 200>
 
 <!-- 1. Check if an Integer type is used for any numeric field () -->
 
@@ -120,8 +120,8 @@ Create the dataset
 
 <img src="images/aml/ml3.jpg">
 
-## Configure the Automated ML Run
-* Select the newly created `Dataset` and create a new experiment.
+## Configure the Automated ML Job
+* Select the newly created `Dataset` and click next to create a new experiment.
 <img src="images/aml/11-aml-studio.PNG" height= 200>
 
 1. Specify a name, we use `u##sap-data-ml-experiment`
@@ -135,7 +135,7 @@ Create the dataset
 <img src="images/aml/ml6.jpg">
 <img src="images/aml/ml7.jpg" height=300>
 
-> Note : Create a cluster of for example 3 nodes. Azure ML can then run multiple trainings in parallel. This will reduce the runtime of the Automated ML run.
+> Note : Create a cluster of for example 3 nodes. Azure ML can then run multiple trainings in parallel. This will reduce the runtime of the Automated ML job.
 
 * We can now select the ML task type we want to use for this experiment, as we want to build prediction on a numeric value we will select the `Regression` task type. 
 
@@ -170,14 +170,14 @@ In this step we will deploy the best model that has been trained by AutoML and t
 * You can navigate into the different sections and visualize the information about this algorithm, then click on deploy.
 <img src="images/aml/ml12.jpg" height=400>
 
-* Specify a name for your deployment, we used `u##sap-data-ml-model`, and select `Azure Container Instance` as compute type.
-
-<img src="images/aml/ml13.jpg" height=300>
 
 >Note: Select `Deploy to WebService`
 
 <img src="images/aml/deployWebService.png" height=100>
 
+* Specify a name for your deployment, we used `u##sap-data-ml-model`, and select `Azure Container Instance` as compute type.
+
+<img src="images/aml/ml13.jpg" height=300>
 
 * Select `Endpoints` from `Assets` and select your endpoints 'u##sap-data-ml-model'. Validate and wait for the completion of the deployment. This can take a few minutes. 
 

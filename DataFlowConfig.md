@@ -158,7 +158,7 @@ Create an Integration Dataset.
 This dataset will act as the `source` in our pipeline.
 * Switch to the `Data` View
 * Select the `Linked` Tab. 
-<img src="images/synapsews/LinkedTab.jpg>
+<img src="images/synapsews/LinkedTab.jpg">
 
 * Create a new `Integration Dataset`
 
