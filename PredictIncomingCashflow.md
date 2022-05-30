@@ -37,9 +37,9 @@ CREATE VIEW [dbo].[UXXSalesPaymentsFull]
 JOIN [dbo].[UXXPayments] as p ON REPLACE(LTRIM(REPLACE(s.[SALESDOCUMENT], '0', ' ')), ' ', '0') = p.[SalesOrderNr]
 ```
 
-After `Refresh`the view will appear under `Views` when using Azure Data Studio.
+You can right click on the SQL database name in Synapse and choose refresh to display the newly created view: 
 
-<img src="images/aml/01a-synapse-query.PNG" height=300>
+<img src="images/aml/viewSynapse.png" height=300>
 
 You can now test the view by executing the SQL:
 
@@ -69,7 +69,7 @@ Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data
 * Use your Synapse SQL Pool as Database Name, in our case this is `sapdatasynsql`
 * Select your Subscription
 * Enter your resource group name, in our case this is `microhack-sap-data-rg`
-* Save credentials with the datastore for data access: Yes
+* Save credentials with the datastore for data access: `Yes`
 * Authentication Type : `SQL Authentication`
 * Enter UserId and Password
 
