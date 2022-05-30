@@ -338,6 +338,8 @@ select count(*) from U##SalesOrderItems
 select * from U##SalesOrderItems
 ```
 
+> Note: Running the same pipeline more than once will results in duplicated rows. Ensure you truncate all rows in the table if you want to re-run the pipeline.
+
 ## Implement the Payment Pipeline
 
 <img src="images/synapsews/PaymentsPipeline.jpg">
@@ -388,5 +390,7 @@ Do not forget to change the `Column name` for `Value` to `PaymentValue`.
 select count(*) from UXXPayments
 select * from UXXPayments
 ```
+
+> Note: Running the same pipeline more than once will results in duplicated rows. Ensure you truncate all rows in the table if you want to re-run the pipeline.
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
