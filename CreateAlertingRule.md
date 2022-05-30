@@ -71,7 +71,7 @@ Now Power Automate will open up. Power Automate allows you to create workflows t
 
 >Note: You might want to go back to the Dashboard and change the threshold of the Gauge alert. This will again trigger the alert. 
 
-
+Continue with the [next](UpdateInformationInSap.md) step
 
 
 
