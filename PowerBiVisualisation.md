@@ -22,6 +22,8 @@ Database: `sapdatasynsql`
 * On the next screen provide your Microsoft credentials to log in. 
 > Note: Choose Microsoft Account from the authentication options
 
+<img src="images/synapsews/authentication.jpg" height=100>
+
 * Select the 3 tables created in the previous steps. Make sure to select the ones with your Prefix U##
 
 <img src="images/powerBi/dataselection.jpg" height= 300>
