@@ -10,10 +10,11 @@ In PowerBI, we first need to connect to our Synapse.
 <img src="images/synapsews/getDataSynapseSQL.jpg" height=100>
 
 * In the next screen provide the name of the Synapse server and the database name. 
-Server: `sapdatasynws56cae348989bc61e.sql.azuresynapse.net`)
-Database: `sapdatasynsql`
 
-<img src="images/powerBi/sqlendpoint.jpg" height=100>
+Server: `sapdatasynws56cae348989bc61e.sql.azuresynapse.net`)
+
+Database: `sapdatasynsql`
+<img src="images/synapsews/importFromSQLDB.jpg>
 
 * Select `Import Data`
 
