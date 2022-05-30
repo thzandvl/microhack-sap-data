@@ -33,19 +33,15 @@ The table beneath summarizes the `Integration Datasets` and `Linked Services`.
 
 The last step is to define the `Synapse Pipelines`which will execute the copy. Here we link the source and sink/target datasets. This also where you can execute data mappings if necessary.
 
-We'll start with creating the Synapse Tables, which will receive the extracted data. The we'll define the extraction pipelines one by one.
+We'll start with creating tables in Synapse, which will receive the extracted data. The we'll define the extraction pipelines one by one.
 
 ## Synapse Table Setup
 Create the Synapse tables in the SQL Pool
 These tables are the receivers of the SAP Sales Order data and the Cosmos Payment Data.
 Use the following SQL Scripts to create the tables.
-You can do this via `Synapse Studio` or alternatively use the [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio).
+You can do this via [Synapse Studio](https://web.azuresynapse.net/?workspace=%2fsubscriptions%2f67f16219-3421-4cef-89b9-c06cf90d7bea%2fresourceGroups%2fmicrohack-sap-data-rg%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsapdatasynws56cae348989bc61e).
 
-We'll describe the usage of Synapse Studio.
-
-* In the Azure Portal, select your Synapse Workspace.
-* Select `Open Synapse Studio`
-<img src="images/synapsews/openAzureDataStudio.jpg">
+To create tables in Synapse follow below steps:
 
 * Select 'Develop'
 <img src="images/synapsews/SynapseStudioDevelop.jpg">
