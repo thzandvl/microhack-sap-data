@@ -300,7 +300,7 @@ The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is 
 This dataset will act as the source for our pipeline.
 * Create a `Integration DataSet` based on `SAP ECC` adapter
 
-* Choose `UXXS4DSalesOrderItems` as the name
+* Choose `U##S4DSalesOrderItems` as the name
 
 * Use the `S4DCLNT100_ODATA` as the linked service
 
