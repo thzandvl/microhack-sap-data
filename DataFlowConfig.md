@@ -402,8 +402,8 @@ Do not forget to change the `Column name` for `Value` to `PaymentValue`.
 * Check the result in Synapse using SQL
 
 ```sql
-select count(*) from UXXPayments
-select * from UXXPayments
+select count(*) from U##Payments
+select * from U##Payments
 ```
 
 > Note: Running the same pipeline more than once will results in duplicated rows. Ensure you truncate all rows in the table if you want to re-run the pipeline.
