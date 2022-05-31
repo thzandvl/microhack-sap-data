@@ -26,22 +26,27 @@ In this section we'll add a new column to `SalesOrderPayments` which will contai
     <img src="images/aml/securitywarning.jpg">
 
 
-* This will add an additional column to the table with the predicted offset
+* This will add an additional column `AzureML.uXXsap-data-ml-model` at the end of the `SalesOrderPayments` table 
 
-* Rename the column to `predOffset` and change the date type to `Whole Number`
+* Rename the name of the new column to `predOffset` by clicking its name with a right mouse button and choosing Rename from the context menu. 
+
+* Change the type of the new column to `Whole Number` by clicking its name with a right mouse button and choosing Change Type -> Whole Number
+
+<img src="images/aml/mlChangeType.png" height=175>
 
 * You can now calculate the predicted payment date
-    * Add a new custom column `predPaymentDate` and use the following formula
+    * Add a new custom column `predPaymentDate` by choosing `Custom Column` from the Add Column ribbon and use the following formula
 
         ```
         Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
         ```
 
-        <img src="images/aml/pbiMLPredPaymentDateColumn.jpg" height=400>
+        <img src="images/aml/mlAddColumn.png" height=400>
 
 * Change the data type of this column to `Date`
 
 * You can now use this column in reporting
+<img src="images/aml/pbiMLPredPaymentDateColumn.jpg" height=400>
 
 ## PowerBI Report Creation
 
