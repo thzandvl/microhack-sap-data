@@ -153,7 +153,7 @@ CREATE TABLE U##Payments(
 
 # Implement the SalesOrderHeaders Pipeline
 
-![Scenario Overview](images/synapsews/SalesOrderHeaderPipeline.jpg)
+![Scenario Overview](images/synapsews/SalesOrderHeaderPipeline.png)
 
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses an RFC.
 The view to extract from is : `ZBD_ISALESDOC_E`.
@@ -290,7 +290,7 @@ select * from U##SalesOrderHeaders
 
 ## Implement the SalesOrderItems Pipeline
 
-<img src="images/synapsews/salesOrderItemsPipeline.jpg">
+<img src="images/synapsews/salesOrderItemsPipeline.png">
 
 The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is based on oData. We will use the oData service at `http://<System IP>/sap/opu/odata/sap/sd_f1814_so_fs_srv/`
 
@@ -354,7 +354,7 @@ select * from U##SalesOrderItems
 
 ## Implement the Payment Pipeline
 
-<img src="images/synapsews/PaymentsPipeline.jpg">
+<img src="images/synapsews/PaymentsPipeline.png">
 
 The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 
