@@ -12,7 +12,7 @@ In this Microhack we will:
 
 When customers buy goods, the corresponding payments are not done immediately. Some customers will pay directly and other customers will pay at end of the payment terms. This makes it difficult for companies to predict the incoming cashflow. In this simplified exercise we'll use Azure tooling to predict the incoming cashflow. For this we need data on past Sales Orders and past payments. The Sales Order information we'll retrieve from an S/4HANA system. For the payments we assume these are kept in a non SAP system. This non-SAP System is represented by a Cosmos DB.
 
-![Scenario Overview](images/overview/ScenarioOverview.jpg)
+![Scenario Overview](images/overview/ScenarioOverview.png)
 
 ## Setup
 
