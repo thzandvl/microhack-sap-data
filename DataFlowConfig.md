@@ -300,7 +300,7 @@ The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is 
 This dataset will act as the source for our pipeline.
 * Create a `Integration DataSet` based on `SAP ECC` adapter
 
-* Choose `UXXS4DSalesOrderItems` as the name
+* Choose `U##S4DSalesOrderItems` as the name
 
 * Use the `S4DCLNT100_ODATA` as the linked service
 
@@ -402,8 +402,8 @@ Do not forget to change the `Column name` for `Value` to `PaymentValue`.
 * Check the result in Synapse using SQL
 
 ```sql
-select count(*) from UXXPayments
-select * from UXXPayments
+select count(*) from U##Payments
+select * from U##Payments
 ```
 
 > Note: Running the same pipeline more than once will results in duplicated rows. Ensure you truncate all rows in the table if you want to re-run the pipeline.
