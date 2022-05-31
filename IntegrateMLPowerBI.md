@@ -1,10 +1,13 @@
-# Integrate Azure Machine Learning and PowerBI
+# 4 - Integrate Azure Machine Learning and PowerBI
+
+[< 3 Predict Cash Flow](./PredictIncomingCashflow.md) - **[🏠Home](./README.md)** - [ 5 Create Alerting Rule >](./CreateAlertingRule.md)
 
 We can now integrate the ML Model within PowerBI. The Azure ML exposes a REST interface which we can integrate in powerBi.
 > Note : for this example we'll predict the payment date of the 'Historical Sales Orders'. In real-life you would do this for new unpaid Sales Orders
 
-## Add Machine Learning info to the PowerBI Datamodel
-In this section we'll add a new column to `SalesOrderPayments` which will contain the `Payment Off/Delay` calculated by our Machine Learning Model. 
+## Add Machine Learning info to the PowerBI Data model
+
+In this section we'll add a new column to `SalesOrderPayments` which will contain the `Payment Off/Delay` calculated by our Machine Learning Model.
 
 * In PowerBI, select Transform Data
 * Select the View `SalesOrderPayments` containing the combined SalesOrderHeader & Payments data
@@ -23,27 +26,34 @@ In this section we'll add a new column to `SalesOrderPayments` which will contai
     <img src="images/aml/securitywarning.jpg">
 
 
-* This will add an additional column to the table with the predicted offset
+* This will add an additional column `AzureML.uXXsap-data-ml-model` at the end of the `SalesOrderPayments` table 
 
-* Rename the column to `predOffset` and change the date type to `Whole Number`
+* Rename the name of the new column to `predOffset` by clicking its name with a right mouse button and choosing Rename from the context menu. 
+
+* Change the type of the new column to `Whole Number` by clicking its name with a right mouse button and choosing Change Type -> Whole Number
+
+<img src="images/aml/mlChangeType.png" height=175>
 
 * You can now calculate the predicted payment date
-    * Add a new custom column `predPaymentDate` and use the following formula
+    * Add a new custom column `predPaymentDate` by choosing `Custom Column` from the Add Column ribbon and use the following formula
 
         ```
         Date.AddDays([BILLINGDOCUMENTDATE], [predOffset])
         ```
 
-        <img src="images/aml/pbiMLPredPaymentDateColumn.jpg" height=400>
+        <img src="images/aml/mlAddColumn.png" height=400>
 
 * Change the data type of this column to `Date`
 
 * You can now use this column in reporting
+<img src="images/aml/pbiMLPredPaymentDateColumn.jpg" height=400>
 
 ## PowerBI Report Creation
+
 We will now display the Sales & predicted payment forecast in PowerBI. Since we want to display the Sales and Payment figures aggregated by different days (`BILLINGDOCUMENTDATE`, `predPaymentDate`), we need to create a 'calendar' table with the timeslots by which to aggregate.
 
 ### Create Date Table
+
 First we will create a new `Date` table. This table contains the timeline against which to plot the different Sales and Payment values.
 In PowerBI switch to the `Data` View and select `New table`.
 
@@ -73,6 +83,7 @@ Once added click on the `Check` to execute the forumla.
 <img src="images/aml/executeFormula.jpg">
 
 ### Create Relationships
+
 Create relationships between the `Date` table and `SalesOrderPaymentsFull` table
 * Date[Date] - SalesOrderPayments[CREATIONDATE] : this is the default (active) relationship
 * Date[Date] - SalesOrderPayments[BILLINGDOCUMENTDATE]
@@ -82,6 +93,7 @@ Create relationships between the `Date` table and `SalesOrderPaymentsFull` table
     <img src="images/aml/dateRelationships.jpg" height=300>
 
 ### Create new Measures
+
 In the `Date` table, create new measures. Make sure to click on `New Measures` each time and confirm that the new measure is displayed on the right hand side. 
 <img src="images/aml/NewMeasure.jpg">
 ```
@@ -109,5 +121,4 @@ Payment at pred Date = CALCULATE(sum('SalesOrderPayments'[U##Payments.PaymentVal
 
 In this picture you can judge how well our 'forecasted' payment values are compared to the past actual payment values.
 
-Continue with the [next](CreateAlertingRule.md) step
-
+Continue with the [next](CreateAlertingRule.md) step.

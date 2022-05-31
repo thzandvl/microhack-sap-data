@@ -1,12 +1,15 @@
-# Take Actions in the SAP system
+# 6 - Take Actions in the SAP system
+
+[< 5 Create Alerting Rule](./CreateAlertingRule.md) - **[🏠Home](./README.md)**
+
 As a final step we want to take actions with the information that we saw in the Power BI Dashboard. 
 Thanks to the ML and alerting functionality we can easily identify payers, whose payment is typically delayed. In order to flag them in the SAP system (we will assign a Business Partner Role 03 - "excluded business partner" to them) we want to add a feature to our Power BI Dashboards that quickly can flag such a customer as a "bad payer" in the SAP system.
 
 For this we have created a simple Power Automate flow that calls the OData service to update the Business Partner role from "Customer" to "Excluded Business Partner".
 
-
 ## Import Power Automate Flow
-* Open https://flow.microsoft.com/ and click on `My Flows` -> `Import` to import the preconfigued Power Automate Flow that updates the Business Partner Role
+
+* Open [https://flow.microsoft.com/](https://flow.microsoft.com/) and click on `My Flows` -> `Import` to import the preconfigued Power Automate Flow that updates the Business Partner Role
 <img src="images/UpdateDataInSAP/MyFlowsImport.jpg"> 
 
 * Click on Upload and select the `UpdateBusinessPartner` ZIP file
@@ -37,6 +40,7 @@ For this we have created a simple Power Automate flow that calls the OData servi
 
 
 ## Activate the Flow
+
 * Go back to `My Flows`and select the UpdateBusinessPartnerRole flow
 <img src="images/UpdateDataInSAP/SelectUpdateFlow.jpg"> 
 
@@ -44,6 +48,7 @@ For this we have created a simple Power Automate flow that calls the OData servi
 <img src="images/UpdateDataInSAP/TurnOn.jpg"> 
 
 ## Adding Power Automate to Power BI Dashboard
+
 * Now switch back to the Power BI Dashboard and make sure that you are in the Edit Mode
 <img src="images/UpdateDataInSAP/EnsureEditMode.jpg"> 
 
