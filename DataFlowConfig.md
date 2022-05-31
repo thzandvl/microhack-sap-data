@@ -1,12 +1,16 @@
-# Configure the DataFlow
+# 1 - Configure the DataFlow
+
+**[🏠Home](./README.md)** - [ 2 PowerBI Visualization >](./PowerBiVisualisation.md)
+
 ## Introduction
+
 In this step we'll setup the dataflow from the SAP System and Cosmos DB towards the Synapse DB. Sales OrderHeaders will be extracted via the first Synapse pipeline using the SAP Table connector, Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
 Payment data will be extracted from CosmosDB using a third pipeline.
 
-<img src="images/synapsews/architectureOverview.png">
+![Scenario Overview](images/synapsews/architectureOverview.png)
 
 The first step is to setup the target DB structures in Synapse.
-The next step is to define the pipelines to copy the data. For this we first need to create technical connections, called `Linked Services`, to the different data sources and sinks. These `Linked Services`define the adapter to use and the corresponding connection parameters. For our example we'll need 4 `Linked Services`. 
+The next step is to define the pipelines to copy the data. For this we first need to create technical connections, called `Linked Services`, to the different data sources and sinks. These `Linked Services`define the adapter to use and the corresponding connection parameters. For our example we'll need 4 `Linked Services`.
 
 | Scenario | Source LinkedService | Sink Linked Service |
 |----------|:------:|---------------------:|
@@ -27,8 +31,8 @@ The table beneath summarizes the `Integration Datasets` and `Linked Services`.
 
 |Scenario            |Source Integration Dataset                       | Source Linked Service |Sink Integration Dataset                               | Sink Linked Service  |
 |--------------------|:-----------------------------------------------:|:---------------------:|:-----------------------------------------------------:|:--------------------:|
-|Sales Order Headers | CDS View `ZBD_ISALESDOC_E` | SAP Table Connector | Synape Table `SalesOrderHeaders` | `microHack` SQL Pool - Azure Synapse Analytics |
-|Sales Order Items | oData Entity Set `C_Salesorderitemfs` | SAP ECC Connector | Synape Table `SalesOrderItems` | `microHack` SQL Pool - Azure Synapse Analytics |
+|Sales Order Headers | CDS View `ZBD_ISALESDOC_E` | SAP Table Connector | Synapse Table `SalesOrderHeaders` | `microHack` SQL Pool - Azure Synapse Analytics |
+|Sales Order Items | oData Entity Set `C_Salesorderitemfs` | SAP ECC Connector | Synapse Table `SalesOrderItems` | `microHack` SQL Pool - Azure Synapse Analytics |
 |Payments | CosmosDB Collection `paymentData` | Cosmos DB - `SAPS4D` DataBase - CosmosDB SQL API | Synapse Table `Payments` | `microHack` SQL Pool - Azure Synapse Analytics |
 
 The last step is to define the `Synapse Pipelines`which will execute the copy. Here we link the source and sink/target datasets. This also where you can execute data mappings if necessary.
@@ -36,6 +40,7 @@ The last step is to define the `Synapse Pipelines`which will execute the copy. H
 We'll start with creating tables in Synapse, which will receive the extracted data. The we'll define the extraction pipelines one by one.
 
 ## Synapse Table Setup
+
 Create the Synapse tables in the SQL Pool
 These tables are the receivers of the SAP Sales Order data and the Cosmos Payment Data.
 Use the following SQL Scripts to create the tables.
@@ -44,20 +49,22 @@ You can do this via [Synapse Studio](https://web.azuresynapse.net/?workspace=%2f
 To create tables in Synapse follow below steps:
 
 * Select 'Develop'
-<img src="images/synapsews/SynapseStudioDevelop.jpg">
+
+![Scenario Overview](images/synapsews/SynapseStudioDevelop.jpg)
 
 * Create SQL Scripts for each of the tables (`SalesOrderHeaders`, `SalesOrderItems`, `Payments`)
-<img src="images/synapsews/createSQLScript.jpg">
+
+![Scenario Overview](images/synapsews/createSQLScript.jpg)
 
 > Note: Each participant will create his/her own tables by adding a prefix U01, U02, U03, ... Make sure to change the U## in the SQL scripts to the participant number assigned you 
 
 > Note: Make sure to change the "Connect to" value from 'builtin' to your own SQL pool as shown in the screenshot below. As by default it will be connected to the 'builtin' SQL pool of Synapse.
 
-><img src="images/synapsews/connectToPool.jpg">
+>![Scenario Overview](images/synapsews/connectToPool.jpg)
 
 > Note: Every time you create a new object in Synapse, like a pipeline or SQL Script it is a good practice to change the default name. You can do this in the Properties window.
 
-><img src="images/synapsews/changeNameProperties.jpg">
+>![Scenario Overview](images/synapsews/changeNameProperties.jpg)
 
 Make sure to run all the scripts in order to create the tables.
 
@@ -146,13 +153,14 @@ CREATE TABLE U##Payments(
 
 # Implement the SalesOrderHeaders Pipeline
 
-<img src="images/synapsews/SalesOrderHeaderPipeline.jpg">
+![Scenario Overview](images/synapsews/SalesOrderHeaderPipeline.jpg)
 
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses an RFC.
-The view to extract from is : `ZBD_ISALESDOC_E`. 
+The view to extract from is : `ZBD_ISALESDOC_E`.
 
 
 ## Select the data to extract
+
 Create an Integration Dataset.
 
 This dataset will act as the `source` in our pipeline.
@@ -179,12 +187,13 @@ This dataset will act as the `source` in our pipeline.
 
 <img src="images/synapsews/syn2.jpg">
 
-* Once the information is entered succesfully and the data can be retrieved, leave the tab as-is. We will publish the changes after the rest of the components of this data flow are done.
+* Once the information is entered successfully and the data can be retrieved, leave the tab as-is. We will publish the changes after the rest of the components of this data flow are done.
 
 > Note : the source code of the CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls)
 
 
 ### Create an Integration DataSet for the Synapse Sales Orders Headers
+
 This dataset will act as the `sink` in our pipeline.
 * Switch to the `Data`View
 
@@ -203,7 +212,8 @@ This dataset will act as the `sink` in our pipeline.
 * Again leave the information on the tab as-is and move to the next step
 
 ## Create an Integration pipeline
-* Swith to the `Integrate` view
+
+* Switch to the `Integrate` view
 
 <img src="images/synapsews/syn6.jpg" height=300>
 
@@ -242,6 +252,7 @@ This dataset will act as the `sink` in our pipeline.
 <img src="images/synapsews/jsonCodeButton.jpg">
 
 Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the existing `typeproperties > source` element. The resulting document should looks as follows :
+
 ```javascript
   "typeProperties": {
                     "source": {
@@ -256,7 +267,7 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
 <!-- >>Note : if these parameters are not entered correctly the date fields will remain as a String format. -->
 <!-- Note : these are internal parameters!!! -->
 
-* Click `Publish all` to save newly created objects 
+* Click `Publish all` to save newly created objects
 
 <img src="images/synapsews/syn7.jpg" height=200>
 
@@ -285,6 +296,7 @@ The SalesOrderItems are extracted from SAP using the SAP ECC Connector which is 
 
 
 ### Create a Integration DataSet for the SAP Sales Order Items
+
 This dataset will act as the source for our pipeline.
 * Create a `Integration DataSet` based on `SAP ECC` adapter
 
@@ -348,6 +360,7 @@ The Payments are extracted from CosmosDB and will be stored in a Synapse Table.
 
 
 ### Create a Integration DataSet for the CosmosDB Payments
+
 This dataset will act as the source for our pipeline.
 * Create a `source` DataSet for the Payment Data based on the CosmosDB `SQL API` Adapter
 
@@ -360,6 +373,7 @@ This dataset will act as the source for our pipeline.
 * Click on OK
 
 ### Create a Integration DataSet for the Synapse Payments
+
 This dataset will act as the sink for our pipeline
 * Create a `Integration DataSet` based on `Azure Synapse Analytics`
 
@@ -368,6 +382,7 @@ This dataset will act as the sink for our pipeline
 * As name we use `U##SynPayments`. Select the `U##Payments` table
 
 ### Create the Integration pipeline for the Payment flow
+
 * Go to the `Integrate` view
 * Add a new `Pipeline`
 * Use the `Copy` action and name it `U##ExtractPayments`

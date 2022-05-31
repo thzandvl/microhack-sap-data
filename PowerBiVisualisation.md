@@ -1,9 +1,13 @@
-# PowerBI Visualization
+# 2 - PowerBI Visualization
+
+[< 1 DataFlow config](./DataFlowConfig.md) - **[🏠Home](./README.md)** - [ 3 Predict Cash Flow >](./PredictIncomingCashflow.md)
+
 In this section we'll setup some example powerBI reports.
 
-We will be using [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/) for this.
+We will be using [PowerBI Desktop](https://powerbi.microsoft.com/desktop/) for this.
 
 ## Setup & Importing Data
+
 In PowerBI, we first need to connect to our Synapse.
 * Choose `Get Data`and select `Azure Synapse Analytics SQL`
 
@@ -43,6 +47,7 @@ You will notice that the column formula will contain additional transformation, 
 * Select `Close & Apply`
 
 ## Create the Relational Model
+
 In this step we'll model the relationships between the tables.
 The Relationships are as follows :
 
@@ -72,6 +77,7 @@ You can look at the relationship details by double clicking.
 You can now start building the reports.
 
 # Data Visualisation
+
 To start the visualization, switch to the `Report` view.
 
 <img src="images/powerBi/reportView.jpg">
@@ -79,6 +85,7 @@ To start the visualization, switch to the `Report` view.
 Some example Reports are given beneath. Feel free to experiment.
 
 ##  Sales per Date and CustomerGroup
+
 * Select a `Stacked Column Chart`.
 * Use the `SalesOrderHeaders.CREATIONDATE` hierarchy as X-axis
 * Use `SalesOrderHeaders.TOTALNETAMOUNT`as Y-axis
@@ -90,6 +97,7 @@ Some example Reports are given beneath. Feel free to experiment.
 >Note: You can drill down from `Year > Quarter > Month` due to the date hierarchy.
 
 ## Sales per Region and CustomerGroup
+
 * Select `Map`.
 * Use `SalesOrderHeaders.CITYNAME` as Location
 * Use `SalesOrderHeaders.CUSTOMERGROUP` as Legend
@@ -103,6 +111,7 @@ Some example Reports are given beneath. Feel free to experiment.
 <img src="images/powerBi/SalesRegionLink.jpg">
 
 ## Payments per Date and CustomerGroup
+
 * Select a `Stacked Column Chart`
 * Use `Payments.PaymentDate` hierarchy as X-axis
 * Use `Payments.PaymentValue` as Y-axis
@@ -115,6 +124,7 @@ The `CustomerGroup` is retrieved via the 1:1 relationship between the `SalesOrde
 >Note : the Payments report is not identical to the Sales report. Payment of a Sales Order is typically later then the data on which the Sales Order was issued.
 
 ## Sales Per CustomerGroup and MaterialGroup
+
 * Select a 'Stacked Bar Chart'
 * Use `SalesOrderItems.NetAmount`as X-axis
 * Use `SalesOrderHeaders.CUSTOMERGROUP`as Y-axis
@@ -129,6 +139,7 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 >Note : In the ML part you created a similar view in Synapse. This section explains how you can create a 'view' locally in PowerBI.
 
 ### Merge SalesOrderHeaders and Payments
+
 * Under `Home` select `Transform data`
 * Select the `SalesOrderHeaders`table
 * Select `Merge Queries > Merge Queries as New` from the `Home` ribbon
@@ -153,6 +164,7 @@ For this we need to join the SalesOrderHeaders and the Payment data to calculate
 * Select `Apply` under `Close & Apply`
 
 ### Calculate Payment Offset
+
 We now need to calculate the difference between the Billing date and the actual payment date.
 * From the `Report`screen select `Transform data`
 
@@ -171,7 +183,8 @@ Duration.Days([U##Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 * From the `Home` section use `Close & Apply` from the Home tab to switch to the data view
 
 ### Average Offset Report
-* Swith to the reporting view
+
+* Switch to the reporting view
 * Select a Stacked Column chart
 * Use `SalesOrderPayments.CUSTOMERGROUP` as X-axis
 * Use `SalesOrderPayments.Offset` as Y-axis
@@ -182,6 +195,7 @@ Duration.Days([U##Payments.PaymentDate]-[BILLINGDOCUMENTDATE])
 <img src="images/powerBi/averageOffset.jpg">
 
 ### (Optional) Boxplot
+
 If you'd like a more detailed view on the payment offset then you can use a 'Box Plot'. This gives you an idea of the variance on the offset.
 For this you have to import a `Box and Whisker chart` visualization. 
 In the `Visualizations` view, press the 3 dots and select `Get more visuals`.
@@ -207,4 +221,4 @@ From this diagram you can see that:
 
 This should correspond to the outcome of ML Model.
 
-Continue with the [next](PredictIncomingCashflow.md) step
+Continue with the [next](PredictIncomingCashflow.md) step.

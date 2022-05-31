@@ -1,9 +1,13 @@
-# Predict Incoming Cashflow
+# 3 - Predict Incoming Cashflow
+
+[< 2 PowerBI Visualization](./PowerBiVisualisation.md) - **[🏠Home](./README.md)** - [ 4 Integrate ML and PowerBI >](./IntegrateMLPowerBI.md)
+
 In this section we'll create a model to predict incoming cashflow based on historical payment delays for previous sales.
 
 Firstly, we will prepare the data model in Synapse Workspace. Then we will use [Azure Machine Learning](https://ml.azure.com) to create and train the algorithm.
 
 ## Setup in Synapse
+
 Open [Synapse Studio](https://web.azuresynapse.net/?workspace=%2fsubscriptions%2f67f16219-3421-4cef-89b9-c06cf90d7bea%2fresourceGroups%2fmicrohack-sap-data-rg%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2fsapdatasynws56cae348989bc61e) to create a new view that joins data coming from the `SalesOrderHeaders` and the `Payments` tables. We will use it later to run the prediction. 
 
 * Choose the `Develop` tab, select `SQL Scripts` and click on `Actions` then `New SQL Script`
@@ -53,11 +57,13 @@ select * from UXXSalesPaymentsFull
 ## Azure Machine Learning
 
 ### Open the ML Studio
+
 Open [Azure Machine Learning](https://ml.azure.com) and select the `sap-data-ml-ws` workspace.
 
 <img src="images/aml/MLWelcome.png" height=175>
 
 ### DataStore Creation
+
 First you have to point the ML studio to the location of your data, which is the Synapse SQL Pool. For this you have to create a `DataStore`.
 
 Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data_ml_ds`. Connect to the Synapse database.
@@ -76,6 +82,7 @@ Go to the `Datastores` view and choose `New datastore`. As name we use `sap_data
 <img src="images/aml/ml1bis.jpg" height=600>
 
 ### Automated ML
+
 We'll be using `Automated Machine Learning` to predict when customers will pay for their Sales Orders
 
 * On the left menu, click on `Automated ML`
@@ -121,6 +128,7 @@ Create the dataset
 <img src="images/aml/ml3.jpg">
 
 ## Configure the Automated ML Job
+
 * Select the newly created `Dataset` and click next to create a new experiment.
 <img src="images/aml/11-aml-studio.PNG" height= 200>
 
@@ -161,6 +169,7 @@ Create the dataset
 
 
 ## Deploy the best model
+
 In this step we will deploy the best model that has been trained by AutoML and test it.
 >Note : the best model is selected based on the error between the predicted Payment Offset and the Actual offset. The model with the least error is selected. For more info on this, see [How automated ML works](https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml#how-automated-ml-works)
 
@@ -196,6 +205,7 @@ In this step we will deploy the best model that has been trained by AutoML and t
 * The Azure ML can also be called as a REST Interface. You could use this REST Interace in a custom Fiori App or ABAP code to execute a `Payment Prediction` when creating a Sales Order.
 
 ## Test the Payment Delay/Offset Prediction
+
 Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view created at the beginning to replace the `example_value` value for the different fields and run the model.
 
 <img src="images/aml/ml17.jpg">
@@ -205,6 +215,7 @@ Select the `Test` tab and insert values coming from the `SalesPaymentsFull` view
 You can now proceed with the [next](IntegrateMLPowerBI.md) step.
 
 ## [Optional] Test the ML Endpoint via HTTP
+
 You can also test the ML model via http. You can find the URL to use via the ML `endpoint` menu.
 
 <img src="images/aml/mlEndPoints.png" height=400>
@@ -265,6 +276,7 @@ The HTTP response will looks as follows :
 You can now proceed with the [next](IntegrateMLPowerBI.md) step.
 
 ## [Optional] Automated ML - Best Model - Additional Info
+
 If you're interested in the 'Best Model' Auto ML selected, return to your 'Automated ML Run'.
 
 <img src="images/aml/automated_ml2.jpg">

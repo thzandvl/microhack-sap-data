@@ -1,9 +1,13 @@
-# Create Alerting Rule 
-In this section we'll publish the Power BI Desktop report to Power BI Service, create a alert and use this to trigger a Power Automate flow. 
+# 5 - Create Alerting Rule
 
-We will be using a Power BI and Power Automate subscription. Please make sure that you sign-up to Power Platform, or even better to the [Microsoft 365 Developer Program](https://developer.microsoft.com/en-us/microsoft-365/dev-program) for this.
+[< 4 Integrate ML and PowerBI](./IntegrateMLPowerBI.md) - **[🏠Home](./README.md)** - [ 6 Take Actions in the SAP system >](./UpdateInformationInSap.md)
+
+In this section we'll publish the Power BI Desktop report to Power BI Service, create a alert and use this to trigger a Power Automate flow.
+
+We will be using a Power BI and Power Automate subscription. Please make sure that you sign-up to Power Platform, or even better to the [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program) for this.
 
 ## Publish Power BI Report
+
 From your Power BI Desktop report Click on `File` -> `Save` to save the document
 * Then From `Start` click on `Publish` to publish the document to Power BI Service 
 >Note: You might need to sign-on with your Office 365 users that has access to the Power BI service
@@ -18,6 +22,7 @@ From your Power BI Desktop report Click on `File` -> `Save` to save the document
 
 
 ## Create a new Gauge chart
+
 * From the top row, select `Edit` to add a new element to the report screen
 
 * In the Visualization section select the `Gauge` element and add this to your report
@@ -33,6 +38,7 @@ From your Power BI Desktop report Click on `File` -> `Save` to save the document
 <img src="images/PowerAutomate/ReadingView.jpg" >
 
 ## Pin Gauge to Dashboard
+
 In order to highlight the Gauge chart and also enable the Alerting, pin, the Gauge element to a new Dashboard.
 * Click on the `Pin` icon of the Gauge visual 
 <img src="images/PowerAutomate/PinVisual.jpg" >
@@ -44,6 +50,7 @@ In order to highlight the Gauge chart and also enable the Alerting, pin, the Gau
 <img src="images/PowerAutomate/GoToDashboard.jpg" >
 
 ## Manage Alerts
+
 On the new Dashboard you can see the Gauge visual
 * Click on the three dots and select `Manage Alerts`
 <img src="images/PowerAutomate/ManageAlerts.jpg" >
@@ -55,6 +62,7 @@ On the new Dashboard you can see the Gauge visual
 <img src="images/PowerAutomate/AlertRuleCondition.jpg" >
 
 ## Add a Power Automate Flow
+
 In order to get more sophisticated notifications, you can trigger a Power Automate flow directly fro this Alert rule. For this open up the Alert condition again, by clicking on the three dots from the Gauge visual and select `Manage Alert`
 * From the `Manage Alert` screen, click on `Use Microsoft Power Automate to trigger additional actions`
 <img src="images/PowerAutomate/SelectPATrigger.jpg" >
@@ -87,11 +95,6 @@ Now Power Automate will open up. Power Automate allows you to create workflows t
 * The next time the alert is triggered, the Power Automate Flow will be activated and an email will be sent with a link to the Power BI Dashboard
 <img src="images/PowerAutomate/EmailNotification.jpg" >
 
->Note: You might want to go back to the Dashboard and change the threshold of the Gauge alert. This should again trigger the alert. 
+>Note: You might want to go back to the Dashboard and change the threshold of the Gauge alert. This should again trigger the alert.
 
-Continue with the [next](UpdateInformationInSap.md) step
-
-
-
-
- 
+Continue with the [next](UpdateInformationInSap.md) step.
