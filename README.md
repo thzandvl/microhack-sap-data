@@ -1,7 +1,5 @@
 # SAP Microhack: CashFlow Prediction
 
-## Summary
-
 In this Microhack we will:
 
 * **Extract** (historical) Sales Orders from SAP S/4HANA and load this in Synapse
