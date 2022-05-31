@@ -6,6 +6,7 @@ In this Microhack we will:
 * **Upload** historical payments from a non-SAP system, in this example Cosmos DB, to Synapse
 * **Visualize** the extracted Sales Orders and invoice data with Power BI
 * **Predict** incoming cash flow forSales Orders
+* **Trigger** actions in SAP based on insights gained from the prediction
 
 ## Scenario Description
 
