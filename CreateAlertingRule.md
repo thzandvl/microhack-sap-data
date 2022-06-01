@@ -2,7 +2,7 @@
 
 [< 4 Integrate ML and PowerBI](./IntegrateMLPowerBI.md) - **[🏠Home](./README.md)** - [ 6 Take Actions in the SAP system >](./UpdateInformationInSap.md)
 
-In this section we'll publish the Power BI Desktop report to Power BI Service, create a alert and use this to trigger a Power Automate flow.
+In this section we'll publish the Power BI Desktop report to Power BI Service, create an alert and use this to trigger a Power Automate flow.
 
 We will be using a Power BI and Power Automate subscription. Please make sure that you sign-up to Power Platform, or even better to the [Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program) for this.
 
@@ -39,7 +39,7 @@ From your Power BI Desktop report Click on `File` -> `Save` to save the document
 
 ## Pin Gauge to Dashboard
 
-In order to highlight the Gauge chart and also enable the Alerting, pin, the Gauge element to a new Dashboard.
+In order to highlight the Gauge chart and also enable the Alerting, `pin` the Gauge element to a new Dashboard.
 * Click on the `Pin` icon of the Gauge visual 
 <img src="images/PowerAutomate/PinVisual.jpg" >
 

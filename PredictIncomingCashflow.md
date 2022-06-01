@@ -294,3 +294,5 @@ Select your Best Model, and select `View Explanation`. Select an `Explanation ID
 <img src="images/aml/featureImportance.jpg">
 
 From this view, you can see that `CUSTOMERGROUP` was the most important feature to determine the offset.
+
+You can now proceed with the [next](IntegrateMLPowerBI.md) step.
