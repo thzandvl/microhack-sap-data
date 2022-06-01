@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: dsag-de-bupabrowser
+description: Business Partner Browser
+version: 0.0.1
+modules:
+- name: dsag-de-bupabrowser-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: dsag-de-bupabrowser-destination-service
+    parameters:
+      content-target: true
+  - name: dsag-de-bupabrowser-repo-host
+    parameters:
+      service-key:
+        name: dsag-de-bupabrowser-repo-host-key
+  - name: dsag-de-bupabrowser-uaa
+    parameters:
+      service-key:
+        name: dsag-de-bupabrowser-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: dsag-de-bupabrowser_html_repo_host
+          ServiceInstanceName: dsag-de-bupabrowser-html5-srv
+          ServiceKeyName: dsag-de-bupabrowser-repo-host-key
+          sap.cloud.service: dsag-de-bupabrowser
+        - Authentication: OAuth2UserTokenExchange
+          Name: dsag-de-bupabrowser_uaa
+          ServiceInstanceName: dsag-de-bupabrowser-xsuaa-srv
+          ServiceKeyName: dsag-de-bupabrowser-uaa-key
+          sap.cloud.service: dsag-de-bupabrowser
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: dsag-de-bupabrowser-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: dsag-de-bupabrowser-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - dsagdebupabrowser.zip
+      name: dsagdebupabrowser
+      target-path: resources/
+- name: dsagdebupabrowser
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: dsag-de-bupabrowser-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: dsag-de-bupabrowser-destination-service
+    service-plan: lite
+- name: dsag-de-bupabrowser-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: dsag-de-bupabrowser-xsuaa-srv
+    service-plan: application
+- name: dsag-de-bupabrowser-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: dsag-de-bupabrowser-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

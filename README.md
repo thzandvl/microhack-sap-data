@@ -37,3 +37,4 @@ To execute the Microhack follow the steps below:
 * [SAP Data Integration using Azure Data Factory](https://github.com/Azure/Azure-DataFactory/blob/main/whitepaper/SAP%20Data%20Integration%20using%20Azure%20Data%20Factory.pdf)
 * [SAP Data Extraction using Azure Data Factory (Examples)](https://github.com/bdelangh/ADF_SAPDataExtraction)
 * [What is Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/overview-what-is-azure-ml)
+* [New SAP CDC connector based on ODP](https://techcommunity.microsoft.com/t5/azure-data-factory-blog/announcing-the-upcoming-preview-of-sap-cdc-in-azure-data-factory/ba-p/3420904)

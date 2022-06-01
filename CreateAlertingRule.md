@@ -92,9 +92,14 @@ Now Power Automate will open up. Power Automate allows you to create workflows t
 * Click on `Save` to save the Power Automate flow. 
 <img src="images/PowerAutomate/SaveFlow.jpg" >
 
-* The next time the alert is triggered, the Power Automate Flow will be activated and an email will be sent with a link to the Power BI Dashboard
+* The next time the data set changes the alert is triggered, the Power Automate Flow will be activated and an email will be sent with a link to the Power BI Dashboard
 <img src="images/PowerAutomate/EmailNotification.jpg" >
 
->Note: You might want to go back to the Dashboard and change the threshold of the Gauge alert. This should again trigger the alert.
+>Note: You might want to go back to the Dashboard and change the threshold of the Gauge alert to trigger the alert.
+> In case you require a true data change run a SQL script to alter your KPI. See below for inspiration.
+```sql
+UPDATE dbo.U##Payments
+SET PaymentDate = DATEADD(DAY, 1, PaymentDate)
+```
 
 Continue with the [next](UpdateInformationInSap.md) step.

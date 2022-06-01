@@ -2,10 +2,12 @@
 
 [< 5 Create Alerting Rule](./CreateAlertingRule.md) - **[🏠Home](./README.md)**
 
-As a final step we want to take actions with the information that we saw in the Power BI Dashboard. 
-Thanks to the ML and alerting functionality we can easily identify payers, whose payment is typically delayed. In order to flag them in the SAP system (we will assign a Business Partner Role 03 - "excluded business partner" to them) we want to add a feature to our Power BI Dashboards that quickly can flag such a customer as a "bad payer" in the SAP system.
+As a final step we want to take actions with the information that we saw in the Power BI Dashboard. Thanks to the ML and alerting functionality we can easily identify payers, whose payment is typically delayed. In order to flag them in the SAP system (we will assign a Business Partner Role 03 - "excluded business partner" to them) we want to add a feature to our Power BI Dashboards that quickly can flag such a customer as a "bad payer" in the SAP system.
 
 For this we have created a simple Power Automate flow that calls the OData service to update the Business Partner role from "Customer" to "Excluded Business Partner".
+
+> Verify the current bp role from any UI available to you. Try [this](https://azure-private.launchpad.cfapps.eu20.hana.ondemand.com/b9d9bc8e-3381-4a5f-ac7f-13c291adfa7f.dsag-de-bupabrowser.dsagdebupabrowser-0.0.1/index.html) SAPUI5 app for instance (ignore the initial popup. It complains about anonymous access). Find the code for the app on this [repos](./app/README.md).
+> ![Fiori UI verification of BP role](images/UpdateDataInSAP/VerifyBPRoleInFiori.png)
 
 ## Import Power Automate Flow
 
@@ -89,14 +91,8 @@ In order to show which customers are currently selected in the various drill-dow
 * You can drill-down by selecting the Z2 column in the `Average of Offset by CUSOMTERGROUP` visual. Then from the CUSTOMERNAME table, select any customer. 
 <img src="images/UpdateDataInSAP/DrillDown.jpg"> 
 
-* When you now click on the `Run flow` button, the Power Automate flow will get triggered, and the Business Partner Role of the Customer selected will be updated to 03. 
+* When you now click on the `Run flow` button, the Power Automate flow will get triggered, and the Business Partner Role of the Customer selected will be updated to 03 (text value 'excluded').
 <img src="images/UpdateDataInSAP/CustomerUpdated.jpg"> 
 
-
-
-
-
-
-
-
-
+> Verify the updated bp role from any UI available to you. Try [this](https://azure-private.launchpad.cfapps.eu20.hana.ondemand.com/b9d9bc8e-3381-4a5f-ac7f-13c291adfa7f.dsag-de-bupabrowser.dsagdebupabrowser-0.0.1/index.html) Fiori app for instance (ignore the initial popup. It complains about anonymous access).
+> ![Fiori UI verification of BP role](images/UpdateDataInSAP/VerifyBPRoleInFiori.png)
