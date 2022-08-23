@@ -3,6 +3,10 @@
 @AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Expanded CDS for Extraction I_Salesdocument'
+
+@Analytics.dataExtraction.enabled: true
+@Analytics.dataExtraction.delta.byElement.name:'LastChangeDateTime'
+
 define view ZBD_I_Salesdocument_E as select from I_SalesDocument {
 key SalesDocument,
     //Category
