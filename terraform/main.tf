@@ -30,7 +30,7 @@ resource "azurerm_resource_group" "rg" {
 #######################################################################
 
 data "external" "azaccount" {
-  program = ["az","ad","signed-in-user","show","--query","{displayName: displayName,objectId: objectId,objectType: objectType}"]
+  program = ["az","ad","signed-in-user","show","--query","{displayName: displayName,objectId: id}"]
 }
 
 data "azurerm_client_config" "user" {
