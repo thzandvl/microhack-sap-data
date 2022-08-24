@@ -2,12 +2,12 @@
 
 In this section we'll extract the Sales Headers using an ABAP CDS View and the SAP ODP Adapter.
 
-The ABAP CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls).
+The ABAP CDS View can be found [here](scripts/zbd_i_salesdocument_e1.asddls).
 Note the annotations by which the CDS View can be found in the SAP Data Dictionary (transaction SE11 or SE11n) and the annotations for Data Extraction and Delta Enablement.
 Here you can see that the field 'LastChangeDateTime' is used for Delta retrievals by the ODP adapter.
 
 ```
-@AbapCatalog.sqlViewName: 'ZBD_ISALESDOC_E'
+@AbapCatalog.sqlViewName: 'ZBD_ISALESDOC_E1'
 @Analytics.dataExtraction.enabled: true
 @Analytics.dataExtraction.delta.byElement.name:'LastChangeDateTime'
 ```
