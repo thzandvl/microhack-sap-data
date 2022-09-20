@@ -148,9 +148,8 @@ This dataset will act as the `sink` in our pipeline.
 * Again leave the information on the tab as-is and move to the next step
 
 ## Create an Integration pipeline
-* Swith to the `Integrate` view
 
-<img src="images/synapsews/syn6.jpg" height=300>
+>Note: The pipeline we're creating here is a simplified pipeline based on a single `Copy`action for demonstration and explanation purpose. This pipeline has some restrictions concerning the 'Delta capabilities' of the adapter. For a complete delta handling, see [SalesOrderHeader Extraction using ODP Pipeline Template](ExtractSalesOrderHeadersUsingODPTemplate.md). If you're not familiar with Synapse Pipelines, please follow the instruction below first.
 
 * Create a new `Pipeline`, we used `ExtractSalesOrderHeaders` as a name
 
@@ -167,15 +166,11 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/ODPCopyActionSource.jpg">
 
-
 * In the `sink` tab, select the Synapse Sales Order Dataset as the sink
-* As `Copy method` select `Upsert`
-* As `Key Columns` select `SALESDOCUMENT`
+* As `Copy method` select `Upsert` (see Note)
+* As `Key Columns` select `SALESDOCUMENT`, this is the key column of the `SalesOrderHeadersTable`
 
 <img src="images/synapsews/ODPCopyActionSink.jpg">
-
->Note : `Upsert` ensures that when executing a delta load, new records are inserted and changed records are updated. The `Key Columns` are used when determining if a record is to be newly inserted or needs to be updated.
->Note : In this example with Sales Order Headers, we assume Sales Order Headers can not be physically deleted from the DB. If this would be the case then a simple `Upsert` is not sufficient, since it can not take care of deletes. Also when there would be multiple changes to the same Sales Order Headers between extractions then the `Upsert` is not sufficient, since it does not take the update sequence into account. For production usage it is better is to use the predefined template dataflow which differentiates between Insert, Update, Deletes and takes to update sequence into account. This is all info provided by the SAP ODP Layer. For more information, see [Auto-generate a pipeline from the SAP data replication template](https://docs.microsoft.com/en-us/azure/data-factory/sap-change-data-capture-data-replication-template).
 
 * In the mapping tab, choose `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
  
@@ -208,7 +203,11 @@ select * from SalesOrderHeaders
 
 <img src="images/synapsews/SAPODQMONTransAction.jpg">
 
-You can now continue with (Extracting Sales Order Line items)[ExtractSalesOrderLineItemsUsingOData.md]
+>Note : `Upsert` ensures that when executing a delta load, new records are inserted and changed records are updated. The `Key Columns` are used when determining if a record is to be newly inserted or needs to be updated.
+>Note : In this example with Sales Order Headers, we assume Sales Order Headers can not be physically deleted from the DB. If this would be the case then a simple `Upsert` is not sufficient, since it can not take care of deletes. Also when there would be multiple changes to the same Sales Order Headers between extractions then the `Upsert` is not sufficient, since it does not take the update sequence into account. For production usage it is better to use the predefined template dataflow which differentiates between Insert, Update, Deletes and takes the update sequence into account. This is all info provided in System fields by the SAP ODP Layer. For more information, see [Auto-generate a pipeline from the SAP data replication template](https://docs.microsoft.com/en-us/azure/data-factory/sap-change-data-capture-data-replication-template). For instructions on how to use this in our MicroHack, see [SalesOrderHeader Extraction using ODP Pipeline Template](ExtractSalesOrderHeadersUsingODPTemplate.md)
+
+
+You can now continue with [Extracting Sales Order Line items](ExtractSalesOrderLineItemsUsingOData.md)
 
 ## Optional - Delta Changes
 Since our ODP connector (and CDS View) allows for delta changes, you can change a Sales Order.
@@ -226,4 +225,4 @@ select PURCHASEORDERBYCUSTOMER from SalesOrderHeaders WHERE SalesDocument = '000
 
 * Verify the result by running the sql script
 
-You can now continue with (Extracting Sales Order Line items)[ExtractSalesOrderLineItemsUsingOData.md]
+You can now continue with [Extracting Sales Order Line items](ExtractSalesOrderLineItemsUsingOData.md)
