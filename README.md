@@ -10,7 +10,11 @@ In this Microhack we will:
 
 ## Scenario Description
 
-When customers buy goods, the corresponding payments are not done immediately. Some customers will pay directly and other customers will pay at end of the payment terms. This makes it difficult for companies to predict the incoming cashflow. In this simplified exercise we'll use Azure tooling to predict the incoming cashflow. For this we need data on past Sales Orders and past payments. The Sales Order information we'll retrieve from an S/4HANA system. For the payments we assume these are kept in a non SAP system. This non-SAP System is represented by a Cosmos DB.
+When customers buy goods, the corresponding payments are **not done immediately**. Some customers will pay directly and other customers will pay at end of the payment terms. This makes it **difficult** for companies **to predict the incoming cashflow**.
+
+`Contoso Retail processes and distributes food to supermarkets and other small-to-medium sized companies. Generous credit terms based on relationships instead of data analytics has put the company in financial difficulty. They have challenges identifying customers’ payment behaviors and notifying customers when they are behind on invoice payments. The accounting department uses manual processes to identify delinquent accounts making the accounts receivable (AR) management time consuming. Also, lenders and have capped CFD’s line of credit and increased the interest rate until they can lower their AR balance and be able to predict near term future cash flow.`
+
+In this simplified exercise we'll use Azure tooling to predict the incoming cashflow and use anomalies to trigger changes on the SAP back end. For this we need data on past Sales Orders and past payments. The Sales Order information we'll retrieve from an S/4HANA system. For the payments we assume these are kept in a non SAP system. This non-SAP System is represented by a Cosmos DB.
 
 ![Scenario Overview](images/overview/ScenarioOverview.png)
 
