@@ -9,7 +9,7 @@ The metadata for the oData Service can be found at : `http://<SAP IP Address>:<S
 
 Here we can find that the oData entity we'll need is the `C_Salesorderitemfs`.
 
-``
+```
 <EntityContainer Name="SD_F1814_SO_FS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
     ...
     <EntitySet Name="C_Salesorderitemfs" EntityType="SD_F1814_SO_FS_SRV.C_SalesorderitemfsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
@@ -33,7 +33,7 @@ We will begin with creating this table using an SQL Script.
 
 > Note: Make sure to change the "Connect to" value from 'builtin' to your own SQL pool as shown in the screenshot below. As by default it will be connected to the 'builtin' SQL pool of Synapse.
 
-><img src="images/synapsews/connectToPool.jpg"
+><img src="images/synapsews/connectToPool.jpg">
 
 ```sql
 CREATE TABLE SalesOrderItems(
@@ -121,4 +121,4 @@ select count(*) from SalesOrderItems
 select * from SalesOrderItems
 ```
 
-You can now continue with (Extracting Payments)[ExtractPaymentsUsingCosmosDB.md]
+You can now continue with [Extracting Payments](ExtractPaymentsUsingCosmosDB.md)

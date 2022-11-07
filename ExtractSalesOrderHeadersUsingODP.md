@@ -28,7 +28,7 @@ We will begin with creating this table using an SQL Script.
 
 > Note: Make sure to change the "Connect to" value from 'builtin' to your own SQL pool as shown in the screenshot below. As by default it will be connected to the 'builtin' SQL pool of Synapse.
 
-><img src="images/synapsews/connectToPool.jpg"
+><img src="images/synapsews/connectToPool.jpg">
 
 ```sql
 CREATE TABLE SalesOrderHeaders(
@@ -119,7 +119,7 @@ This dataset will act as the source.
 > Note : the source code of the CDS View can be found [here](scripts/zbd_i_salesdocument_e.asddls)
 
 ## Create a Linked Service to the Synapse SQL Pool
-* this will represent the target/sink of the pipeline
+* This will represent the target/sink of the pipeline
 
 * Switch to the `Manage` view
 
@@ -149,38 +149,88 @@ This dataset will act as the `sink` in our pipeline.
 
 ## Create an Integration pipeline
 
->Note: The pipeline we're creating here is a simplified pipeline based on a single `Copy`action for demonstration and explanation purpose. This pipeline has some restrictions concerning the 'Delta capabilities' of the adapter. For a complete delta handling, see [SalesOrderHeader Extraction using ODP Pipeline Template](ExtractSalesOrderHeadersUsingODPTemplate.md). If you're not familiar with Synapse Pipelines, please follow the instruction below first.
-
 * Create a new `Pipeline`, we used `ExtractSalesOrderHeaders` as a name
 
 <img src="images/synapsews/pipelineView.jpg">
 
-* Use the `copy action` by dragging it onto the pipeline canvas
+* Use the `DataFlow` action (within `Move & transform` by dragging it onto the pipeline canvas
 
-<img src="images/synapsews/copyAction.jpg">
+<img src="images/synapsews/DataFlowAction.jpg">
 
-* In the `source` tab, select your SAP Sales Order Header Dataset as the source
-* As `Extraction mode` select `Delta`
->Note : selecting the Delta extraction method will in a first run of the pipeline execute an Initial download and in subsequent runs execute Delta downloads, only containing changed objects since the last extraction.
-* Enter a Subscriber process
+* In the `General` tab, change the `Name`. We used `ExtractSalesOrderHeaders` as a name
+* In the `Settings`tab, change the `Run on Azure IR` to `AutoResolveIntegrationRuntime`
+* Enable `Staging`and enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
 
-<img src="images/synapsews/ODPCopyActionSource.jpg">
+<img src="images/synapsews/DFPipelineStaging.jpg">
 
-* In the `sink` tab, select the Synapse Sales Order Dataset as the sink
-* As `Copy method` select `Upsert` (see Note)
-* As `Key Columns` select `SALESDOCUMENT`, this is the key column of the `SalesOrderHeadersTable`
+* Press `+New` to create a new DataFlow
 
-<img src="images/synapsews/ODPCopyActionSink.jpg">
+<img src="images/synapsews/DFAction.jpg">
 
-* In the mapping tab, choose `Import schemas`. Since source and target fields have the same name, the system can auto-generate the mapping
- 
-<img src="images/synapsews/ODPAutoMapping.jpg">
+* In the DataFlow, change the name. We used `ExtractSalesOrderHeadersDF`
+* Select `Add Source`
 
-* In the `Settings` blade, `enable staging` and use the existing Linked Service to the Synapse Data Lake.
+<img src="images/synapsews/DFAddSource.jpg">
 
-* Enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
+* In `Source settings`:
+    * change `Output stream name`. We used `S4SSalesOrderHeaders`
+    * As `Dataset`, select the ODP dataset you create previously
 
-<img src="images/synapsews/staging.jpg" height=400>
+<img src="images/synapsews/DFSourceSettings.jpg">
+
+* In `Source options`:
+    * `Key Columns`: `SALESDOCUMENT` (Use the `Refresh` button)
+
+<img src="images/synapsews/DFSourceOptions.jpg">
+
+* Turn on `Data Flow Debug`
+
+<img src="images/synapsews/EnableDFDebug.jpg">
+
+* In `Projection`, select `Import projection`
+
+<img src="images/synapsews/DFImportProjection.jpg">
+
+>Note : Date fields like `CREATIONDATE`are detected as string.
+>Note : Under "Data
+
+* Now we need to do some date transformations. We'll do this by adding a `DerivedColumn` step
+** Use `+` and then select `Derived Column`
+<img src="images/synapsews/DFDerivedColumn.jpg">
+
+* In `Derived column's settings`
+** OutputStream Name = S4SSalesOrderHeadersUpd
+** Add `Derived Columns` using the formulas beneath. 
+
+```
+CREATIONDATE = toDate(CREATIONDATE, "yyyy-MM-dd")
+PRICINGDATE = toDate(PRICINGDATE, "yyyy-MM-dd")
+BILLINGDOCUMENTDATE = toDate(BILLINGDOCUMENTDATE, "yyyy-MM-dd")
+LASTCHANGEDATE = toDate(LASTCHANGEDATE, "yyyy-MM-dd")
+CREATIONTIME = toTimestamp(concatWS(" ", toString(toDate(CREATIONDATE, "yyyy-MM-dd")), CREATIONTIME), "yyyy-MM-dd HH:mm:ss")
+```
+
+* Use the `+` button to be able to add a next step to the dataflow
+* Select `Sink`
+
+<img src="images/synapsews/DFAddSink.jpg">
+
+* In the `Sink` tab
+** change the `Output stream name`, we used `SynSalesOrderHeaders`
+** Point the `Dataset`to your DataSet linked to the Synapse Sales Order Headers
+
+<img src="images/synapsews/DFsink.jpg">
+
+* In the `Settings`tab
+** Verify `Allow insert`, `Allow delete`, `Allow upsert`, `Allow update` is checked
+** KeyColums : select `SalesDocument`, this is the key column of the  SalesOrderHeader Table in Synapse.
+
+<img src="images/synapsews/DFSinkSettings.jpg">
+
+* In the 'Mapping` tab
+** Disable `Auto Mapping` to cross check the suggested mapping
+
+<img src="images/synapsews/DFSinkMapping.jpg">
 
 * Now `Publish all` and once this is successful trigger the pipeline, use `Add trigger` -> `Trigger now` -> `OK`
 
@@ -202,10 +252,6 @@ select * from SalesOrderHeaders
 >Note : In the SAP BackEnd you can use transaction `ODQMON - Monitor for Operational Delta Queue` to monitor the ODP extractions.
 
 <img src="images/synapsews/SAPODQMONTransAction.jpg">
-
->Note : `Upsert` ensures that when executing a delta load, new records are inserted and changed records are updated. The `Key Columns` are used when determining if a record is to be newly inserted or needs to be updated.
->Note : In this example with Sales Order Headers, we assume Sales Order Headers can not be physically deleted from the DB. If this would be the case then a simple `Upsert` is not sufficient, since it can not take care of deletes. Also when there would be multiple changes to the same Sales Order Headers between extractions then the `Upsert` is not sufficient, since it does not take the update sequence into account. For production usage it is better to use the predefined template dataflow which differentiates between Insert, Update, Deletes and takes the update sequence into account. This is all info provided in System fields by the SAP ODP Layer. For more information, see [Auto-generate a pipeline from the SAP data replication template](https://docs.microsoft.com/en-us/azure/data-factory/sap-change-data-capture-data-replication-template). For instructions on how to use this in our MicroHack, see [SalesOrderHeader Extraction using ODP Pipeline Template](ExtractSalesOrderHeadersUsingODPTemplate.md)
-
 
 You can now continue with [Extracting Sales Order Line items](ExtractSalesOrderLineItemsUsingOData.md)
 
