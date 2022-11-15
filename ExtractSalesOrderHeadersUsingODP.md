@@ -209,6 +209,7 @@ BILLINGDOCUMENTDATE = toDate(BILLINGDOCUMENTDATE, "yyyy-MM-dd")
 LASTCHANGEDATE = toDate(LASTCHANGEDATE, "yyyy-MM-dd")
 CREATIONTIME = toTimestamp(concatWS(" ", toString(toDate(CREATIONDATE, "yyyy-MM-dd")), CREATIONTIME), "yyyy-MM-dd HH:mm:ss")
 ```
+<img src="images/synapsews/DFDerivedColumnSettings.png">
 
 * Use the `+` button to be able to add a next step to the dataflow
 * Select `Sink`
