@@ -85,7 +85,7 @@ The CDS View to extract from is : `ZBD_ISALESDOC_E`.
 
 <img src="images/synapsews/SAPCDC.png">
 
-* Enter the connection details for the SAP System, we used the name `S4DCLNT100ODP`. Use the username and password for the SAP system provided to you at the start of the Microhack.
+* Enter the connection details for the SAP System, we used the name `S4SCLNT100ODP`. Use the username and password for the SAP system provided to you at the start of the Microhack.
 * Use the Integration Runtime which you installed in the previous steps
 * Enter a Subscriber Name. This name will also be used by ODP in the SAP System.
 
@@ -164,7 +164,7 @@ This dataset will act as the `sink` in our pipeline.
 * In the `Settings`tab, change the `Run on Azure IR` to `AutoResolveIntegrationRuntime`
 * Enable `Staging`and enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
 
-<img src="images/synapsews/DFPipelineStaging.jpg">
+<!-- <img src="images/synapsews/DFPipelineStaging.jpg"> -->
 
 * Press `+New` to create a new DataFlow
 
