@@ -81,9 +81,9 @@ The CDS View to extract from is : `ZBD_ISALESDOC_E`.
 
 <img src="images/synapsews/LinkedServices.jpg">
 
-* Create a new `Linked Service` of type `SAP ODP Connector`
+* Create a new `Linked Service` of type `SAP CDC Connector`
 
-<img src="images/synapsews/SAPODP.jpg">
+<img src="images/synapsews/SAPCDC.png">
 
 * Enter the connection details for the SAP System, we used the name `S4DCLNT100ODP`. Use the username and password for the SAP system provided to you at the start of the Microhack.
 * Use the Integration Runtime which you installed in the previous steps
@@ -103,11 +103,11 @@ This dataset will act as the source.
 
 <img src="images/synapsews/IntegrationDataSet.jpg">
 
-* Use type `SAP ODP`
+* Use type `SAP CDC`
 
-<img src="images/synapsews/IS_SAPODP.jpg" height=300>
+<img src="images/synapsews/IS_SAPCDC.png" height=300>
 
-* Use your previously created Linked ODP Service for the SAP System, as name we used `S4DCLNT100ODP`
+* As a name we used `S4SalesOrderHeadersODP` and for the linked service we used the one we just created `S4DCLNT100ODP`
 * Since we'll be extracting from a CDS View, use `ABAP_CDS` as context
 * Use `ZBD_ISALESDOC_E$*` as table, it can take some time before the list of tables is loaded
 * Use `Preview Data` to check if the data can be retrieved
@@ -209,6 +209,7 @@ BILLINGDOCUMENTDATE = toDate(BILLINGDOCUMENTDATE, "yyyy-MM-dd")
 LASTCHANGEDATE = toDate(LASTCHANGEDATE, "yyyy-MM-dd")
 CREATIONTIME = toTimestamp(concatWS(" ", toString(toDate(CREATIONDATE, "yyyy-MM-dd")), CREATIONTIME), "yyyy-MM-dd HH:mm:ss")
 ```
+<img src="images/synapsews/DFDerivedColumnSettings.png">
 
 * Use the `+` button to be able to add a next step to the dataflow
 * Select `Sink`
