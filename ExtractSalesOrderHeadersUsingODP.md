@@ -164,7 +164,7 @@ This dataset will act as the `sink` in our pipeline.
 * In the `Settings`tab, change the `Run on Azure IR` to `AutoResolveIntegrationRuntime`
 * Enable `Staging`and enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
 
-<!-- <img src="images/synapsews/DFPipelineStaging.jpg"> -->
+<img src="images/synapsews/DFPipelineStaging.jpg">
 
 * Press `+New` to create a new DataFlow
 
