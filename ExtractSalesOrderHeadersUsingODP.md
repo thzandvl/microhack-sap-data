@@ -108,8 +108,11 @@ This dataset will act as the source.
 <img src="images/synapsews/IS_SAPCDC.png" height=300>
 
 * As a name we used `S4SalesOrderHeadersODP` and for the linked service we used the one we just created `S4DCLNT100ODP`
-* Since we'll be extracting from a CDS View, use `ABAP_CDS` as context
-* Use `ZBD_ISALESDOC_E$*` as table, it can take some time before the list of tables is loaded
+* Since we'll be extracting from a CDS View, use `ABAP_CDS` as ODP context
+* Use `ZBD_ISALESDOC_E1$E` as ODP name, it can take some time before the list of tables is loaded
+
+<img src="images/synapsews/LS_ODPDSSetup.jpg">
+
 * Use `Preview Data` to check if the data can be retrieved
 
 <img src="images/synapsews/LS_ODPDSPreview.jpg">
