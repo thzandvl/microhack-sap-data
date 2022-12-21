@@ -181,14 +181,14 @@ This dataset will act as the `sink` in our pipeline.
 
 <img src="images/synapsews/DFSourceSettings.jpg">
 
+* Turn on `Data Flow Debug`
+
+<img src="images/synapsews/EnableDFDebug.jpg">
+
 * In `Source options`:
     * `Key Columns`: `SALESDOCUMENT` (Use the `Refresh` button)
 
 <img src="images/synapsews/DFSourceOptions.jpg">
-
-* Turn on `Data Flow Debug`
-
-<img src="images/synapsews/EnableDFDebug.jpg">
 
 * In `Projection`, select `Import projection`
 
@@ -202,15 +202,15 @@ This dataset will act as the `sink` in our pipeline.
 <img src="images/synapsews/DFDerivedColumn.jpg">
 
 * In `Derived column's settings`
-** OutputStream Name = S4SSalesOrderHeadersUpd
-** Add `Derived Columns` using the formulas beneath. 
+	* OutputStream Name = S4SSalesOrderHeadersUpd
+	* Add `Derived Columns` using the formulas beneath. 
 
 ```
-CREATIONDATE = toDate(CREATIONDATE, "yyyy-MM-dd")
-PRICINGDATE = toDate(PRICINGDATE, "yyyy-MM-dd")
-BILLINGDOCUMENTDATE = toDate(BILLINGDOCUMENTDATE, "yyyy-MM-dd")
-LASTCHANGEDATE = toDate(LASTCHANGEDATE, "yyyy-MM-dd")
-CREATIONTIME = toTimestamp(concatWS(" ", toString(toDate(CREATIONDATE, "yyyy-MM-dd")), CREATIONTIME), "yyyy-MM-dd HH:mm:ss")
+CREATIONDATE = toDate(CREATIONDATE, "yyyyMMdd")
+PRICINGDATE = toDate(PRICINGDATE, "yyyyMMdd")
+BILLINGDOCUMENTDATE = toDate(BILLINGDOCUMENTDATE, "yyyyMMdd")
+LASTCHANGEDATE = toDate(LASTCHANGEDATE, "yyyyMMdd")
+CREATIONTIME = toTimestamp(concatWS(" ", CREATIONDATE, CREATIONTIME), "yyyyMMdd HHmmss")
 ```
 <img src="images/synapsews/DFDerivedColumnSettings.png">
 
@@ -220,14 +220,14 @@ CREATIONTIME = toTimestamp(concatWS(" ", toString(toDate(CREATIONDATE, "yyyy-MM-
 <img src="images/synapsews/DFAddSink.jpg">
 
 * In the `Sink` tab
-** change the `Output stream name`, we used `SynSalesOrderHeaders`
-** Point the `Dataset`to your DataSet linked to the Synapse Sales Order Headers
+	* change the `Output stream name`, we used `SynSalesOrderHeaders`
+	* Point the `Dataset`to your DataSet linked to the Synapse Sales Order Headers
 
 <img src="images/synapsews/DFsink.jpg">
 
 * In the `Settings`tab
-** Verify `Allow insert`, `Allow delete`, `Allow upsert`, `Allow update` is checked
-** KeyColums : select `SalesDocument`, this is the key column of the  SalesOrderHeader Table in Synapse.
+	* Verify `Allow insert`, `Allow delete`, `Allow upsert`, `Allow update` is checked
+	* KeyColums : select `SalesDocument`, this is the key column of the  SalesOrderHeader Table in Synapse.
 
 <img src="images/synapsews/DFSinkSettings.jpg">
 
