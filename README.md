@@ -28,8 +28,8 @@ To execute the Microhack follow the steps below:
 7. [Cleanup the Microhack Environment](CleanEnvironment.md)
 
 ## Additional Documentation
+* [Overview and architecture of the SAP CDC capabilities (preview)](https://learn.microsoft.com/en-us/azure/data-factory/sap-change-data-capture-introduction-architecture)
 * [Copy data from an SAP table using Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-table)
 * [Copy data from SAP using oData and Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/connector-sap-ecc)
 * [SAP Data Integration using Azure Data Factory](https://github.com/Azure/Azure-DataFactory/blob/main/whitepaper/SAP%20Data%20Integration%20using%20Azure%20Data%20Factory.pdf)
-* [SAP Data Extraction using Azure Data Factory (Examples)](https://github.com/bdelangh/ADF_SAPDataExtraction)
 * [What is Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)

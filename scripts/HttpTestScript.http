@@ -1,0 +1,14 @@
+//HTTP test functions for the SAP Data & AI MicroHack
+@SAPIP = 20.120.208.19
+@InstanceNr = 40
+@user = ADFUSER
+@password = Appl1ance
+
+### GetMetaData
+// see https://learn.microsoft.com/en-us/odata/concepts/url-components?source=recommendations
+http://{{SAPIP}}:5{{InstanceNr}}00/sap/opu/odata/sap/sd_f1814_so_fs_srv/$metadata
+Authorization: Basic {{user}}:{{password}}
+
+### Get Top 5 Sales Order Items
+http://{{SAPIP}}:5{{InstanceNr}}00/sap/opu/odata/sap/sd_f1814_so_fs_srv/C_Salesorderitemfs?$top=5
+Authorization: Basic {{user}}:{{password}}

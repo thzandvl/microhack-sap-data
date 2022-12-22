@@ -1,9 +1,34 @@
 # Configure the DataFlow
 ## Introduction
-In this step we'll setup the dataflow from the SAP System and Cosmos DB towards the Synapse DB. Sales OrderHeaders will be extracted via the first Synapse pipeline using the SAP Table connector, Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
+In this step we'll setup the dataflows from the SAP System and Cosmos DB towards the Synapse DB. Sales OrderHeaders will be extracted via the first Synapse pipeline using the SAP ODP connector (Optionally you can use the SAP Table Connector), Sales Order Items will be extracted via a second Synapse Pipeline using the SAP ECC (oData) connector.
 Payment data will be extracted from CosmosDB using a third pipeline.
 
 <img src="images/synapsews/architectureOverview.png">
+Todo : Update picture
+
+## Data Flow setup
+Please follow the sections beneath to setup the dataflows.
+### Sales Order Header Dataflow
+See [Extracting Sales Order Headers using ODP Adapter](ExtractSalesOrderHeadersUsingODP.md)
+
+>Note: you can also use the SAP Table Adapter to extract the Sales Order Header, see [Extracting Sales Order Headers using the SAP Table Adapter](ExtractSalesOrderHeadersUsingTableAdapter.md)
+
+### Sales Order Line ItemsDataflow
+See [Extracting Sales Order Line items](ExtractSalesOrderLineItemsUsingOData.md)
+
+## Payment Dataflow
+See [Extracting Payments](ExtractPaymentsUsingCosmosDB.md)
+
+After setting up the Dataflows and extracting the data, you can continue with the [PowerBi Visualisation](PowerBiVisualisation.md)
+
+
+
+
+
+<!--
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 The first step is to setup the target DB structures in Synapse.
 The next step is to define the pipelines to copy the data. For this we first need to create technical connections, called `Linked Services`, to the different data sources and sinks. These `Linked Services`define the adapter to use and the corresponding connection parameters. For our example we'll need 4 `Linked Services`. 
@@ -269,7 +294,7 @@ Add the parameters `convertDateToDatetime` and `convertTimeToTimespan` at the ex
 ```
 <!-- >>Note : if these parameters are not entered correctly the date fields will remain as a String format. -->
 <!-- Note : these are internal parameters!!! -->
-
+<!--
 * In the `Settings` blade, `enable staging` and use the existing Linked Service to the Synapse Data Lake.
 
 * Enter the path to the staging directory of your Azure Data Lake. The staging directory `sap-data-adls/staging`, was already created by the Terraform script.
@@ -415,3 +440,5 @@ select * from Payments
 ```
 
 You can now proceed with the [next](PowerBiVisualisation.md) step.
+
+-->
