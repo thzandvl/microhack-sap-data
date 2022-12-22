@@ -1,9 +1,13 @@
-@AbapCatalog.sqlViewName: 'ZBD_ISALESDOC_E'
+@AbapCatalog.sqlViewName: 'ZBD_ISALESDOC_E1'
 @AbapCatalog.compiler.compareFilter: true
 @AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Expanded CDS for Extraction I_Salesdocument'
-define view ZBD_I_Salesdocument_E as select from I_SalesDocument {
+
+@Analytics.dataExtraction.enabled: true
+@Analytics.dataExtraction.delta.byElement.name:'LastChangeDateTime'
+
+define view ZBD_I_Salesdocument_E1 as select from I_SalesDocument {
 key SalesDocument,
     //Category
     SDDocumentCategory,
