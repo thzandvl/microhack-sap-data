@@ -61,9 +61,9 @@ CREATE TABLE SalesOrderHeaders(
 )
 ```
 
-# Implement the Sales Order Header Pipeline
+# Implement the Sales Order Header Pipeline using the SAP Table Adapter
 
-<img src="images/synapsews/SalesOrderHeaderPipeline.jpg">
+<img src="images/synapsews/SalesOrderHeaderPipelineTableAdapter.jpg">
 
 The sales order headers are extracted from SAP using the SAP Table Adapter which uses an RFC.
 The CDS View to extract from is : `ZBD_ISALESDOC_E`.
