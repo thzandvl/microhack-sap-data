@@ -2,10 +2,19 @@
 ## Create Application Insights
 #######################################################################
 
+resource "azurerm_log_analytics_workspace" "laws" {
+  name                  = "${var.prefix}-la-ws"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  sku                   = "PerGB2018"
+  retention_in_days     = 30
+}
+
 resource "azurerm_application_insights" "insights" {
   name                  = "${var.prefix}-insights"
   resource_group_name   = azurerm_resource_group.rg.name
   location              = azurerm_resource_group.rg.location
+  workspace_id          = azurerm_log_analytics_workspace.laws.id
   application_type      = "web"
   tags                  = var.tags
 }
